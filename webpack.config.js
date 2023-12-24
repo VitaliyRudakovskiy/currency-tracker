@@ -28,6 +28,14 @@ module.exports = {
 				exclude: /node_modules/,
 				use: 'babel-loader',
 			},
+			{
+				test: /\.(png|jpg|jpeg|gif)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+					},
+				],
+			},
 		],
 	},
 	plugins: [
