@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const fontColor = '#ffffff';
 const backgroundColor = '#030304';
@@ -21,6 +21,12 @@ body {
     color: ${fontColor};
     min-height: 100vh;
 }
+`;
+
+export const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
 `;
 
 export default GlobalStyles;
