@@ -20,12 +20,11 @@ body {
     background-color: ${backgroundColor};
     color: ${fontColor};
     min-height: 100vh;
+    overflow-x: hidden;
 }
 `;
 
 export const Wrapper = styled.div`
-	display: flex;
-	flex-direction: column;
 	min-height: 100%;
 `;
 

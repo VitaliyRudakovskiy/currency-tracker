@@ -44,11 +44,14 @@
 		"webpack-dev-server": "^4.15.1"
 	},
 	"dependencies": {
+		"@reduxjs/toolkit": "^2.0.1",
 		"@types/styled-components": "^5.1.34",
+		"axios": "^1.6.3",
 		"prop-types": "^15.8.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-id-generator": "^3.0.2",
+		"react-redux": "^9.0.4",
 		"styled-components": "^6.1.3"
 	}
 }
