@@ -8,7 +8,7 @@ import {
 import { ICurrency } from '@interfaces/interfaces';
 import { Dropdown } from './styled';
 
-const DropdownModal: React.FC = () => {
+export default function DropdownModal(): JSX.Element {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
 	const currencies: ICurrency[] = useSelector(currenciesRedux);
 
@@ -21,12 +21,14 @@ const DropdownModal: React.FC = () => {
 	const handleDropdownChange = (e: ChangeEvent<HTMLSelectElement>) => {
 		const newActiveCurrency = e.target.value;
 
-		const activeCurrToStore: ICurrency = currencies.find(
+		const activeCurrToStore: ICurrency | undefined = currencies.find(
 			(item) => item.code === newActiveCurrency
 		);
 
-		setSelectedValue(newActiveCurrency);
-		dispatch(setActiveCurrency(activeCurrToStore));
+		if (activeCurrToStore) {
+			setSelectedValue(newActiveCurrency);
+			dispatch(setActiveCurrency(activeCurrToStore));
+		}
 	};
 
 	return (
@@ -38,6 +40,4 @@ const DropdownModal: React.FC = () => {
 			))}
 		</Dropdown>
 	);
-};
-
-export default DropdownModal;
+}
