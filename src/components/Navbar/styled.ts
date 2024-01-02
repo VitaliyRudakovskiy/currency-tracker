@@ -1,18 +1,22 @@
-import { darkTheme as dark, lightTheme as light } from '@constants/colors';
+import {
+	darkTheme as dark,
+	lightTheme as light,
+	navItemHoverColor,
+	navItemClickColor,
+} from '@constants/colors';
+import { Link } from 'react-router-dom';
 import styled, { useTheme } from 'styled-components';
-
-const itemOnHoverColor = '#ffffff';
-const itemOnClickColor = '#00ff00';
 
 interface INavProps {
 	theme: 'dark' | 'light';
 }
 
 export const Nav = styled.nav<INavProps>`
-	background-color: ${() =>
-		useTheme().mode === 'dark'
-			? dark.primaryBackground
-			: light.primaryBackground};
+	position: fixed;
+	width: 100vw;
+	z-index: 2;
+	background-color: ${(props) =>
+		props.theme === 'dark' ? dark.primaryBackground : light.primaryBackground};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -28,18 +32,22 @@ export const NavList = styled.ul<INavProps>`
 `;
 
 export const NavItem = styled.li`
-	text-decoration: none;
 	padding: 0.7rem;
 	font-size: 1rem;
-	transition: text-shadow 0.3s ease;
-	cursor: pointer;
+`;
+
+export const NavLink = styled(Link)`
+	text-decoration: none;
+	transition: all 0.3s;
+	color: ${() =>
+		useTheme().mode === 'dark' ? dark.navItemColor : light.navItemColor};
 
 	&:hover {
-		text-shadow: 0 0 1rem ${itemOnHoverColor};
+		color: ${navItemHoverColor};
 	}
 
 	&:active {
-		color: ${itemOnClickColor};
-		text-shadow: 0 0 3rem ${itemOnClickColor};
+		transform: translateY(2px);
+		color: ${navItemClickColor};
 	}
 `;

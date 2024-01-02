@@ -1,5 +1,13 @@
 import React from 'react';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
 
 export default function Banks(): JSX.Element {
-	return <div>I am banks</div>;
+	return (
+		<>
+			<Header />
+			<p>I am banks</p>
+			<Footer />
+		</>
+	);
 }

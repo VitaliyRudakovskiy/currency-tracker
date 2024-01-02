@@ -10,6 +10,7 @@ module.exports = {
 	},
 	target: 'web',
 	devServer: {
+		historyApiFallback: true,
 		port: '5000',
 		static: {
 			directory: path.join(__dirname, 'public'),

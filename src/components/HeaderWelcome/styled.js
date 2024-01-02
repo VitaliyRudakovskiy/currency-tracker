@@ -17,7 +17,7 @@ export const WelcomeContainer = styled.div`
 	display: flex;
 	justify-content: center;
 	width: 100vw;
-	padding: 1rem 2rem;
+	padding: 4rem 2rem 1rem;
 	gap: 3rem;
 	background: radial-gradient(circle at center, #004400, #000000);
 `;

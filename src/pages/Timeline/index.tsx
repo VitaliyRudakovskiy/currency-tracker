@@ -1,5 +1,13 @@
 import React from 'react';
+import Footer from '@components/Footer';
+import Header from '@components/Header';
 
 export default function Timeline(): JSX.Element {
-	return <div>I am timeline</div>;
+	return (
+		<>
+			<Header />
+			<p>I am timeline</p>
+			<Footer />
+		</>
+	);
 }
