@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import { darkTheme as dark, lightTheme as light } from '@constants/colors';
+import styled, { useTheme } from 'styled-components';
 
-const backgroundColor = '#000000';
 const itemOnHoverColor = '#ffffff';
 const itemOnClickColor = '#00ff00';
 
@@ -9,7 +9,10 @@ interface INavProps {
 }
 
 export const Nav = styled.nav<INavProps>`
-	background-color: ${backgroundColor};
+	background-color: ${() =>
+		useTheme().mode === 'dark'
+			? dark.primaryBackground
+			: light.primaryBackground};
 	display: flex;
 	justify-content: space-between;
 	align-items: center;

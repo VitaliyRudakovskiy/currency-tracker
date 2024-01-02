@@ -1,3 +1,7 @@
-export const lightTheme = {};
+export const darkTheme = {
+	primaryBackground: '#040404',
+};
 
-export const darkTheme = {};
+export const lightTheme = {
+	primaryBackground: '#f4fff4',
+};
