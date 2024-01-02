@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-	entry: './src/index.jsx',
+	entry: './src/index.tsx',
 	mode: 'development',
 	output: {
 		path: path.resolve(__dirname, './dist'),
@@ -19,7 +19,18 @@ module.exports = {
 		liveReload: true,
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.json'],
+		extensions: ['.js', '.tsx', '.jsx', '.ts', '.json'],
+
+		alias: {
+			'@assets': path.resolve(__dirname, 'src/assets/'),
+			'@components': path.resolve(__dirname, 'src/components/'),
+			'@constants': path.resolve(__dirname, 'src/constants/'),
+			'@interfaces': path.resolve(__dirname, 'src/interfaces/'),
+			'@pages': path.resolve(__dirname, 'src/pages/'),
+			'@providers': path.resolve(__dirname, 'src/providers/'),
+			'@store': path.resolve(__dirname, 'src/store/'),
+			'@utils': path.resolve(__dirname, 'src/utils/'),
+		},
 	},
 	module: {
 		rules: [
@@ -29,7 +40,19 @@ module.exports = {
 				use: 'babel-loader',
 			},
 			{
-				test: /\.(png|jpg|jpeg|gif)$/i,
+				test: /\.(ts|tsx)?$/,
+				exclude: /node_modules/,
+				use: {
+					loader: 'ts-loader',
+					options: {
+						compilerOptions: {
+							noEmit: false,
+						},
+					},
+				},
+			},
+			{
+				test: /\.(png|jpg|jpeg)$/i,
 				use: [
 					{
 						loader: 'file-loader',
