@@ -1,33 +1,39 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { ItemContainer, InfoSection } from './styled';
+import { currencyNames } from '@constants/currencies';
+import useImageLoader from '@utils/useImageLoader';
+import ConvertingModal from '../ConvertingModal';
 import {
-	exchangeRateRedux,
 	setActiveCurrency,
+	exchangeRateRedux,
 } from '@store/reducers/currencySlice';
 import { selectModalOpened, toggleModal } from '@store/reducers/modalSlice';
 import { ICurrency } from '@interfaces/interfaces';
-import useImageLoader from '@utils/useImageLoader';
-import { currencyNames } from '@constants/currencies';
 
-interface ICurrencyItem {
+interface CurrencyItemProps {
 	item: ICurrency;
 }
 
-const CurrencyItem: React.FC<ICurrencyItem> = ({ item }) => {
-	const exchangeRate = useSelector(exchangeRateRedux);
-	const isModalVisible = useSelector(selectModalOpened);
+interface Currencies {
+	[key: string]: string;
+}
+
+const CurrencyItem: React.FC<CurrencyItemProps> = ({ item }) => {
+	const exchangeRate: number = useSelector(exchangeRateRedux);
+	const isModalVisible: boolean = useSelector(selectModalOpened);
 
 	const dispatch = useDispatch();
 
-	const currencyName = currencyNames[item.code] || 'Unknown Currency';
-	const equivalent = item.value / exchangeRate.value;
-	const imageSrc = useImageLoader(currencyName);
+	const currencyName: string | undefined = currencyNames[item.code];
+	const equivalent: number = item.value / exchangeRate;
+	const imageSrc: string | undefined = useImageLoader(currencyName);
 
-	const handleItemClick = useCallback(() => {
+	const handleItemClick = () => {
 		dispatch(setActiveCurrency(item));
 		dispatch(toggleModal(true));
 		document.body.style.overflowY = 'hidden';
-	}, [dispatch, item]);
+	};
 
 	return (
 		<>

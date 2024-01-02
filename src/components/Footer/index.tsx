@@ -1,9 +1,9 @@
 import React from 'react';
-import { Copyright, FooterContainer, FooterInfo } from './styled';
 import LeftSection from '../FooterLeft';
 import RightSection from '../FooterRight';
+import { Copyright, FooterContainer, FooterInfo } from './styled';
 
-export default function Footer() {
+function Footer() {
 	return (
 		<FooterContainer>
 			<FooterInfo>
@@ -15,3 +15,5 @@ export default function Footer() {
 		</FooterContainer>
 	);
 }
+
+export default Footer;

@@ -1,14 +1,18 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '@store/reducers/themeSlice';
 import { Nav, NavList, NavItem } from './styled';
 import Logo from '@assets/logo.png';
-import ThemeToggler from '@components/UI-Kit/ThemeToggler';
+import ThemeToggler from '../UI-Kit/ThemeToggler';
 
-export default function Navbar() {
+function Navbar() {
+	const theme = useSelector(selectTheme);
+
 	return (
-		<Nav>
+		<Nav theme={theme}>
 			<img src={Logo} alt="site-logo" />
 
-			<NavList>
+			<NavList theme={theme}>
 				<NavItem>Home</NavItem>
 				<NavItem>Timeline</NavItem>
 				<NavItem>Bank Card</NavItem>
@@ -19,3 +23,5 @@ export default function Navbar() {
 		</Nav>
 	);
 }
+
+export default Navbar;

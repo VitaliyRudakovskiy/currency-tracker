@@ -4,7 +4,11 @@ const backgroundColor = '#000000';
 const itemOnHoverColor = '#ffffff';
 const itemOnClickColor = '#00ff00';
 
-export const Nav = styled.nav`
+interface INavProps {
+	theme: 'dark' | 'light';
+}
+
+export const Nav = styled.nav<INavProps>`
 	background-color: ${backgroundColor};
 	display: flex;
 	justify-content: space-between;
@@ -12,7 +16,7 @@ export const Nav = styled.nav`
 	padding: 0.3rem 3rem;
 `;
 
-export const NavList = styled.ul`
+export const NavList = styled.ul<INavProps>`
 	list-style: none;
 	display: flex;
 	justify-content: center;
