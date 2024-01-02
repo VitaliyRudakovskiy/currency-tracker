@@ -2,7 +2,7 @@ import React from 'react';
 import { FooterText, FooterTitle, LogoSection } from './styled';
 import logo from '@assets/logo.png';
 
-export default function LeftSection() {
+export default function LeftSection(): JSX.Element {
 	return (
 		<div>
 			<LogoSection>

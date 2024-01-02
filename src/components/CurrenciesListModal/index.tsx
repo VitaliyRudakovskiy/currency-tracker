@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import CurrencyItemModal from '../CurrencyItemModal';
 import {
 	activeCurrencyRedux,
 	currenciesRedux,
 } from '@store/reducers/currencySlice';
 import { ICurrency } from '@interfaces/interfaces';
+import CurrencyItemModal from '../CurrencyItemModal';
 
-const CurrenciesListModal: React.FC = () => {
+export default function CurrenciesListModal(): JSX.Element {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
 	const currencies: ICurrency[] = useSelector(currenciesRedux);
 
@@ -22,6 +22,4 @@ const CurrenciesListModal: React.FC = () => {
 			))}
 		</div>
 	);
-};
-
-export default CurrenciesListModal;
+}

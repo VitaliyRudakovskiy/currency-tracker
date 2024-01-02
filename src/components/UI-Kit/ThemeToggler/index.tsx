@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useTheme } from '@providers/ThemeProvider';
 import { selectTheme } from '@store/reducers/themeSlice';
 
-function ThemeToggler() {
+export default function ThemeToggler(): JSX.Element {
 	const theme = useSelector(selectTheme);
 	const { toggleTheme } = useTheme();
 
@@ -21,5 +21,3 @@ function ThemeToggler() {
 		</ToggleContainer>
 	);
 }
-
-export default ThemeToggler;

@@ -8,7 +8,7 @@ import {
 } from './styled';
 import BigLogo from '@assets/big-logo.png';
 
-export default function Welcome() {
+export default function Welcome(): JSX.Element {
 	return (
 		<WelcomeContainer>
 			<TextSection>

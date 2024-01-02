@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import getCurrency from '@utils/getCurrency';
-import { targetCurrencies } from '@constants/currencies';
-import CurrencyItem from '../CurrencyItem';
-import { CurrenciesContainer } from './styled';
 import {
 	setExchangeRate,
 	setCurrenciesToStore,
 	setUpdateTime,
 } from '@store/reducers/currencySlice';
 import { ICurrency } from '@interfaces/interfaces';
+import getCurrency from '@utils/getCurrency';
+import { targetCurrencies } from '@constants/currencies';
+import CurrencyItem from '../CurrencyItem';
+import { CurrenciesContainer } from './styled';
 
-const CurrencyList: React.FC = () => {
+export default function CurrencyList(): JSX.Element {
 	const [currencies, setCurrencies] = useState<ICurrency[]>([]);
 	const dispatch = useDispatch();
 
@@ -48,6 +48,4 @@ const CurrencyList: React.FC = () => {
 			))}
 		</CurrenciesContainer>
 	);
-};
-
-export default CurrencyList;
+}

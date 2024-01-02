@@ -14,6 +14,13 @@ const pulseAnimation = keyframes`
   }
 `;
 
+export const PulseContainer = styled.div`
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 2rem;
+`;
+
 export const PulseCircle = styled.div`
 	position: relative;
 	border-radius: 50%;

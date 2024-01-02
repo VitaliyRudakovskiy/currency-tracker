@@ -8,7 +8,9 @@ interface ICurrencyItemProps {
 	item: ICurrency;
 }
 
-const CurrencyItemForModal: React.FC<ICurrencyItemProps> = ({ item }) => {
+export default function CurrencyItemForModal({
+	item,
+}: ICurrencyItemProps): JSX.Element {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
 	const inputValue: string = useSelector(selectInputValue);
 
@@ -22,6 +24,4 @@ const CurrencyItemForModal: React.FC<ICurrencyItemProps> = ({ item }) => {
 			{convertedSum} {item.code}
 		</div>
 	);
-};
-
-export default CurrencyItemForModal;
+}

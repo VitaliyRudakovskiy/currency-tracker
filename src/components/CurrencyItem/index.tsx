@@ -6,16 +6,16 @@ import {
 } from '@store/reducers/currencySlice';
 import { selectModalOpened, toggleModal } from '@store/reducers/modalSlice';
 import { ICurrency } from '@interfaces/interfaces';
-import { ItemContainer, InfoSection } from './styled';
 import { currencyNames } from '@constants/currencies';
 import useImageLoader from '@utils/useImageLoader';
+import { ItemContainer, InfoSection } from './styled';
 import ConvertingModal from '../ConvertingModal';
 
 interface CurrencyItemProps {
 	item: ICurrency;
 }
 
-function CurrencyItem({ item }: CurrencyItemProps): JSX.Element {
+export default function CurrencyItem({ item }: CurrencyItemProps): JSX.Element {
 	const exchangeRate: number = useSelector(exchangeRateRedux);
 	const isModalVisible: boolean = useSelector(selectModalOpened);
 
@@ -48,5 +48,3 @@ function CurrencyItem({ item }: CurrencyItemProps): JSX.Element {
 		</>
 	);
 }
-
-export default CurrencyItem;

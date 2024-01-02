@@ -3,7 +3,7 @@ import LeftSection from '../FooterLeft';
 import RightSection from '../FooterRight';
 import { Copyright, FooterContainer, FooterInfo } from './styled';
 
-function Footer() {
+export default function Footer(): JSX.Element {
 	return (
 		<FooterContainer>
 			<FooterInfo>
@@ -15,5 +15,3 @@ function Footer() {
 		</FooterContainer>
 	);
 }
-
-export default Footer;

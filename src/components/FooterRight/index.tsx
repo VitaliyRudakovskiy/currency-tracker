@@ -2,7 +2,7 @@ import React from 'react';
 import FooterList from '../FooterList';
 import { RightContainer } from './styled';
 
-function RightSection() {
+export default function RightSection(): JSX.Element {
 	return (
 		<RightContainer>
 			<FooterList title="General" values={['Market', 'Service']} />
@@ -11,5 +11,3 @@ function RightSection() {
 		</RightContainer>
 	);
 }
-
-export default RightSection;

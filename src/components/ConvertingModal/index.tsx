@@ -13,7 +13,7 @@ import {
 import DropdownModal from '../UI-Kit/Dropdown';
 import CurrenciesListModal from '../CurrenciesListModal';
 
-const ConvertingModal: React.FC = () => {
+export default function ConvertingModal(): JSX.Element {
 	const dispatch = useDispatch();
 
 	const onCloseModal = () => {
@@ -38,6 +38,4 @@ const ConvertingModal: React.FC = () => {
 
 		document.body
 	);
-};
-
-export default ConvertingModal;
+}
