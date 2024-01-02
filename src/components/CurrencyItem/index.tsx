@@ -15,19 +15,15 @@ interface CurrencyItemProps {
 	item: ICurrency;
 }
 
-interface Currencies {
-	[key: string]: string;
-}
-
 const CurrencyItem: React.FC<CurrencyItemProps> = ({ item }) => {
 	const exchangeRate: number = useSelector(exchangeRateRedux);
 	const isModalVisible: boolean = useSelector(selectModalOpened);
 
 	const dispatch = useDispatch();
 
-	const currencyName: string | undefined = currencyNames[item.code];
+	const currencyName: string = currencyNames[item.code];
 	const equivalent: number = item.value / exchangeRate;
-	const imageSrc: string | undefined = useImageLoader(currencyName);
+	const imageSrc: string = useImageLoader(currencyName);
 
 	const handleItemClick = () => {
 		dispatch(setActiveCurrency(item));

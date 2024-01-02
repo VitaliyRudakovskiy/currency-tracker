@@ -15,3 +15,9 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContainer = styled.div``;
+
+export const CloseButton = styled.button``;
+
+export const ModalName = styled.div``;
+
+export const InputContainer = styled.h3``;

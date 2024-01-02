@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 interface ModalSlice {
 	isOpened: boolean;
@@ -12,8 +12,8 @@ const modalSlice = createSlice({
 	name: 'modal',
 	initialState,
 	reducers: {
-		toggleModal: (state: ModalSlice) => {
-			state.isOpened = !state.isOpened;
+		toggleModal: (state: ModalSlice, action: PayloadAction<boolean>) => {
+			state.isOpened = action.payload;
 		},
 	},
 });

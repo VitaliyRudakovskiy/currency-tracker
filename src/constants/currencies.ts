@@ -11,7 +11,11 @@ export const targetCurrencies = [
 	'RUB',
 ];
 
-export const currencyNames = {
+interface CurrencyNames {
+	[code: string]: string;
+}
+
+export const currencyNames: CurrencyNames = {
 	USD: 'Commercial Dollar',
 	ARS: 'Argentine Peso',
 	CAD: 'Canadian Dollar',
