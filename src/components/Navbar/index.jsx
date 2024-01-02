@@ -1,7 +1,7 @@
 import React from 'react';
 import { Nav, NavList, NavItem } from './styled';
-import Logo from '../../../assets/logo.png';
-import ThemeToggler from '../../UI-Kit/ThemeToggler/ThemeToggler';
+import Logo from '@assets/logo.png';
+import ThemeToggler from '@components/UI-Kit/ThemeToggler';
 
 export default function Navbar() {
 	return (

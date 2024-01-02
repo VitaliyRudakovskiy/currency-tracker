@@ -1,7 +1,7 @@
 import React from 'react';
 import { Copyright, FooterContainer, FooterInfo } from './styled';
-import LeftSection from './LeftSection/LeftSection';
-import RightSection from './RightSection/RightSection';
+import LeftSection from '../FooterLeft';
+import RightSection from '../FooterRight';
 
 export default function Footer() {
 	return (

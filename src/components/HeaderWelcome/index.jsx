@@ -6,7 +6,7 @@ import {
 	WelcomeText,
 	TextSection,
 } from './styled';
-import BigLogo from '../../../assets/big-logo.png';
+import BigLogo from '@assets/big-logo.png';
 
 export default function Welcome() {
 	return (

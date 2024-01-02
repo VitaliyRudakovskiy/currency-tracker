@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { ItemContainer, InfoSection } from './styled';
-import { currencyNames } from '../../../constants/currencyNames';
-import useImageLoader from '../../../utils/useImageLoader';
-import ConvertingModal from '../../ConvertingModal/ConvertingModal';
+import { currencyNames } from '@constants/currencyNames';
+import useImageLoader from '@utils/useImageLoader';
+import ConvertingModal from '@components/ConvertingModal';
 
 export default function CurrencyItem({ item }) {
 	const exchangeRate = useSelector((state) => state.currency.exchangeRate);

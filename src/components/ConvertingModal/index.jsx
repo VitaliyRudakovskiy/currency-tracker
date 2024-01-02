@@ -9,6 +9,7 @@ export default function ConvertingModal() {
 				<h2>Test</h2>
 			</ModalContainer>
 		</ModalOverlay>,
+
 		document.body
 	);
 }

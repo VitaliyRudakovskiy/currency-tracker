@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from './Navbar/Navbar';
-import Welcome from './Welcome/Welcome';
+import Navbar from '../Navbar';
+import Welcome from '../HeaderWelcome';
 import { HeaderContainer } from './styled';
 
 export default function Header() {

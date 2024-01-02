@@ -1,5 +1,5 @@
 import React from 'react';
-import FooterList from './FooterList/FooterList';
+import FooterList from '../FooterList';
 import { RightContainer } from './styled';
 
 export default function RightSection() {
