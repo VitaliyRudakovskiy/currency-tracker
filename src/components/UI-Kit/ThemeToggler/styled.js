@@ -19,21 +19,6 @@ export const Label = styled.label`
 	cursor: pointer;
 `;
 
-export const Input = styled.input`
-	position: absolute;
-	display: none;
-
-	&:checked ~ ${Slider}::before {
-		transform: translateX(2rem);
-		background-color: ${sliderColor};
-		box-shadow: none;
-	}
-
-	&:checked ~ ${Label} {
-		background-color: ${sliderColor};
-	}
-`;
-
 export const Slider = styled.span`
 	position: absolute;
 	width: 100%;
@@ -52,5 +37,20 @@ export const Slider = styled.span`
 		box-shadow: inset 8px -3px 0px 0px ${sliderColor};
 		background-color: ${darkContainerColor};
 		transition: 0.3s;
+	}
+`;
+
+export const Input = styled.input`
+	position: absolute;
+	display: none;
+
+	&:checked ~ ${Slider}::before {
+		transform: translateX(2rem);
+		background-color: ${sliderColor};
+		box-shadow: none;
+	}
+
+	&:checked ~ ${Label} {
+		background-color: ${sliderColor};
 	}
 `;

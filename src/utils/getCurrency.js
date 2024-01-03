@@ -6,7 +6,6 @@ export default async function getCurrency() {
 	const cachedData = localStorage.getItem(CACHE_KEY);
 
 	if (cachedData) {
-		console.log('Using cached data:', JSON.parse(cachedData));
 		return JSON.parse(cachedData);
 	}
 
@@ -21,7 +20,6 @@ export default async function getCurrency() {
 
 		return currencyData;
 	} catch (error) {
-		console.log('Error occurred while fetching: ', error);
-		throw error;
+		throw new Error(`Error occurred while fetching: ${error}`);
 	}
 }

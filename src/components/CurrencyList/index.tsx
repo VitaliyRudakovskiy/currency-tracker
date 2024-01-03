@@ -9,7 +9,7 @@ import { ICurrency } from '@interfaces/interfaces';
 import getCurrency from '@utils/getCurrency';
 import { targetCurrencies } from '@constants/currencies';
 import CurrencyItem from '../CurrencyItem';
-import { CurrenciesContainer } from './styled';
+import CurrenciesContainer from './styled';
 
 export default function CurrencyList(): JSX.Element {
 	const [currencies, setCurrencies] = useState<ICurrency[]>([]);
@@ -23,7 +23,7 @@ export default function CurrencyList(): JSX.Element {
 				const exchangeRate = currencyData.data.BYN.value;
 				dispatch(setExchangeRate(exchangeRate));
 
-				const lastUpdate = currencyData.meta['last_updated_at'];
+				const lastUpdate = currencyData.meta.last_updated_at;
 				dispatch(setUpdateTime(lastUpdate));
 
 				const currenciesFromApi: ICurrency[] = targetCurrencies.map((code) => ({

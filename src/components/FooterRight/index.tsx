@@ -1,6 +1,6 @@
 import React from 'react';
 import FooterList from '../FooterList';
-import { RightContainer } from './styled';
+import RightContainer from './styled';
 
 export default function RightSection(): JSX.Element {
 	return (

@@ -11,7 +11,7 @@ export default function useImageLoader(imagePath: string) {
 				);
 				setImageSrc(module.default);
 			} catch (error) {
-				console.error('Error loading image:', error);
+				throw new Error(`Error loading image: ${error}`);
 			}
 		};
 

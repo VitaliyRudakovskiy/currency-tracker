@@ -1,11 +1,11 @@
 import React from 'react';
 import ThemeProvider from '@providers/ThemeProvider';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import GlobalStyles, { Wrapper } from './GlobalStyles';
 import Home from '@pages/Home';
 import Timeline from '@pages/Timeline';
 import Banks from '@pages/Banks';
 import Contacts from '@pages/Contacts';
+import GlobalStyles, { Wrapper } from './GlobalStyles';
 
 const router = createBrowserRouter([
 	{

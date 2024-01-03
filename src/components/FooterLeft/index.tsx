@@ -1,6 +1,6 @@
 import React from 'react';
-import { FooterText, FooterTitle, LogoSection } from './styled';
 import logo from '@assets/logo.png';
+import { FooterText, FooterTitle, LogoSection } from './styled';
 
 export default function LeftSection(): JSX.Element {
 	return (
