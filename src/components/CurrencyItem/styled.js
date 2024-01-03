@@ -1,7 +1,5 @@
-import styled from 'styled-components';
-
-const containerColor = '#202025';
-const textColor = '#d9d9d9';
+import { darkTheme, lightTheme } from '@constants/colors';
+import styled, { useTheme } from 'styled-components';
 
 export const ItemContainer = styled.div`
 	position: relative;
@@ -9,7 +7,10 @@ export const ItemContainer = styled.div`
 	align-items: center;
 	justify-content: start;
 	gap: 1rem;
-	background-color: ${containerColor};
+	background-color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.currencyItemBackground
+			: lightTheme.currencyItemBackground};
 	border-radius: 6px;
 	padding: 1rem 1.5rem;
 	transition: all 0.3s;
@@ -23,5 +24,8 @@ export const ItemContainer = styled.div`
 export const InfoSection = styled.div`
 	display: flex;
 	flex-direction: column;
-	color: ${textColor};
+	color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.currencyItemTextColor
+			: lightTheme.mainTextColor};
 `;

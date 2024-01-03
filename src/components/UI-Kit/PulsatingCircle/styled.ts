@@ -1,4 +1,5 @@
-import styled, { keyframes } from 'styled-components';
+import { darkTheme, lightTheme } from '@constants/colors';
+import styled, { keyframes, useTheme } from 'styled-components';
 
 const pulseAnimation = keyframes`
   0% {
@@ -45,4 +46,11 @@ export const PulseCircle = styled.div`
 	&::after {
 		animation-delay: 1s;
 	}
+`;
+
+export const UpdateString = styled.p`
+	color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.mainTextColor
+			: lightTheme.mainTextColor};
 `;

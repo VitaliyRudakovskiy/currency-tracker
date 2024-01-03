@@ -1,6 +1,5 @@
-import styled from 'styled-components';
-
-const copyrightColor = '#898989';
+import { copyrightColor, darkTheme, lightTheme } from '@constants/colors';
+import styled, { useTheme } from 'styled-components';
 
 export const FooterContainer = styled.footer`
 	display: flex;
@@ -8,6 +7,10 @@ export const FooterContainer = styled.footer`
 	min-width: 100vw;
 	padding: 1rem 3rem;
 	justify-content: center;
+	background-color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.primaryBackground
+			: lightTheme.primaryBackground};
 `;
 
 export const FooterInfo = styled.div`

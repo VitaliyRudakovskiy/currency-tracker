@@ -5,8 +5,8 @@ import { chartOptions } from '@constants/chartOptions';
 import { Chart } from 'react-google-charts';
 
 export default function ChartComponent(): JSX.Element {
-	const [historyUSD, setHistoryUSD] = useState<ExchangeRateData[][]>([[]]);
-	const [historyEUR, setHistoryEUR] = useState<ExchangeRateData[][]>([[]]);
+	const [historyUSD, setHistoryUSD] = useState<ExchangeRateData[][]>();
+	const [historyEUR, setHistoryEUR] = useState<ExchangeRateData[][]>();
 
 	useEffect(() => {
 		const fetchData = async () => {

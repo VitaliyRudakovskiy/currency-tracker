@@ -40,7 +40,7 @@ export const NavLink = styled(Link)`
 	text-decoration: none;
 	transition: all 0.3s;
 	color: ${() =>
-		useTheme().mode === 'dark' ? dark.navItemColor : light.navItemColor};
+		useTheme().mode === 'dark' ? dark.mainTextColor : light.mainTextColor};
 
 	&:hover {
 		color: ${navItemHoverColor};

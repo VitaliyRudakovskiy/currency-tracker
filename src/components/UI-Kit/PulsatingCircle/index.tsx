@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { updateTimeSelector } from '@store/reducers/currencySlice';
 import { dateOptions } from '@constants/dateOptions';
-import { PulseCircle, PulseContainer } from './styled';
+import { PulseCircle, PulseContainer, UpdateString } from './styled';
 
 export default function PulsatingCircle(): JSX.Element {
 	const lastUpdate = useSelector(updateTimeSelector);
@@ -14,7 +14,7 @@ export default function PulsatingCircle(): JSX.Element {
 	return (
 		<PulseContainer>
 			<PulseCircle />
-			<p>Last updated at {formattedDate}</p>
+			<UpdateString>Last updated at {formattedDate}</UpdateString>
 		</PulseContainer>
 	);
 }

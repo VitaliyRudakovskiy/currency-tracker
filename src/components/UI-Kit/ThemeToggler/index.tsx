@@ -1,8 +1,8 @@
 import React from 'react';
-import { ToggleContainer, Label, Input, Slider } from './styled';
 import { useSelector } from 'react-redux';
 import { useTheme } from '@providers/ThemeProvider';
 import { selectTheme } from '@store/reducers/themeSlice';
+import { ToggleContainer, Label, Input, Slider } from './styled';
 
 export default function ThemeToggler(): JSX.Element {
 	const theme = useSelector(selectTheme);
@@ -10,7 +10,7 @@ export default function ThemeToggler(): JSX.Element {
 
 	return (
 		<ToggleContainer>
-			<Label>
+			<Label theme={theme}>
 				<Input
 					type="checkbox"
 					checked={theme === 'light'}

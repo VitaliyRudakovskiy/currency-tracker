@@ -1,4 +1,5 @@
 import React from 'react';
+import BigLogo from '@assets/big-logo.png';
 import {
 	WelcomeContainer,
 	WelcomeTitle,
@@ -6,18 +7,21 @@ import {
 	WelcomeText,
 	TextSection,
 } from './styled';
-import BigLogo from '@assets/big-logo.png';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '@store/reducers/themeSlice';
 
 export default function Welcome(): JSX.Element {
+	const theme = useSelector(selectTheme);
+
 	return (
-		<WelcomeContainer>
+		<WelcomeContainer theme={theme}>
 			<TextSection>
 				<WelcomeSubtitle>
 					Modsen Currency
 					<WelcomeTitle>Tracker</WelcomeTitle>
 				</WelcomeSubtitle>
 
-				<WelcomeText>
+				<WelcomeText theme={theme}>
 					Quotes for the dollar and other international currencies.
 				</WelcomeText>
 			</TextSection>

@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from '@store/reducers/modalSlice';
 import Input from '../UI-Kit/Input';
+import DropdownModal from '../UI-Kit/Dropdown';
+import CurrenciesListModal from '../CurrenciesListModal';
+import { selectTheme } from '@store/reducers/themeSlice';
 import {
 	ModalContainer,
 	ModalOverlay,
@@ -10,10 +13,9 @@ import {
 	ModalName,
 	InputContainer,
 } from './styled';
-import DropdownModal from '../UI-Kit/Dropdown';
-import CurrenciesListModal from '../CurrenciesListModal';
 
 export default function ConvertingModal(): JSX.Element {
+	const theme = useSelector(selectTheme);
 	const dispatch = useDispatch();
 
 	const onCloseModal = () => {
@@ -23,7 +25,7 @@ export default function ConvertingModal(): JSX.Element {
 
 	return ReactDOM.createPortal(
 		<ModalOverlay>
-			<ModalContainer>
+			<ModalContainer theme={theme}>
 				<CloseButton onClick={onCloseModal}>&times;</CloseButton>
 				<ModalName>Converter</ModalName>
 

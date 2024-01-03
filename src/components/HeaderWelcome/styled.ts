@@ -1,6 +1,6 @@
+import { darkTheme, lightTheme } from '@constants/colors';
 import styled, { css } from 'styled-components';
 
-const quoteColor = '#d9d9d9';
 const titleMixin = css`
 	background: linear-gradient(
 		90deg,
@@ -13,13 +13,20 @@ const titleMixin = css`
 	-webkit-text-fill-color: transparent;
 `;
 
-export const WelcomeContainer = styled.div`
+interface IThemeProps {
+	theme: 'dark' | 'light';
+}
+
+export const WelcomeContainer = styled.div<IThemeProps>`
 	display: flex;
 	justify-content: center;
 	width: 100vw;
 	padding: 4rem 2rem 1rem;
 	gap: 3rem;
-	background: radial-gradient(circle at center, #004400, #000000);
+	background: ${(props) =>
+		props.theme === 'dark'
+			? darkTheme.welcomeBackground
+			: lightTheme.primaryBackground};
 `;
 
 export const TextSection = styled.div`
@@ -39,9 +46,10 @@ export const WelcomeTitle = styled.p`
 	font-size: 3rem;
 `;
 
-export const WelcomeText = styled.p`
+export const WelcomeText = styled.p<IThemeProps>`
 	max-width: 15rem;
 	font-size: 0.9rem;
 	text-align: center;
-	color: ${quoteColor};
+	color: ${(props) =>
+		props.theme === 'dark' ? darkTheme.welcomeQuote : lightTheme.mainTextColor};
 `;
