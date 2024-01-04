@@ -1,7 +1,7 @@
+import { darkTheme } from '@constants/colors';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const fontColor = '#ffffff';
-const backgroundColor = '#030304';
 
 const GlobalStyles = createGlobalStyle`
 * {
@@ -12,12 +12,12 @@ const GlobalStyles = createGlobalStyle`
 
 html {
     scroll-behavior: smooth;
-}   
+}
 
 body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    background-color: ${backgroundColor};
+    background-color: ${darkTheme.primaryBackground};
     color: ${fontColor};
     min-height: 100vh;
     overflow-x: hidden;

@@ -9,6 +9,7 @@ export const darkTheme = {
 	toggleBackground: '#28292c',
 
 	modalBackground: '#28292c',
+	modalElementBackground: '#202025',
 
 	currencyItemBackground: '#202025',
 	currencyItemTextColor: '#d9d9d9',
@@ -22,6 +23,7 @@ export const lightTheme = {
 	toggleBackground: '#f0f0f0',
 
 	modalBackground: '#f0f0f0',
+	modalElementBackground: '#cccccc',
 
 	currencyItemBackground: '#eeeeee',
 };

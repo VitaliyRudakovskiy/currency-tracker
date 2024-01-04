@@ -6,7 +6,7 @@ import {
 	setActiveCurrency,
 } from '@store/reducers/currencySlice';
 import { ICurrency } from '@interfaces/interfaces';
-import { Dropdown } from './styled';
+import Dropdown from './styled';
 
 export default function DropdownModal(): JSX.Element {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);

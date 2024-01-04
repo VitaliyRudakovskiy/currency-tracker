@@ -5,7 +5,9 @@ import Home from '@pages/Home';
 import Timeline from '@pages/Timeline';
 import Banks from '@pages/Banks';
 import Contacts from '@pages/Contacts';
+import useCurrencyData from '@utils/useCurrencyData';
 import GlobalStyles, { Wrapper } from './GlobalStyles';
+import useCurrencyHistory from '@utils/useCurrencyHistory';
 
 const router = createBrowserRouter([
 	{
@@ -28,6 +30,9 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+	useCurrencyData();
+	useCurrencyHistory();
+
 	return (
 		<ThemeProvider>
 			<Wrapper>

@@ -1,8 +1,13 @@
-import styled from 'styled-components';
+import { darkTheme as dark, lightTheme as light } from '@constants/colors';
+import styled, { useTheme } from 'styled-components';
 
-export const Dropdown = styled.select`
-	background-color: #363636;
-	color: #fff;
+const Dropdown = styled.select`
+	background-color: ${() =>
+		useTheme().mode === 'dark'
+			? dark.modalElementBackground
+			: light.modalElementBackground};
+	color: ${() =>
+		useTheme().mode === 'dark' ? dark.mainTextColor : light.mainTextColor};
 	padding: 8px;
 	border: none;
 	border-radius: 0 4px 4px 0;
@@ -21,7 +26,13 @@ export const Dropdown = styled.select`
 	}
 
 	option {
-		background-color: #363636;
-		color: #fff;
+		background-color: ${() =>
+			useTheme().mode === 'dark'
+				? dark.modalElementBackground
+				: light.modalElementBackground};
+		color: ${() =>
+			useTheme().mode === 'dark' ? dark.mainTextColor : light.mainTextColor};
 	}
 `;
+
+export default Dropdown;

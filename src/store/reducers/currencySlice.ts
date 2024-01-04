@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ICurrency } from '@interfaces/interfaces';
+import { CurrencyHistoryData, ICurrency } from '@interfaces/interfaces';
 
 interface CurrencyState {
 	exchangeRate: number;
 	updateTime: string;
 	activeCurrency: ICurrency;
 	currencies: ICurrency[];
+	historyUSD: CurrencyHistoryData;
+	historyEUR: CurrencyHistoryData;
 }
 
 const initialState: CurrencyState = {
@@ -13,6 +15,8 @@ const initialState: CurrencyState = {
 	updateTime: '',
 	activeCurrency: { code: '', value: 0 },
 	currencies: [],
+	historyUSD: [['', '', '', '', '']],
+	historyEUR: [['', '', '', '', '']],
 };
 
 const currencySlice = createSlice({
@@ -34,6 +38,14 @@ const currencySlice = createSlice({
 		setCurrenciesToStore: (state, action: PayloadAction<ICurrency[]>) => {
 			state.currencies.push(...action.payload);
 		},
+
+		setHistoryUSD: (state, action: PayloadAction<CurrencyHistoryData>) => {
+			state.historyUSD = action.payload;
+		},
+
+		setHistoryEUR: (state, action: PayloadAction<CurrencyHistoryData>) => {
+			state.historyEUR = action.payload;
+		},
 	},
 });
 
@@ -42,6 +54,8 @@ export const {
 	setUpdateTime,
 	setActiveCurrency,
 	setCurrenciesToStore,
+	setHistoryUSD,
+	setHistoryEUR,
 } = currencySlice.actions;
 
 export const activeCurrencyRedux = (state: { currency: CurrencyState }) =>
@@ -52,5 +66,9 @@ export const exchangeRateRedux = (state: { currency: CurrencyState }) =>
 	state.currency.exchangeRate;
 export const currenciesRedux = (state: { currency: CurrencyState }) =>
 	state.currency.currencies;
+export const historyUSDRedux = (state: { currency: CurrencyState }) =>
+	state.currency.historyUSD;
+export const historyEURRedux = (state: { currency: CurrencyState }) =>
+	state.currency.historyEUR;
 
 export default currencySlice.reducer;

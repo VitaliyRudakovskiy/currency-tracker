@@ -9,9 +9,7 @@ interface ICurrencyItemProps {
 	item: ICurrency;
 }
 
-export default function CurrencyItemForModal({
-	item,
-}: ICurrencyItemProps): JSX.Element {
+export default function ModalItem({ item }: ICurrencyItemProps): JSX.Element {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
 	const inputValue: string = useSelector(selectInputValue);
 
@@ -22,7 +20,7 @@ export default function CurrencyItemForModal({
 
 	return (
 		<ConvertedSumContainer>
-			{isNaN(+convertedSum) ? null : (
+			{Number.isNaN(+convertedSum) ? null : (
 				<>
 					{convertedSum} {item.code}
 				</>

@@ -1,61 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import getCurrencyHistory from '@utils/getCurrencyHistory';
-import { ExchangeRateData } from '@interfaces/interfaces';
 import { chartOptions } from '@constants/chartOptions';
 import { Chart } from 'react-google-charts';
+import { useChartDataContext } from '@providers/ChartDataProvider';
+import { CurrencyHistoryData } from '@interfaces/interfaces';
+import Notification from '@components/Notification';
+import Loader from '@components/Loader';
+import ChartContainer from './styled';
 
 export default function ChartComponent(): JSX.Element {
-	const [historyUSD, setHistoryUSD] = useState<ExchangeRateData[][]>();
-	const [historyEUR, setHistoryEUR] = useState<ExchangeRateData[][]>();
+	const chartSubject = useChartDataContext();
+	const [chartData, setChartData] = useState<CurrencyHistoryData>(
+		chartSubject.getData()
+	);
+
+	const [showNotification, setShowNotification] = useState<boolean>(false);
 
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const [resultUSD, resultEUR]: [ExchangeRateData[], ExchangeRateData[]] =
-					await getCurrencyHistory();
+		const observer = {
+			update: (newData: CurrencyHistoryData) => {
+				setChartData(newData);
 
-				const updatedHistoryUSD = [
-					['Day', '', '', '', ''],
-					...resultUSD.map((item) => [
-						item.time_open.slice(0, 10),
-						item.rate_low,
-						item.rate_open,
-						item.rate_close,
-						item.rate_high,
-					]),
-				];
-
-				setHistoryUSD(updatedHistoryUSD);
-
-				const updatedHistoryEUR = [
-					['Day', '', '', '', ''],
-					...resultEUR.map((item) => [
-						item.time_open.slice(0, 10),
-						item.rate_low,
-						item.rate_open,
-						item.rate_close,
-						item.rate_high,
-					]),
-				];
-
-				setHistoryEUR(updatedHistoryEUR);
-			} catch (error) {
-				throw new Error(`Error fetching currency history: ${error}`);
-			}
+				if (newData.length > 30) {
+					setShowNotification(true);
+				}
+			},
 		};
+		chartSubject.addObserver(observer);
 
-		fetchData();
-	}, []);
+		return () => {
+			chartSubject.removeObserver(observer);
+		};
+	}, [chartSubject]);
+
+	const hideNotification = () => {
+		setShowNotification(false);
+	};
 
 	return (
-		<>
+		<ChartContainer>
 			<Chart
 				chartType="CandlestickChart"
 				width="100%"
 				height="400px"
-				data={historyUSD} // или data={historyEUR} или объедините данные
+				data={chartData}
 				options={chartOptions}
+				style={{ width: '100vw', height: '70vh' }}
+				loader={<Loader />}
 			/>
-		</>
+			<Notification show={showNotification} onHide={hideNotification} />
+		</ChartContainer>
 	);
 }

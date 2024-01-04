@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectInputValue, setInputValue } from '@store/reducers/inputSlice';
 import { InputContainer } from './styled';
 
-export default function Input(): JSX.Element {
+interface IInput {
+	placeholder?: string;
+}
+
+export default function Input({
+	placeholder = 'Input sum of money',
+}: IInput): JSX.Element {
 	const inputValue: string = useSelector(selectInputValue);
 
 	const dispatch = useDispatch();
@@ -17,7 +23,7 @@ export default function Input(): JSX.Element {
 	return (
 		<InputContainer
 			type="text"
-			placeholder="Input sum of money"
+			placeholder={placeholder}
 			value={inputValue}
 			onChange={handleInputChange}
 		/>

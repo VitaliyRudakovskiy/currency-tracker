@@ -8,8 +8,8 @@ import { selectModalOpened, toggleModal } from '@store/reducers/modalSlice';
 import { ICurrency } from '@interfaces/interfaces';
 import { currencyNames } from '@constants/currencies';
 import useImageLoader from '@utils/useImageLoader';
-import { ItemContainer, InfoSection } from './styled.js';
-import ConvertingModal from '../ConvertingModal';
+import { ItemContainer, InfoSection } from './styled';
+import ConvertingModal from '../Modal';
 
 interface CurrencyItemProps {
 	item: ICurrency;

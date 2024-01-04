@@ -13,3 +13,12 @@ export interface ExchangeRateData {
 	time_period_end: string;
 	time_period_start: string;
 }
+
+export type HistoryEntry = [
+	string,
+	string | number,
+	string | number,
+	string | number,
+	string | number,
+];
+export type CurrencyHistoryData = [...HistoryEntry][];

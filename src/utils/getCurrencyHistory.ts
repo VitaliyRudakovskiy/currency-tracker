@@ -1,5 +1,5 @@
 import axios from 'axios';
-import getDateMonthAgo from './getDateMonthAgo';
+import getDate30DaysAgo from './getDate30DaysAgo';
 import { ExchangeRateData } from '@interfaces/interfaces';
 
 const historyUSD = 'USD';
@@ -15,8 +15,8 @@ export default async function getCurrencyHistory(): Promise<
 		return [JSON.parse(cachedDataUSD), JSON.parse(cachedDataEUR)];
 	}
 
-	const dateMonthAgo: string = getDateMonthAgo();
-	const apiKey: string = '7128C165-578F-4FD6-89BD-138F4ECF707F';
+	const dateMonthAgo: string = getDate30DaysAgo();
+	const apiKey: string = 'BA4616DA-5203-4825-8105-2045CB59E1B9';
 
 	const fetchExchangeRate = async (
 		currencyCode: string

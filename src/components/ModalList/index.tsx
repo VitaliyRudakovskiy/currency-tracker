@@ -5,10 +5,10 @@ import {
 	currenciesRedux,
 } from '@store/reducers/currencySlice';
 import { ICurrency } from '@interfaces/interfaces';
-import CurrencyItemModal from '../CurrencyItemModal';
+import ModalItem from '../ModalItem';
 import ListContainer from './styled';
 
-export default function CurrenciesListModal(): JSX.Element {
+export default function ModalList(): JSX.Element {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
 	const currencies: ICurrency[] = useSelector(currenciesRedux);
 
@@ -19,7 +19,7 @@ export default function CurrenciesListModal(): JSX.Element {
 	return (
 		<ListContainer>
 			{renderedCurrencies.map((item) => (
-				<CurrencyItemModal key={item.code} item={item} />
+				<ModalItem key={item.code} item={item} />
 			))}
 		</ListContainer>
 	);

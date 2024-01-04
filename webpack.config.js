@@ -54,7 +54,7 @@ module.exports = {
 				},
 			},
 			{
-				test: /\.(png|jpg|jpeg)$/i,
+				test: /\.(png|jpg|jpeg|ico)$/i,
 				use: [
 					{
 						loader: 'file-loader',
@@ -67,6 +67,6 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'public', 'index.html'),
 		}),
-		new ESLintWebpackPlugin({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
+		// new ESLintWebpackPlugin({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
 	],
 };

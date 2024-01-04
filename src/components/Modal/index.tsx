@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleModal } from '@store/reducers/modalSlice';
 import Input from '../UI-Kit/Input';
 import DropdownModal from '../UI-Kit/Dropdown';
-import CurrenciesListModal from '../CurrenciesListModal';
+import ModalList from '../ModalList';
 import { selectTheme } from '@store/reducers/themeSlice';
 import {
 	ModalContainer,
@@ -13,6 +13,7 @@ import {
 	ModalName,
 	InputContainer,
 } from './styled';
+import { setInputValue } from '@store/reducers/inputSlice';
 
 export default function ConvertingModal(): JSX.Element {
 	const theme = useSelector(selectTheme);
@@ -20,6 +21,7 @@ export default function ConvertingModal(): JSX.Element {
 
 	const onCloseModal = () => {
 		dispatch(toggleModal(false));
+		dispatch(setInputValue(''));
 		document.body.style.overflowY = 'auto';
 	};
 
@@ -34,7 +36,7 @@ export default function ConvertingModal(): JSX.Element {
 					<DropdownModal />
 				</InputContainer>
 
-				<CurrenciesListModal />
+				<ModalList />
 			</ModalContainer>
 		</ModalOverlay>,
 

@@ -1,8 +1,15 @@
-import styled from 'styled-components';
+import { darkTheme, lightTheme } from '@constants/colors';
+import styled, { useTheme } from 'styled-components';
 
 export const InputContainer = styled.input`
-	background-color: #363636;
-	color: #fff;
+	background-color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.modalElementBackground
+			: lightTheme.modalElementBackground};
+	color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.mainTextColor
+			: lightTheme.mainTextColor};
 	padding: 8px;
 	border: none;
 	border-radius: 4px 0 0 4px;
