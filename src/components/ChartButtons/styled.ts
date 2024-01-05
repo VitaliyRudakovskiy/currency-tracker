@@ -7,6 +7,7 @@ export const ButtonsContainer = styled.div`
 	justify-content: center;
 	gap: 1rem;
 	margin-top: 2rem;
+	margin-bottom: 0.1rem;
 `;
 
 export const ChartButton = styled.button`

@@ -1,53 +1,111 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {
-	ChartDropdown,
+	ChartDataContext,
+	ChartObserver,
+	ChartSubjectInterface,
+} from '@providers/ChartDataProvider';
+import {
+	CurrencyHistoryData,
+	HistoryEntry,
+	IFormData,
+} from '@interfaces/interfaces';
+import ChartModalInputs from '@components/ChartModalInputs';
+import ChartDropdown from '@components/ChartDropdown';
+import {
 	ChartModalContainer,
-	ChartModalInput,
 	ChartModalOverlay,
 	ChartModalTitle,
 	CloseButton,
-	InputsContainer,
+	SubmitButton,
 } from './styled';
-import Input from '@components/UI-Kit/Input';
 
 interface PortalProps {
 	onClose: () => void;
 }
 
-class ChartModal extends Component<PortalProps> {
-	private el: HTMLDivElement;
+interface ChartModalState {
+	chartData: CurrencyHistoryData;
+	selectedDate: string;
+	formData: IFormData;
+}
+
+class ChartModal extends Component<PortalProps, ChartModalState> {
+	static contextType = ChartDataContext;
+	context!: ChartSubjectInterface;
+	observer!: ChartObserver;
 
 	constructor(props: PortalProps) {
 		super(props);
-		this.el = document.createElement('div');
+		this.state = {
+			chartData: [],
+			selectedDate: '',
+			formData: {
+				newLowRate: '',
+				newOpenRate: '',
+				newCloseRate: '',
+				newHighRate: '',
+			},
+		};
 	}
 
 	componentDidMount() {
-		document.body.appendChild(this.el);
+		this.observer = {
+			update: (newData: CurrencyHistoryData) => {
+				this.setState({ chartData: newData });
+			},
+		};
+		this.context.addObserver(this.observer);
+		this.setState({ chartData: this.context.getData() });
 	}
 
 	componentWillUnmount() {
-		document.body.removeChild(this.el);
+		this.context.removeObserver(this.observer);
 	}
 
+	handleSave = () => {
+		const { selectedDate, formData, chartData } = this.state;
+		const newDataForSelectedDate: HistoryEntry = [
+			selectedDate,
+			Number(formData.newLowRate),
+			Number(formData.newOpenRate),
+			Number(formData.newCloseRate),
+			Number(formData.newHighRate),
+		];
+
+		const updatedData: CurrencyHistoryData = chartData.map((item) =>
+			item[0] === selectedDate ? newDataForSelectedDate : item
+		);
+
+		this.context.updateData(updatedData);
+		this.props.onClose();
+	};
+
 	render() {
+		const { onClose } = this.props;
+		const { chartData, selectedDate, formData } = this.state;
+
 		return ReactDOM.createPortal(
 			<ChartModalOverlay>
 				<ChartModalContainer>
-					<CloseButton onClick={this.props.onClose}>&times;</CloseButton>
+					<CloseButton onClick={onClose}>&times;</CloseButton>
 					<ChartModalTitle>Choose date</ChartModalTitle>
-					<ChartDropdown />
-					<InputsContainer>
-						<Input placeholder="Input new high rate" />
-						<Input placeholder="Input new low rate" />
-						<Input placeholder="Input new open rate" />
-						<Input placeholder="Input new close rate" />
-					</InputsContainer>
+					<ChartDropdown
+						selectedDate={selectedDate}
+						setSelectedData={(date: string) =>
+							this.setState({ selectedDate: date })
+						}
+						data={chartData}
+						setFormData={(data: IFormData) => this.setState({ formData: data })}
+					/>
+					<ChartModalInputs
+						formData={formData}
+						setFormData={(data: IFormData) => this.setState({ formData: data })}
+					/>
+					<SubmitButton onClick={this.handleSave}>Save</SubmitButton>
 				</ChartModalContainer>
 			</ChartModalOverlay>,
-
-			this.el
+			document.body
 		);
 	}
 }

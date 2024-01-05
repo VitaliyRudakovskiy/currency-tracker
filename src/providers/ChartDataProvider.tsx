@@ -1,8 +1,8 @@
-import React, { Component, ReactNode, createContext, useContext } from 'react';
+import React, { Component, ReactNode, createContext } from 'react';
 import { CurrencyHistoryData } from '@interfaces/interfaces';
 import generateRandomHistory from '@utils/generateRandomHistory';
 
-interface ChartObserver {
+export interface ChartObserver {
 	update: (newData: CurrencyHistoryData) => void;
 }
 
@@ -46,62 +46,20 @@ interface ChartDataContextProps {
 	children: ReactNode;
 }
 
-interface ChartDataContextState {
-	updateData: (newData: CurrencyHistoryData) => void;
-	addObserver: (observer: ChartObserver) => void;
-	removeObserver: (observer: ChartObserver) => void;
-	notifyObservers: () => void;
-	getData: () => CurrencyHistoryData;
-}
+export const ChartDataContext = createContext<
+	ChartSubjectInterface | undefined
+>(undefined);
 
-const ChartDataContext = createContext<ChartDataContextState | undefined>(
-	undefined
-);
+class ChartDataProvider extends Component<ChartDataContextProps> {
+	chartSubject = new ChartSubject();
 
-export const useChartDataContext = () => {
-	const context = useContext(ChartDataContext);
-	if (!context) {
-		throw new Error(
-			'useChartDataContext must be used within a ChartDataProvider'
+	render() {
+		return (
+			<ChartDataContext.Provider value={this.chartSubject}>
+				{this.props.children}
+			</ChartDataContext.Provider>
 		);
 	}
-	return context;
-};
-
-// export class ChartDataProvider extends Component<
-// 	ChartDataContextProps,
-// 	ChartDataContextState
-// > {
-// 	constructor(props: ChartDataContextProps) {
-// 		super(props);
-// 		this.state = {
-// 			chartData: [['Day', '', '', '', '']],
-// 			updateData: this.updateData.bind(this),
-// 		};
-// 	}
-
-// 	updateData(newData: CurrencyHistoryData) {
-// 		this.setState({ chartData: newData });
-// 	}
-
-// 	render() {
-// 		const { children } = this.props;
-// 		return (
-// 			<ChartDataContext.Provider value={this.state}>
-// 				{children}
-// 			</ChartDataContext.Provider>
-// 		);
-// 	}
-// }
-
-const ChartDataProvider: React.FC<ChartDataContextProps> = ({ children }) => {
-	const chartSubject = new ChartSubject();
-
-	return (
-		<ChartDataContext.Provider value={chartSubject}>
-			{children}
-		</ChartDataContext.Provider>
-	);
-};
+}
 
 export default ChartDataProvider;

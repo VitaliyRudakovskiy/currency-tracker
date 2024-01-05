@@ -21,4 +21,12 @@ export type HistoryEntry = [
 	string | number,
 	string | number,
 ];
+
 export type CurrencyHistoryData = [...HistoryEntry][];
+
+export interface IFormData {
+	newHighRate: string;
+	newLowRate: string;
+	newOpenRate: string;
+	newCloseRate: string;
+}

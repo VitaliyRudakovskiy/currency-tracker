@@ -1,57 +1,85 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { CurrencyHistoryData } from '@interfaces/interfaces';
-import { useChartDataContext } from '@providers/ChartDataProvider';
 import {
-	historyEURRedux,
-	historyUSDRedux,
-} from '@store/reducers/currencySlice';
-import React, { Component, useState } from 'react';
-import { useSelector } from 'react-redux';
+	ChartDataContext,
+	ChartSubjectInterface,
+} from '@providers/ChartDataProvider';
 import generateRandomHistory from '@utils/generateRandomHistory';
 import { ChartButton, ButtonsContainer } from './styled';
 import ChartModal from '@components/ChartModal';
 
-const ChartButtons = () => {
-	const [isOpened, setIsOpened] = useState(false);
+interface ChartButtonsProps {
+	historyUSD: CurrencyHistoryData;
+	historyEUR: CurrencyHistoryData;
+}
 
-	const chartSubject = useChartDataContext();
-	const historyUSD = useSelector(historyUSDRedux);
-	const historyEUR = useSelector(historyEURRedux);
+interface ChartButtonsState {
+	isOpened: boolean;
+}
 
-	const handleButtonClick = () => {
-		const newData: CurrencyHistoryData = generateRandomHistory();
-		chartSubject.updateData(newData);
+class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
+	static contextType = ChartDataContext;
+	context!: ChartSubjectInterface;
+
+	constructor(props: ChartButtonsProps) {
+		super(props);
+		this.state = {
+			isOpened: false,
+		};
+	}
+
+	handleButtonClick = () => {
+		const newData = generateRandomHistory();
+		this.context.updateData(newData);
 	};
 
-	const handleUSDButtonClick = () => {
-		chartSubject.updateData(historyUSD);
+	handleUSDButtonClick = () => {
+		this.context.updateData(this.props.historyUSD);
 	};
 
-	const handleEURButtonClick = () => {
-		chartSubject.updateData(historyEUR);
+	handleEURButtonClick = () => {
+		this.context.updateData(this.props.historyEUR);
 	};
 
-	const onOpen = () => {
-		setIsOpened(true);
+	onOpen = () => {
+		this.setState({ isOpened: true });
 		document.body.style.overflowY = 'hidden';
 	};
 
-	const onClose = () => {
-		setIsOpened(false);
+	onClose = () => {
+		this.setState({ isOpened: false });
 		document.body.style.overflowY = 'auto';
 	};
 
-	return (
-		<>
-			<ButtonsContainer>
-				<ChartButton onClick={handleUSDButtonClick}>USD</ChartButton>
-				<ChartButton onClick={handleEURButtonClick}>EUR</ChartButton>
-				<ChartButton onClick={handleButtonClick}>Random Data</ChartButton>
-				<ChartButton onClick={onOpen}>Change value</ChartButton>
-			</ButtonsContainer>
+	render() {
+		return (
+			<>
+				<ButtonsContainer>
+					<ChartButton onClick={this.handleUSDButtonClick}>USD</ChartButton>
+					<ChartButton onClick={this.handleEURButtonClick}>EUR</ChartButton>
+					<ChartButton onClick={this.handleButtonClick}>
+						Random Data
+					</ChartButton>
+					<ChartButton onClick={this.onOpen}>Change value</ChartButton>
+				</ButtonsContainer>
 
-			{isOpened && <ChartModal onClose={onClose} />}
-		</>
-	);
-};
+				{this.state.isOpened && <ChartModal onClose={this.onClose} />}
+			</>
+		);
+	}
+}
 
-export default ChartButtons;
+interface IStateRedux {
+	currency: {
+		historyUSD: CurrencyHistoryData;
+		historyEUR: CurrencyHistoryData;
+	};
+}
+
+const mapStateToProps = (state: IStateRedux) => ({
+	historyUSD: state.currency.historyUSD,
+	historyEUR: state.currency.historyEUR,
+});
+
+export default connect(mapStateToProps)(ChartButtons);

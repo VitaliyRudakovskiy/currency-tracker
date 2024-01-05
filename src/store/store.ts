@@ -3,6 +3,7 @@ import currencyReducer from './reducers/currencySlice';
 import themeReducer from './reducers/themeSlice';
 import inputReducer from './reducers/inputSlice';
 import modalReducer from './reducers/modalSlice';
+import dropsownSlice from './reducers/dropsownSlice';
 
 const store = configureStore({
 	reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
 		theme: themeReducer,
 		input: inputReducer,
 		modal: modalReducer,
+		dropdown: dropsownSlice,
 	},
 });
 

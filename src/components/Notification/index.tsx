@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Component } from 'react';
 import NotificationContainer from './styled';
 
 interface NotificationProps {
@@ -6,28 +6,33 @@ interface NotificationProps {
 	onHide: () => void;
 }
 
-const Notification: React.FC<NotificationProps> = ({ show, onHide }) => {
-	const notificationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+class Notification extends Component<NotificationProps> {
+	notificationTimeoutRef: NodeJS.Timeout | null = null;
 
-	useEffect(() => {
-		if (show) {
-			notificationTimeoutRef.current = setTimeout(() => {
-				onHide();
+	componentDidUpdate(prevProps: NotificationProps) {
+		if (this.props.show) {
+			if (this.notificationTimeoutRef) {
+				clearTimeout(this.notificationTimeoutRef);
+			}
+			this.notificationTimeoutRef = setTimeout(() => {
+				this.props.onHide();
 			}, 2000);
 		}
+	}
 
-		return () => {
-			if (notificationTimeoutRef.current) {
-				clearTimeout(notificationTimeoutRef.current);
-			}
-		};
-	}, [show, onHide]);
+	componentWillUnmount() {
+		if (this.notificationTimeoutRef) {
+			clearTimeout(this.notificationTimeoutRef);
+		}
+	}
 
-	return (
-		<NotificationContainer show={show}>
-			{show && <p>The graph has been succesfully created!</p>}
-		</NotificationContainer>
-	);
-};
+	render() {
+		return (
+			<NotificationContainer show={this.props.show}>
+				{this.props.show && <p>The graph has been succesfully created!</p>}
+			</NotificationContainer>
+		);
+	}
+}
 
 export default Notification;
