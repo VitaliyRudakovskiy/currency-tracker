@@ -1,4 +1,4 @@
-export const dateOptions: Intl.DateTimeFormatOptions = {
+const dateOptions: Intl.DateTimeFormatOptions = {
 	year: 'numeric',
 	month: '2-digit',
 	day: '2-digit',
@@ -7,3 +7,5 @@ export const dateOptions: Intl.DateTimeFormatOptions = {
 	second: '2-digit',
 	timeZone: 'UTC',
 };
+
+export default dateOptions;

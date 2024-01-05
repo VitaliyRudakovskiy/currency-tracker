@@ -1,4 +1,4 @@
-export const chartOptions = {
+const chartOptions = {
 	legend: 'none',
 	bar: { groupWidth: '95%' },
 	candlestick: {
@@ -15,3 +15,5 @@ export const chartOptions = {
 	title: 'Waterfall Chart',
 	colors: ['#808080'],
 };
+
+export default chartOptions;

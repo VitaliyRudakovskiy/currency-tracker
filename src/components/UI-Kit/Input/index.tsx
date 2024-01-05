@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectInputValue, setInputValue } from '@store/reducers/inputSlice';
-import { InputContainer } from './styled';
+import InputContainer from './styled';
 
 interface IInput {
 	placeholder?: string;

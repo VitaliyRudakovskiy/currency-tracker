@@ -31,9 +31,13 @@ interface ChartModalState {
 }
 
 class ChartModal extends Component<PortalProps, ChartModalState> {
-	static contextType = ChartDataContext;
 	context!: ChartSubjectInterface;
+
 	observer!: ChartObserver;
+
+	static get contextType() {
+		return ChartDataContext;
+	}
 
 	constructor(props: PortalProps) {
 		super(props);
@@ -50,21 +54,27 @@ class ChartModal extends Component<PortalProps, ChartModalState> {
 	}
 
 	componentDidMount() {
+		const { addObserver, getData } = this.context;
+
 		this.observer = {
 			update: (newData: CurrencyHistoryData) => {
 				this.setState({ chartData: newData });
 			},
 		};
-		this.context.addObserver(this.observer);
-		this.setState({ chartData: this.context.getData() });
+		addObserver(this.observer);
+		this.setState({ chartData: getData() });
 	}
 
 	componentWillUnmount() {
-		this.context.removeObserver(this.observer);
+		const { removeObserver } = this.context;
+		removeObserver(this.observer);
 	}
 
 	handleSave = () => {
 		const { selectedDate, formData, chartData } = this.state;
+		const { updateData } = this.context;
+		const { onClose } = this.props;
+
 		const newDataForSelectedDate: HistoryEntry = [
 			selectedDate,
 			Number(formData.newLowRate),
@@ -77,8 +87,8 @@ class ChartModal extends Component<PortalProps, ChartModalState> {
 			item[0] === selectedDate ? newDataForSelectedDate : item
 		);
 
-		this.context.updateData(updatedData);
-		this.props.onClose();
+		updateData(updatedData);
+		onClose();
 	};
 
 	render() {

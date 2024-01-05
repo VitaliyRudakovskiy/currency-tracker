@@ -1,7 +1,7 @@
 import { darkTheme, lightTheme } from '@constants/colors';
 import styled, { useTheme } from 'styled-components';
 
-export const InputContainer = styled.input`
+const InputContainer = styled.input`
 	background-color: ${() =>
 		useTheme().mode === 'dark'
 			? darkTheme.modalElementBackground
@@ -24,3 +24,5 @@ export const InputContainer = styled.input`
 		border-color: #00bcd4;
 	}
 `;
+
+export default InputContainer;

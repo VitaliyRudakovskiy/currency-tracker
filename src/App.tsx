@@ -6,8 +6,8 @@ import Timeline from '@pages/Timeline';
 import Banks from '@pages/Banks';
 import Contacts from '@pages/Contacts';
 import useCurrencyData from '@utils/useCurrencyData';
-import GlobalStyles, { Wrapper } from './GlobalStyles';
 import useCurrencyHistory from '@utils/useCurrencyHistory';
+import GlobalStyles, { Wrapper } from './GlobalStyles';
 
 const router = createBrowserRouter([
 	{

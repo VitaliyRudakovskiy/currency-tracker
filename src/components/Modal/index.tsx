@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { setInputValue } from '@store/reducers/inputSlice';
 import { toggleModal } from '@store/reducers/modalSlice';
+import { selectTheme } from '@store/reducers/themeSlice';
 import Input from '../UI-Kit/Input';
 import DropdownModal from '../UI-Kit/Dropdown';
 import ModalList from '../ModalList';
-import { selectTheme } from '@store/reducers/themeSlice';
 import {
 	ModalContainer,
 	ModalOverlay,
@@ -13,7 +14,6 @@ import {
 	ModalName,
 	InputContainer,
 } from './styled';
-import { setInputValue } from '@store/reducers/inputSlice';
 
 export default function ConvertingModal(): JSX.Element {
 	const theme = useSelector(selectTheme);

@@ -6,8 +6,8 @@ import {
 	ChartSubjectInterface,
 } from '@providers/ChartDataProvider';
 import generateRandomHistory from '@utils/generateRandomHistory';
-import { ChartButton, ButtonsContainer } from './styled';
 import ChartModal from '@components/ChartModal';
+import { ChartButton, ButtonsContainer } from './styled';
 
 interface ChartButtonsProps {
 	historyUSD: CurrencyHistoryData;
@@ -19,8 +19,11 @@ interface ChartButtonsState {
 }
 
 class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
-	static contextType = ChartDataContext;
 	context!: ChartSubjectInterface;
+
+	static get contextType() {
+		return ChartDataContext;
+	}
 
 	constructor(props: ChartButtonsProps) {
 		super(props);
@@ -30,16 +33,21 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 	}
 
 	handleButtonClick = () => {
+		const { updateData } = this.context;
 		const newData = generateRandomHistory();
-		this.context.updateData(newData);
+		updateData(newData);
 	};
 
 	handleUSDButtonClick = () => {
-		this.context.updateData(this.props.historyUSD);
+		const { updateData } = this.context;
+		const { historyUSD } = this.props;
+		updateData(historyUSD);
 	};
 
 	handleEURButtonClick = () => {
-		this.context.updateData(this.props.historyEUR);
+		const { updateData } = this.context;
+		const { historyEUR } = this.props;
+		updateData(historyEUR);
 	};
 
 	onOpen = () => {
@@ -53,6 +61,8 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 	};
 
 	render() {
+		const { isOpened } = this.state;
+
 		return (
 			<>
 				<ButtonsContainer>
@@ -64,7 +74,7 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 					<ChartButton onClick={this.onOpen}>Change value</ChartButton>
 				</ButtonsContainer>
 
-				{this.state.isOpened && <ChartModal onClose={this.onClose} />}
+				{isOpened && <ChartModal onClose={this.onClose} />}
 			</>
 		);
 	}
@@ -77,9 +87,12 @@ interface IStateRedux {
 	};
 }
 
-const mapStateToProps = (state: IStateRedux) => ({
-	historyUSD: state.currency.historyUSD,
-	historyEUR: state.currency.historyEUR,
-});
+const mapStateToProps = (state: IStateRedux) => {
+	const { historyUSD, historyEUR } = state.currency;
+	return {
+		historyUSD,
+		historyEUR,
+	};
+};
 
 export default connect(mapStateToProps)(ChartButtons);

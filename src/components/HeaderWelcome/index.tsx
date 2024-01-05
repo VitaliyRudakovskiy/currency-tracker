@@ -1,5 +1,7 @@
 import React from 'react';
 import BigLogo from '@assets/big-logo.png';
+import { useSelector } from 'react-redux';
+import { selectTheme } from '@store/reducers/themeSlice';
 import {
 	WelcomeContainer,
 	WelcomeTitle,
@@ -7,8 +9,6 @@ import {
 	WelcomeText,
 	TextSection,
 } from './styled';
-import { useSelector } from 'react-redux';
-import { selectTheme } from '@store/reducers/themeSlice';
 
 export default function Welcome(): JSX.Element {
 	const theme = useSelector(selectTheme);

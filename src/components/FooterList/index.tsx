@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ListValue, ListTitle } from './styled';
 
 interface FooterListProps {
@@ -6,17 +6,15 @@ interface FooterListProps {
 	values: string[];
 }
 
-const FooterList: React.FC<FooterListProps> = React.memo(
-	({ title, values }) => {
-		return (
-			<div>
-				<ListTitle>{title}</ListTitle>
-				{values.map((item) => (
-					<ListValue key={item}>{item}</ListValue>
-				))}
-			</div>
-		);
-	}
-);
+function FooterList({ title, values }: FooterListProps) {
+	return (
+		<div>
+			<ListTitle>{title}</ListTitle>
+			{values.map((item) => (
+				<ListValue key={item}>{item}</ListValue>
+			))}
+		</div>
+	);
+}
 
-export default FooterList;
+export default memo(FooterList);

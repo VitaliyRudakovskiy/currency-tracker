@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { updateTimeSelector } from '@store/reducers/currencySlice';
-import { dateOptions } from '@constants/dateOptions';
+import dateOptions from '@constants/dateOptions';
 import { PulseCircle, PulseContainer, UpdateString } from './styled';
 
 export default function PulsatingCircle(): JSX.Element {
