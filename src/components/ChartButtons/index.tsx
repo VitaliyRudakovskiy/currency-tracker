@@ -19,11 +19,12 @@ interface ChartButtonsState {
 }
 
 class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
+	static contextType = ChartDataContext;
 	context!: ChartSubjectInterface;
 
-	static get contextType() {
-		return ChartDataContext;
-	}
+	// static get contextType() {
+	// 	return ChartDataContext;
+	// }
 
 	constructor(props: ChartButtonsProps) {
 		super(props);
@@ -33,21 +34,21 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 	}
 
 	handleButtonClick = () => {
-		const { updateData } = this.context;
+		//const { updateData } = this.context;
 		const newData = generateRandomHistory();
-		updateData(newData);
+		this.context.updateData(newData);
 	};
 
 	handleUSDButtonClick = () => {
-		const { updateData } = this.context;
-		const { historyUSD } = this.props;
-		updateData(historyUSD);
+		// const { updateData } = this.context
+		// const { historyUSD } = this.props;
+		this.context.updateData(this.props.historyUSD);
 	};
 
 	handleEURButtonClick = () => {
-		const { updateData } = this.context;
-		const { historyEUR } = this.props;
-		updateData(historyEUR);
+		// const { updateData } = this.context;
+		// const { historyEUR } = this.props;
+		this.context.updateData(this.props.historyEUR);
 	};
 
 	onOpen = () => {
@@ -61,7 +62,7 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 	};
 
 	render() {
-		const { isOpened } = this.state;
+		//const { isOpened } = this.state;
 
 		return (
 			<>
@@ -74,7 +75,7 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 					<ChartButton onClick={this.onOpen}>Change value</ChartButton>
 				</ButtonsContainer>
 
-				{isOpened && <ChartModal onClose={this.onClose} />}
+				{this.state.isOpened && <ChartModal onClose={this.onClose} />}
 			</>
 		);
 	}

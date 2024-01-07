@@ -1,6 +1,6 @@
 import axios from 'axios';
-import getDate30DaysAgo from './getDate30DaysAgo';
 import { ExchangeRateData } from '@interfaces/interfaces';
+import getDate30DaysAgo from './getDate30DaysAgo';
 
 const historyUSD = 'USD';
 const historyEUR = 'EUR';

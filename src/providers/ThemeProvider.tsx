@@ -17,11 +17,11 @@ const ThemeContext = createContext<IThemeContextProps>({
 	toggleTheme: () => {},
 });
 
-export const useTheme = () => {
+export function useTheme() {
 	return useContext<IThemeContextProps>(ThemeContext);
-};
+}
 
-const ThemeProvider: React.FC<IThemeProviderProps> = ({ children }) => {
+function ThemeProvider({ children }: IThemeProviderProps) {
 	const dispatch = useDispatch();
 	const currentTheme = useSelector(selectTheme);
 
@@ -43,6 +43,6 @@ const ThemeProvider: React.FC<IThemeProviderProps> = ({ children }) => {
 			</StyledThemeProvider>
 		</ThemeContext.Provider>
 	);
-};
+}
 
 export default ThemeProvider;

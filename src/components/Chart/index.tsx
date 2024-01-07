@@ -1,10 +1,97 @@
+// import React, { Component } from 'react';
+// import chartOptions from '@constants/chartOptions';
+// import { Chart } from 'react-google-charts';
+// import {
+// 	ChartDataContext,
+// 	ChartSubjectInterface,
+// 	ChartObserver,
+// } from '@providers/ChartDataProvider';
+// import { CurrencyHistoryData } from '@interfaces/interfaces';
+// import Notification from '@components/Notification';
+// import Loader from '@components/Loader';
+// import ChartContainer from './styled';
+
+// interface IState {
+// 	chartData: CurrencyHistoryData;
+// 	showNotification: boolean;
+// }
+
+// interface IProps {}
+
+// class ChartComponent extends Component<IProps, IState> {
+// 	context!: ChartSubjectInterface;
+
+// 	observer!: ChartObserver;
+
+// 	constructor(props: IProps) {
+// 		super(props);
+// 		this.state = {
+// 			chartData: [],
+// 			showNotification: false,
+// 		};
+// 	}
+
+// 	componentDidMount() {
+// 		// const { addObserver, getData } = this.context;
+
+// 		this.observer = {
+// 			update: (newData: CurrencyHistoryData) => {
+// 				this.setState({ chartData: newData });
+
+// 				if (newData.length > 30) {
+// 					this.setState({ showNotification: true });
+// 				}
+// 			},
+// 		};
+// 		this.context.addObserver(this.observer);
+
+// 		const initialData = this.context.getData();
+// 		this.setState({ chartData: initialData });
+// 	}
+
+// 	componentWillUnmount() {
+// 		const { removeObserver } = this.context;
+// 		removeObserver(this.observer);
+// 	}
+
+// 	hideNotification = () => {
+// 		this.setState({ showNotification: false });
+// 	};
+
+// 	render() {
+// 		const { chartData, showNotification } = this.state;
+
+// 		return (
+// 			<ChartContainer>
+// 				<Chart
+// 					chartType="CandlestickChart"
+// 					width="100%"
+// 					height="400px"
+// 					data={this.state.chartData}
+// 					options={chartOptions}
+// 					style={{ width: '100vw', height: '70vh' }}
+// 					loader={<Loader />}
+// 				/>
+// 				<Notification
+// 					show={this.state.showNotification}
+// 					onHide={this.hideNotification}
+// 				/>
+// 			</ChartContainer>
+// 		);
+// 	}
+// }
+
+// ChartComponent.contextType = ChartDataContext;
+
+// export default ChartComponent;
+
 import React, { Component } from 'react';
 import chartOptions from '@constants/chartOptions';
 import { Chart } from 'react-google-charts';
 import {
 	ChartDataContext,
-	ChartSubjectInterface,
 	ChartObserver,
+	ChartSubjectInterface,
 } from '@providers/ChartDataProvider';
 import { CurrencyHistoryData } from '@interfaces/interfaces';
 import Notification from '@components/Notification';
@@ -16,14 +103,12 @@ interface IState {
 	showNotification: boolean;
 }
 
-interface IProps {}
-
-class ChartComponent extends Component<IProps, IState> {
+class ChartComponent extends Component<{}, IState> {
+	static contextType = ChartDataContext;
 	context!: ChartSubjectInterface;
-
 	observer!: ChartObserver;
 
-	constructor(props: IProps) {
+	constructor(props: {}) {
 		super(props);
 		this.state = {
 			chartData: [],
@@ -32,8 +117,6 @@ class ChartComponent extends Component<IProps, IState> {
 	}
 
 	componentDidMount() {
-		const { addObserver, getData } = this.context;
-
 		this.observer = {
 			update: (newData: CurrencyHistoryData) => {
 				this.setState({ chartData: newData });
@@ -43,15 +126,14 @@ class ChartComponent extends Component<IProps, IState> {
 				}
 			},
 		};
-		addObserver(this.observer);
+		this.context.addObserver(this.observer);
 
-		const initialData = getData();
+		const initialData = this.context.getData();
 		this.setState({ chartData: initialData });
 	}
 
 	componentWillUnmount() {
-		const { removeObserver } = this.context;
-		removeObserver(this.observer);
+		this.context.removeObserver(this.observer);
 	}
 
 	hideNotification = () => {
@@ -59,24 +141,24 @@ class ChartComponent extends Component<IProps, IState> {
 	};
 
 	render() {
-		const { chartData, showNotification } = this.state;
 		return (
 			<ChartContainer>
 				<Chart
 					chartType="CandlestickChart"
 					width="100%"
 					height="400px"
-					data={chartData}
+					data={this.state.chartData}
 					options={chartOptions}
 					style={{ width: '100vw', height: '70vh' }}
 					loader={<Loader />}
 				/>
-				<Notification show={showNotification} onHide={this.hideNotification} />
+				<Notification
+					show={this.state.showNotification}
+					onHide={this.hideNotification}
+				/>
 			</ChartContainer>
 		);
 	}
 }
-
-ChartComponent.contextType = ChartDataContext;
 
 export default ChartComponent;

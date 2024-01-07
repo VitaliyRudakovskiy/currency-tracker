@@ -1,3 +1,5 @@
+export const CURRENCIES_LOCAL_STORAGE = 'currencyData';
+
 export const targetCurrencies = [
 	'USD',
 	'ARS',

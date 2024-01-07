@@ -9,8 +9,10 @@ interface NotificationProps {
 class Notification extends Component<NotificationProps> {
 	notificationTimeoutRef: NodeJS.Timeout | null = null;
 
-	componentDidUpdate(prevProps: NotificationProps) {
-		if (this.props.show) {
+	componentDidUpdate() {
+		const { show } = this.props;
+
+		if (show) {
 			if (this.notificationTimeoutRef) {
 				clearTimeout(this.notificationTimeoutRef);
 			}

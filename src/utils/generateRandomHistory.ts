@@ -1,11 +1,12 @@
 import { CurrencyHistoryData, HistoryEntry } from '@interfaces/interfaces';
 import getDate30DaysAgo from './getDate30DaysAgo';
+import getRandomValue from './getRandomVlaues';
 
 const generateRandomHistory = (): CurrencyHistoryData => {
 	const chartData: CurrencyHistoryData = [['Day', '', '', '', '']];
 	const startDate = new Date(getDate30DaysAgo());
 
-	for (let day = 0; day <= 30; day++) {
+	for (let day = 0; day <= 30; day += 1) {
 		const currentDate = new Date(startDate);
 		currentDate.setDate(startDate.getDate() + day);
 
@@ -19,23 +20,6 @@ const generateRandomHistory = (): CurrencyHistoryData => {
 	}
 
 	return chartData;
-};
-
-const getRandomValue = (): [number, number, number, number] => {
-	const smallestValue = Math.floor(Math.random() * 10);
-	const largestValue =
-		Math.floor(Math.random() * (100 - smallestValue)) + smallestValue;
-
-	const randomValue1 =
-		Math.floor(Math.random() * (largestValue - smallestValue - 1)) +
-		smallestValue +
-		1;
-	const randomValue2 =
-		Math.floor(Math.random() * (largestValue - smallestValue - 1)) +
-		smallestValue +
-		1;
-
-	return [smallestValue, randomValue1, randomValue2, largestValue];
 };
 
 export default generateRandomHistory;

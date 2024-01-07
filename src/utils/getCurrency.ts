@@ -1,9 +1,8 @@
 import axios from 'axios';
-
-const CACHE_KEY = 'currencyData';
+import { CURRENCIES_LOCAL_STORAGE } from '@constants/currencies';
 
 export default async function getCurrency() {
-	const cachedData = localStorage.getItem(CACHE_KEY);
+	const cachedData = localStorage.getItem(CURRENCIES_LOCAL_STORAGE);
 
 	if (cachedData) {
 		return JSON.parse(cachedData);
@@ -16,7 +15,10 @@ export default async function getCurrency() {
 		const response = await axios.get(apiUrl);
 		const currencyData = response.data;
 
-		localStorage.setItem(CACHE_KEY, JSON.stringify(currencyData));
+		localStorage.setItem(
+			CURRENCIES_LOCAL_STORAGE,
+			JSON.stringify(currencyData)
+		);
 
 		return currencyData;
 	} catch (error) {

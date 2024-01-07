@@ -1,12 +1,12 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import {
 	CurrencyHistoryData,
 	ExchangeRateData,
 	HistoryEntry,
 } from '@interfaces/interfaces';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import getCurrencyHistory from './getCurrencyHistory';
 import { setHistoryEUR, setHistoryUSD } from '@store/reducers/currencySlice';
+import getCurrencyHistory from './getCurrencyHistory';
 
 const useCurrencyHistory = () => {
 	const dispatch = useDispatch();

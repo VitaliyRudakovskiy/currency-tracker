@@ -5,9 +5,9 @@ import {
 	setUpdateTime,
 } from '@store/reducers/currencySlice';
 import { useDispatch } from 'react-redux';
-import getCurrency from './getCurrency';
 import { ICurrency } from '@interfaces/interfaces';
 import { targetCurrencies } from '@constants/currencies';
+import getCurrency from './getCurrency';
 
 const useCurrencyData = () => {
 	const dispatch = useDispatch();
