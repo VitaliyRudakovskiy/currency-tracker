@@ -12,7 +12,7 @@ interface IThemeProviderProps {
 	children: ReactNode;
 }
 
-const ThemeContext = createContext<IThemeContextProps>({
+export const ThemeContext = createContext<IThemeContextProps>({
 	theme: 'dark',
 	toggleTheme: () => {},
 });

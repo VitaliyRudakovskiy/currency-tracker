@@ -29,9 +29,10 @@ class Notification extends Component<NotificationProps> {
 	}
 
 	render() {
+		const isShown: boolean = this.props.show === true;
 		return (
 			<NotificationContainer show={this.props.show}>
-				{this.props.show && <p>The graph has been succesfully created!</p>}
+				{isShown && <p>The graph has been succesfully created!</p>}
 			</NotificationContainer>
 		);
 	}

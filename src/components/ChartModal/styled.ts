@@ -21,7 +21,7 @@ export const ChartModalContainer = styled.div`
 			? darkTheme.modalBackground
 			: lightTheme.modalBackground};
 	border-radius: 8px;
-	padding: 0.5rem 1.5rem;
+	padding: 0.5rem 1.5rem 1rem;
 	max-width: 40rem;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	display: flex;
@@ -33,10 +33,11 @@ export const ChartModalTitle = styled.h3`
 	text-align: center;
 	font-size: 2rem;
 	margin-bottom: 1rem;
-	color: #eeeeee;
+	color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.mainTextColor
+			: lightTheme.mainTextColor};
 `;
-
-export const ChartModalInput = styled.input``;
 
 export const CloseButton = styled.button`
 	position: absolute;

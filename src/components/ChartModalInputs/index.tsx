@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { IFormData } from '@interfaces/interfaces';
-import { Input, InputsContainer } from './styled';
+import { ChartModalInput, ChartInputsContainer } from './styled';
 
 interface IChartInputsProps {
 	formData: IFormData;
@@ -22,28 +22,28 @@ class ChartModalInputs extends Component<IChartInputsProps> {
 		const { newLowRate, newHighRate, newOpenRate, newCloseRate } = formData;
 
 		return (
-			<InputsContainer>
-				<Input
+			<ChartInputsContainer>
+				<ChartModalInput
 					placeholder="Input new low rate"
 					value={newLowRate}
 					onChange={this.handleInputChange('newLowRate')}
 				/>
-				<Input
+				<ChartModalInput
 					placeholder="Input new high rate"
 					value={newHighRate}
 					onChange={this.handleInputChange('newHighRate')}
 				/>
-				<Input
+				<ChartModalInput
 					placeholder="Input new open rate"
 					value={newOpenRate}
 					onChange={this.handleInputChange('newOpenRate')}
 				/>
-				<Input
+				<ChartModalInput
 					placeholder="Input new close rate"
 					value={newCloseRate}
 					onChange={this.handleInputChange('newCloseRate')}
 				/>
-			</InputsContainer>
+			</ChartInputsContainer>
 		);
 	}
 }

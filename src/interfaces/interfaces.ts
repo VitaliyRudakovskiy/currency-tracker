@@ -30,3 +30,8 @@ export interface IFormData {
 	newOpenRate: string;
 	newCloseRate: string;
 }
+
+export interface IBank {
+	bankName: string;
+	coordinates: number[];
+}
