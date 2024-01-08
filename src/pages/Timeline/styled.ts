@@ -1,11 +1,14 @@
 import { darkTheme, lightTheme } from '@constants/colors';
 import styled, { useTheme } from 'styled-components';
 
-const TimelineContainer = styled.div`
+const TimelineWrapper = styled.section`
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	background-color: ${() =>
 		useTheme().mode === 'dark'
 			? darkTheme.primaryBackground
 			: lightTheme.primaryBackground};
 `;
 
-export default TimelineContainer;
+export default TimelineWrapper;

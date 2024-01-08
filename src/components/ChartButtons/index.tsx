@@ -19,12 +19,8 @@ interface ChartButtonsState {
 }
 
 class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
-	static contextType = ChartDataContext;
+	// static contextType = ChartDataContext;
 	context!: ChartSubjectInterface;
-
-	// static get contextType() {
-	// 	return ChartDataContext;
-	// }
 
 	constructor(props: ChartButtonsProps) {
 		super(props);
@@ -62,7 +58,7 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 	};
 
 	render() {
-		//const { isOpened } = this.state;
+		const { isOpened } = this.state;
 
 		return (
 			<>
@@ -75,11 +71,13 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 					<ChartButton onClick={this.onOpen}>Change value</ChartButton>
 				</ButtonsContainer>
 
-				{this.state.isOpened && <ChartModal onClose={this.onClose} />}
+				{isOpened && <ChartModal onClose={this.onClose} />}
 			</>
 		);
 	}
 }
+
+ChartButtons.contextType = ChartDataContext;
 
 interface IStateRedux {
 	currency: {

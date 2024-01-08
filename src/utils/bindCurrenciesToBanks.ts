@@ -5,13 +5,13 @@ interface IBankWithCurrency extends IBank {
 	currencies: string[];
 }
 
-const bindCurrenciesToBanks = (
+function bindCurrenciesToBanks(
 	codes: string[],
 	countOfCurrencies: number
-): IBankWithCurrency[] => {
+): IBankWithCurrency[] {
 	return banks.map((bank) => {
 		const currencies = [];
-		for (let i = 0; i < countOfCurrencies; i++) {
+		for (let i = 0; i < countOfCurrencies; i += 1) {
 			const randomIndex = Math.floor(Math.random() * codes.length);
 			currencies.push(codes[randomIndex]);
 		}
@@ -20,6 +20,6 @@ const bindCurrenciesToBanks = (
 			currencies,
 		};
 	});
-};
+}
 
 export default bindCurrenciesToBanks;

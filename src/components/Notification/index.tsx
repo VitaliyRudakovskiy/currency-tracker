@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, ReactNode } from 'react';
 import NotificationContainer from './styled';
 
 interface NotificationProps {
@@ -10,14 +10,14 @@ class Notification extends Component<NotificationProps> {
 	notificationTimeoutRef: NodeJS.Timeout | null = null;
 
 	componentDidUpdate() {
-		const { show } = this.props;
+		const { show, onHide } = this.props;
 
 		if (show) {
 			if (this.notificationTimeoutRef) {
 				clearTimeout(this.notificationTimeoutRef);
 			}
 			this.notificationTimeoutRef = setTimeout(() => {
-				this.props.onHide();
+				onHide();
 			}, 2000);
 		}
 	}
@@ -28,11 +28,12 @@ class Notification extends Component<NotificationProps> {
 		}
 	}
 
-	render() {
-		const isShown: boolean = this.props.show === true;
+	render(): ReactNode {
+		const { show } = this.props;
+		const isShown: boolean = show === true;
 		return (
-			<NotificationContainer show={this.props.show}>
-				{isShown && <p>The graph has been succesfully created!</p>}
+			<NotificationContainer show={show}>
+				{isShown && <p>The graph has been successfully created!</p>}
 			</NotificationContainer>
 		);
 	}

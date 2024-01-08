@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { banksOptions } from '@constants/banks';
+import {
+	selectBanksInputValue,
+	selectBanksWithCurrencies,
+} from '@store/reducers/banksSlice';
+import Loader from '@components/Loader';
 import {
 	YMaps,
 	Map,
@@ -9,13 +16,6 @@ import {
 	Clusterer,
 } from 'react-yandex-maps';
 import MapContainer from './styled';
-import { banksOptions, banks } from '@constants/banks';
-import { useSelector } from 'react-redux';
-import {
-	selectBanksInputValue,
-	selectBanksWithCurrencies,
-} from '@store/reducers/banksSlice';
-import Loader from '@components/Loader';
 
 export default function MapChart() {
 	const [isMapLoaded, setIsMapLoaded] = useState(false);

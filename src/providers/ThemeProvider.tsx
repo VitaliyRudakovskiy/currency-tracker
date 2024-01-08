@@ -1,4 +1,4 @@
-import React, { createContext, useContext, ReactNode } from 'react';
+import React, { createContext, useContext, ReactNode, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme, selectTheme } from '@store/reducers/themeSlice';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
@@ -29,10 +29,13 @@ function ThemeProvider({ children }: IThemeProviderProps) {
 		dispatch(toggleTheme());
 	};
 
-	const themeValues: IThemeContextProps = {
-		theme: currentTheme,
-		toggleTheme: toggleThemeHandler,
-	};
+	const themeValues: IThemeContextProps = useMemo(
+		() => ({
+			theme: currentTheme,
+			toggleTheme: toggleThemeHandler,
+		}),
+		[currentTheme]
+	);
 
 	return (
 		<ThemeContext.Provider value={themeValues}>

@@ -1,7 +1,7 @@
 import { darkTheme, lightTheme } from '@constants/colors';
 import styled, { useTheme } from 'styled-components';
 
-export const HomeWrapper = styled.section`
+export const ContactsWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -11,12 +11,7 @@ export const HomeWrapper = styled.section`
 			: lightTheme.primaryBackground};
 `;
 
-export const HomeContainer = styled.div`
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 2rem 3rem;
-	margin: 0 auto;
+export const MainContent = styled.div`
+	padding: 1rem 3rem;
 	flex: 1;
 `;

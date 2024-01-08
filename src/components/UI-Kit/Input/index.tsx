@@ -7,15 +7,13 @@ interface IInput {
 	placeholder?: string;
 }
 
-export default function Input({
-	placeholder = 'Input sum of money',
-}: IInput): JSX.Element {
+export default function Input({ placeholder }: IInput): JSX.Element {
 	const inputValue: string = useSelector(selectInputValue);
 
 	const dispatch = useDispatch();
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const digitRegExp = new RegExp(/[^0-9]/g);
+		const digitRegExp = /[^0-9]/g;
 		const filteredValue = e.target.value.replace(digitRegExp, '');
 		dispatch(setInputValue(filteredValue));
 	};
@@ -29,3 +27,7 @@ export default function Input({
 		/>
 	);
 }
+
+Input.defaultProps = {
+	placeholder: 'Input sum of money',
+};

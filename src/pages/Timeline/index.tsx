@@ -4,19 +4,19 @@ import Header from '@components/Header';
 import ChartComponent from '@components/Chart';
 import ChartDataProvider from '@providers/ChartDataProvider';
 import ChartButtons from '@components/ChartButtons';
-import TimelineContainer from './styled';
+import TimelineWrapper from './styled';
 
 class Timeline extends Component {
 	render(): React.ReactNode {
 		return (
-			<TimelineContainer>
+			<TimelineWrapper>
 				<ChartDataProvider>
 					<Header />
 					<ChartButtons />
 					<ChartComponent />
 					<Footer />
 				</ChartDataProvider>
-			</TimelineContainer>
+			</TimelineWrapper>
 		);
 	}
 }

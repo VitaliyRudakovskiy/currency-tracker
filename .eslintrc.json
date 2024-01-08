@@ -36,6 +36,7 @@
 			2,
 			{ "extensions": [".js", ".jsx", ".tsx"] }
 		],
-		"no-param-reassign": "off"
+		"no-param-reassign": "off",
+		"react/prefer-stateless-function": "off"
 	}
 }

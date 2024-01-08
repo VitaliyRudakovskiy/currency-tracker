@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { CurrencyHistoryData, IFormData } from '@interfaces/interfaces';
-import { DropdownContainer } from './styled';
+import DropdownContainer from './styled';
 
 interface IChartDropdown {
 	selectedDate: string;
@@ -9,7 +9,7 @@ interface IChartDropdown {
 	setFormData: (data: IFormData) => void;
 }
 
-class ChartDropdown extends Component<IChartDropdown, Record<string, never>> {
+class ChartDropdown extends Component<IChartDropdown, {}> {
 	componentDidMount() {
 		const { data, setSelectedData, setFormData } = this.props;
 
@@ -52,8 +52,8 @@ class ChartDropdown extends Component<IChartDropdown, Record<string, never>> {
 		}
 	}
 
-	datesDropdown = (data: CurrencyHistoryData) => {
-		const subarraysWithoutFirst = data.slice(1);
+	datesDropdown = (dropdownDates: CurrencyHistoryData) => {
+		const subarraysWithoutFirst = dropdownDates.slice(1);
 		return subarraysWithoutFirst.map((item) => item[0]);
 	};
 

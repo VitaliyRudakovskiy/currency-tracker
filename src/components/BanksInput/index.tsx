@@ -1,16 +1,16 @@
-import getCurrenciesCodes from '@utils/getCurrenciesCodes';
 import React, { ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	selectBanksInputValue,
+	setBanksInputValue,
+} from '@store/reducers/banksSlice';
+import getCurrenciesCodes from '@utils/getCurrenciesCodes';
 import {
 	MapInput,
 	MapInputContainer,
 	MapTooltip,
 	MapTooltipsContainer,
 } from './styled';
-import { useDispatch, useSelector } from 'react-redux';
-import {
-	selectBanksInputValue,
-	setBanksInputValue,
-} from '@store/reducers/banksSlice';
 
 export default function BanksInput() {
 	const banksInput = useSelector(selectBanksInputValue);
@@ -38,7 +38,7 @@ export default function BanksInput() {
 			/>
 			<MapTooltipsContainer>
 				{filteredValues.map((value) => (
-					<MapTooltip key={value} onClick={handleButtonClick.bind(null, value)}>
+					<MapTooltip key={value} onClick={() => handleButtonClick(value)}>
 						{value}
 					</MapTooltip>
 				))}

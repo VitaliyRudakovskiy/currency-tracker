@@ -1,7 +1,7 @@
 import { darkTheme as dark, lightTheme as light } from '@constants/colors';
 import styled, { useTheme } from 'styled-components';
 
-export const DropdownContainer = styled.select`
+const DropdownContainer = styled.select`
 	background-color: ${() =>
 		useTheme().mode === 'dark'
 			? dark.modalElementBackground
@@ -36,3 +36,5 @@ export const DropdownContainer = styled.select`
 			useTheme().mode === 'dark' ? dark.mainTextColor : light.mainTextColor};
 	}
 `;
+
+export default DropdownContainer;

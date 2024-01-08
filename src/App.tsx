@@ -7,8 +7,8 @@ import Banks from '@pages/Banks';
 import Contacts from '@pages/Contacts';
 import useCurrencyData from '@utils/useCurrencyData';
 import useCurrencyHistory from '@utils/useCurrencyHistory';
-import GlobalStyles, { Wrapper } from './GlobalStyles';
 import useBanksWithCurrencies from '@utils/useBanksWithCurrencies';
+import GlobalStyles, { Wrapper } from './GlobalStyles';
 
 const router = createBrowserRouter([
 	{

@@ -62,7 +62,7 @@ class ChartComponent extends Component<{}, IState> {
 					options={{ ...chartOptions, backgroundColor: 'transparent' }}
 					style={{
 						width: '100vw',
-						height: '80vh',
+						height: '70vh',
 					}}
 					loader={<Loader />}
 				/>

@@ -14,7 +14,7 @@ export const MapInput = styled.input`
 	width: 40%;
 	text-align: center;
 	margin-bottom: 1rem;
-	background-color: ${({}) =>
+	background-color: ${() =>
 		useTheme().mode === 'dark'
 			? darkTheme.modalElementBackground
 			: lightTheme.modalElementBackground};
@@ -66,7 +66,7 @@ export const MapTooltipsContainer = styled.div`
 `;
 
 export const MapTooltip = styled.button`
-	background-color: ${({}) =>
+	background-color: ${() =>
 		useTheme().mode === 'dark'
 			? darkTheme.modalElementBackground
 			: lightTheme.modalElementBackground};

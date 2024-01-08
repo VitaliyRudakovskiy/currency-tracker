@@ -1,13 +1,17 @@
 import { CURRENCIES_LOCAL_STORAGE } from '@constants/currencies';
 import { ICurrency } from '@interfaces/interfaces';
 
-interface ICurrencies {
-	meta: any;
-	data: Data;
+interface IData {
+	[code: string]: ICurrency;
 }
 
-interface Data {
-	[code: string]: ICurrency;
+interface IMeta {
+	[code: string]: string;
+}
+
+interface ICurrencies {
+	meta: IMeta;
+	data: IData;
 }
 
 export default function getCurrenciesCodes() {

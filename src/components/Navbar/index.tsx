@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { selectTheme } from '@store/reducers/themeSlice';
 import Logo from '@assets/logo.png';
 import ThemeToggler from '../UI-Kit/ThemeToggler';
 import { Nav, NavList, NavItem, NavLink } from './styled';
-import { useLocation } from 'react-router-dom';
 
 export default function Navbar(): JSX.Element {
 	const theme = useSelector(selectTheme);
