@@ -58,13 +58,11 @@ class ChartComponent extends Component<{}, IState> {
 			<ChartContainer>
 				<Chart
 					chartType="CandlestickChart"
-					width="100%"
-					height="400px"
 					data={this.state.chartData}
-					options={chartOptions}
+					options={{ ...chartOptions, backgroundColor: 'transparent' }}
 					style={{
 						width: '100vw',
-						height: '70vh',
+						height: '80vh',
 					}}
 					loader={<Loader />}
 				/>

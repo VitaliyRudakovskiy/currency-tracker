@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	YMaps,
 	Map,
@@ -10,12 +10,29 @@ import {
 } from 'react-yandex-maps';
 import MapContainer from './styled';
 import { banksOptions, banks } from '@constants/banks';
-import { IBank } from '@interfaces/interfaces';
+import { useSelector } from 'react-redux';
+import {
+	selectBanksInputValue,
+	selectBanksWithCurrencies,
+} from '@store/reducers/banksSlice';
+import Loader from '@components/Loader';
 
 export default function MapChart() {
-	const handleMarkerClick = (item: IBank) => {
-		console.log(`Бал нажат маркер ${item.bankName}`);
+	const [isMapLoaded, setIsMapLoaded] = useState(false);
+
+	const banksWithCurrencies = useSelector(selectBanksWithCurrencies);
+	const currencyInput = useSelector(selectBanksInputValue);
+
+	const handleMapLoad = () => {
+		setIsMapLoaded(true);
 	};
+
+	const filteredBanks =
+		currencyInput === ''
+			? banksWithCurrencies
+			: banksWithCurrencies.filter((bank) =>
+					bank.currencies.includes(currencyInput)
+				);
 
 	return (
 		<YMaps
@@ -23,8 +40,16 @@ export default function MapChart() {
 				apikey: '67714e04-f605-40b9-a0a4-14a69b3ac94c',
 			}}
 		>
-			<MapContainer style={{ width: '100vw' }}>
-				<Map defaultState={banksOptions} width="95%" height="55vh">
+			<MapContainer
+				style={{ display: 'flex', flexDirection: 'column', width: '100vw' }}
+			>
+				{!isMapLoaded && <Loader />}
+				<Map
+					defaultState={banksOptions}
+					onLoad={handleMapLoad}
+					width="95%"
+					height="55vh"
+				>
 					<FullscreenControl />
 					<TypeSelector options={{ float: 'right' }} />
 					<ZoomControl options={{ float: 'right' }} />
@@ -34,11 +59,13 @@ export default function MapChart() {
 							groupByCoordinates: false,
 						}}
 					>
-						{banks.map((bank) => (
+						{filteredBanks.map((bank) => (
 							<Placemark
 								key={bank.coordinates[0]}
 								geometry={bank.coordinates}
-								onClick={() => handleMarkerClick(bank)}
+								properties={{
+									iconCaption: bank.bankName,
+								}}
 							/>
 						))}
 					</Clusterer>

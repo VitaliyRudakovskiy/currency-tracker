@@ -8,6 +8,7 @@ import Contacts from '@pages/Contacts';
 import useCurrencyData from '@utils/useCurrencyData';
 import useCurrencyHistory from '@utils/useCurrencyHistory';
 import GlobalStyles, { Wrapper } from './GlobalStyles';
+import useBanksWithCurrencies from '@utils/useBanksWithCurrencies';
 
 const router = createBrowserRouter([
 	{
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
 export default function App() {
 	useCurrencyData();
 	useCurrencyHistory();
+	useBanksWithCurrencies();
 
 	return (
 		<ThemeProvider>

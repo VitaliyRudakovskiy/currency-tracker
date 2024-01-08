@@ -50,4 +50,8 @@ export const NavLink = styled(Link)`
 		transform: translateY(2px);
 		color: ${navItemClickColor};
 	}
+
+	&.active {
+		color: ${navItemClickColor};
+	}
 `;

@@ -81,7 +81,8 @@ export const MapTooltip = styled.button`
 	cursor: pointer;
 
 	&:hover,
-	&:focus {
+	&:focus,
+	&:active {
 		background-color: #00bcd4;
 	}
 `;

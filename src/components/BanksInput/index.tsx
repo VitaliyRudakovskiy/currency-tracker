@@ -1,32 +1,39 @@
 import getCurrenciesCodes from '@utils/getCurrenciesCodes';
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import {
 	MapInput,
 	MapInputContainer,
 	MapTooltip,
 	MapTooltipsContainer,
 } from './styled';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	selectBanksInputValue,
+	setBanksInputValue,
+} from '@store/reducers/banksSlice';
 
 export default function BanksInput() {
-	const [input, setInput] = useState('');
+	const banksInput = useSelector(selectBanksInputValue);
 	const codes = getCurrenciesCodes();
 
+	const dispatch = useDispatch();
+
 	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setInput(e.target.value.toUpperCase());
+		dispatch(setBanksInputValue(e.target.value.toUpperCase()));
 	};
 
 	const handleButtonClick = (value: string) => {
-		setInput(value);
+		dispatch(setBanksInputValue(value));
 	};
 
-	const filteredValues = codes.filter((code) => code.includes(input));
+	const filteredValues = codes.filter((code) => code.includes(banksInput));
 
 	return (
 		<MapInputContainer>
 			<MapInput
 				type="text"
 				placeholder="Input currency to search for"
-				value={input}
+				value={banksInput}
 				onChange={handleChange}
 			/>
 			<MapTooltipsContainer>
