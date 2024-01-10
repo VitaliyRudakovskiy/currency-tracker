@@ -5,7 +5,7 @@ import { Copyright, FooterContainer, FooterInfo } from './styled';
 
 export default function Footer(): JSX.Element {
 	return (
-		<FooterContainer>
+		<FooterContainer data-cy="footer">
 			<FooterInfo>
 				<LeftSection />
 				<RightSection />

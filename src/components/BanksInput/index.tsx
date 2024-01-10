@@ -36,6 +36,7 @@ class BanksInput extends PureComponent<BanksInputProps> {
 		return (
 			<MapInputContainer>
 				<MapInput
+					data-cy="banks-input"
 					type="text"
 					placeholder="Input currency to search for"
 					value={this.props.banksInput}
@@ -44,6 +45,7 @@ class BanksInput extends PureComponent<BanksInputProps> {
 				<MapTooltipsContainer>
 					{filteredValues.map((value) => (
 						<MapTooltip
+							data-cy="banks-button"
 							key={value}
 							onClick={() => this.handleButtonClick(value)}
 						>

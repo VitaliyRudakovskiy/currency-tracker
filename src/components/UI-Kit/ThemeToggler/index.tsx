@@ -9,7 +9,7 @@ export default function ThemeToggler(): JSX.Element {
 	const { toggleTheme } = useTheme();
 
 	return (
-		<ToggleContainer>
+		<ToggleContainer data-cy="theme-toggler">
 			<Label theme={theme}>
 				<Input
 					data-testid="theme-toggler"

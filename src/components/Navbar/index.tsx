@@ -11,7 +11,7 @@ export default function Navbar(): JSX.Element {
 	const location = useLocation();
 
 	return (
-		<Nav theme={theme}>
+		<Nav theme={theme} data-cy="navbar">
 			<LogoContainer src={Logo} alt="site-logo" />
 
 			<NavList theme={theme}>

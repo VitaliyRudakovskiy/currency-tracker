@@ -7,7 +7,7 @@ import { HomeContainer, HomeWrapper } from './styled';
 
 export default function Home() {
 	return (
-		<HomeWrapper>
+		<HomeWrapper data-cy="home-wrapper" data-testid="home-wrapper">
 			<Header />
 			<HomeContainer>
 				<PulsatingCircle />

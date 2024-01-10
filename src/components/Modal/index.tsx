@@ -27,8 +27,10 @@ export default function ConvertingModal(): JSX.Element {
 
 	return ReactDOM.createPortal(
 		<ModalOverlay>
-			<ModalContainer theme={theme}>
-				<CloseButton onClick={onCloseModal}>&times;</CloseButton>
+			<ModalContainer theme={theme} data-cy="modal">
+				<CloseButton onClick={onCloseModal} data-cy="close-modal">
+					&times;
+				</CloseButton>
 				<ModalName>Converter</ModalName>
 
 				<InputContainer>

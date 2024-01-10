@@ -19,7 +19,7 @@ const ModalItem = memo(({ item }: ICurrencyItemProps): JSX.Element => {
 	).toPrecision(5);
 
 	return (
-		<ConvertedSumContainer data-testid="modal-item">
+		<ConvertedSumContainer data-cy="modal-item" data-testid="modal-item">
 			{!Number.isNaN(+convertedSum) && (
 				<>
 					{convertedSum} {item.code}

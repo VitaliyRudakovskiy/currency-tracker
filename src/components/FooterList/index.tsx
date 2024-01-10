@@ -11,7 +11,7 @@ function FooterList({ title, values }: FooterListProps) {
 		<div>
 			<ListTitle>{title}</ListTitle>
 			{values.map((item) => (
-				<FooterLink to="/contacts" key={item}>
+				<FooterLink to="/contacts" key={item} data-cy="footer-link">
 					<ListValue>{item}</ListValue>
 				</FooterLink>
 			))}

@@ -8,12 +8,15 @@ import {
 import { setHistoryEUR, setHistoryUSD } from '@store/reducers/currencySlice';
 import getCurrencyHistory from './getCurrencyHistory';
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 const useCurrencyHistory = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
+				delay(300);
 				const [resultUSD, resultEUR]: [ExchangeRateData[], ExchangeRateData[]] =
 					await getCurrencyHistory();
 

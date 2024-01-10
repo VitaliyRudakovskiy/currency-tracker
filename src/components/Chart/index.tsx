@@ -59,7 +59,7 @@ class ChartComponent extends Component<IProps, IState> {
 
 	render() {
 		return (
-			<ChartContainer>
+			<ChartContainer data-cy="chart">
 				<Chart
 					chartType="CandlestickChart"
 					data={this.state.chartData}

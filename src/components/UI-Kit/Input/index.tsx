@@ -20,6 +20,7 @@ function Input({ placeholder }: IInput): JSX.Element {
 
 	return (
 		<InputContainer
+			data-cy="input-modal"
 			type="text"
 			placeholder={placeholder}
 			value={inputValue}

@@ -8,7 +8,7 @@ import { BanksWrapper, BanksContainer } from './styled';
 class Banks extends Component {
 	render(): React.ReactNode {
 		return (
-			<BanksWrapper>
+			<BanksWrapper data-cy="banks-wrapper">
 				<Header />
 				<BanksContainer>
 					<BanksInput />

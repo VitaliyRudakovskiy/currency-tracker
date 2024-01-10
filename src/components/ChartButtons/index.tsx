@@ -6,6 +6,7 @@ import {
 } from '@interfaces/interfaces';
 import { ChartDataContext } from '@providers/ChartDataProvider';
 import ChartModal from '@components/ChartModal';
+// import historyUSD from '@constants/historyUSD';
 import { ChartButton, ButtonsContainer } from './styled';
 
 interface ChartButtonsProps {
@@ -31,10 +32,12 @@ class ChartButtons extends PureComponent<ChartButtonsProps, ChartButtonsState> {
 
 	handleUSDButtonClick = () => {
 		this.context.updateData(this.props.historyUSD);
+		// this.context.updateData(historyUSD);	--if err 429 (too many requests happens)
 	};
 
 	handleEURButtonClick = () => {
 		this.context.updateData(this.props.historyEUR);
+		// this.context.updateData(historyUSD); --if err 429 (too many requests happens)
 	};
 
 	onOpen = () => {
@@ -52,7 +55,7 @@ class ChartButtons extends PureComponent<ChartButtonsProps, ChartButtonsState> {
 
 		return (
 			<>
-				<ButtonsContainer>
+				<ButtonsContainer data-cy="chart-buttons">
 					<ChartButton onClick={this.handleUSDButtonClick}>USD</ChartButton>
 					<ChartButton onClick={this.handleEURButtonClick}>EUR</ChartButton>
 					<ChartButton onClick={this.onOpen}>Change value</ChartButton>

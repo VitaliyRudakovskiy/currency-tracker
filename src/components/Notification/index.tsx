@@ -32,7 +32,11 @@ class Notification extends PureComponent<NotificationProps> {
 		const { show } = this.props;
 		const isShown: boolean = show === true;
 		return (
-			<NotificationContainer show={show}>
+			<NotificationContainer
+				show={show}
+				data-cy="notification"
+				data-testid="notification"
+			>
 				{isShown && <p>The graph has been successfully created!</p>}
 			</NotificationContainer>
 		);

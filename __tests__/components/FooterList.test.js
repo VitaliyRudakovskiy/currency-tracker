@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import FooterList from '@components/FooterList';
 
 describe('FooterList', () => {
@@ -7,7 +8,11 @@ describe('FooterList', () => {
 		const title = 'Test Footer List Title';
 		const values = ['Value 1', 'Value 2', 'Value 3', 'Value 4'];
 
-		render(<FooterList title={title} values={values} />);
+		render(
+			<Router>
+				<FooterList title={title} values={values} />
+			</Router>
+		);
 
 		const renderedTitle = screen.getByText(title);
 		expect(renderedTitle).toBeInTheDocument();

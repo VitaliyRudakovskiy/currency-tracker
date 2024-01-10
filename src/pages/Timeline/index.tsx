@@ -9,7 +9,7 @@ import TimelineWrapper from './styled';
 class Timeline extends Component {
 	render(): React.ReactNode {
 		return (
-			<TimelineWrapper>
+			<TimelineWrapper data-cy="timeline-wrapper">
 				<ChartDataProvider>
 					<Header />
 					<ChartButtons />

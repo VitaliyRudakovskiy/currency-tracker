@@ -15,7 +15,11 @@ export default function Welcome(): JSX.Element {
 	const theme = useSelector(selectTheme);
 
 	return (
-		<WelcomeContainer theme={theme}>
+		<WelcomeContainer
+			theme={theme}
+			data-cy="header-welcome"
+			data-testid="header-welcome"
+		>
 			<TextSection>
 				<WelcomeSubtitle>
 					Modsen Currency

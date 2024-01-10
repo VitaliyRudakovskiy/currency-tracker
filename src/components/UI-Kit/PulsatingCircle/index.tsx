@@ -12,7 +12,7 @@ export default function PulsatingCircle(): JSX.Element {
 	);
 
 	return (
-		<PulseContainer>
+		<PulseContainer data-cy="pulsating-circle">
 			<PulseCircle />
 			<UpdateString>Last updated at {formattedDate}</UpdateString>
 		</PulseContainer>

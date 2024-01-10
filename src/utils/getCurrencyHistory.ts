@@ -5,6 +5,8 @@ import getDate30DaysAgo from './getDate30DaysAgo';
 const historyUSD = 'USD';
 const historyEUR = 'EUR';
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export default async function getCurrencyHistory(): Promise<
 	[ExchangeRateData[], ExchangeRateData[]]
 > {
@@ -16,7 +18,7 @@ export default async function getCurrencyHistory(): Promise<
 	}
 
 	const dateMonthAgo: string = getDate30DaysAgo();
-	const apiKey: string = 'BA4616DA-5203-4825-8105-2045CB59E1B9';
+	const apiKey: string = 'DDEC7288-0708-46E2-8FCC-6C1A9DAD07A2';
 
 	const fetchExchangeRate = async (
 		currencyCode: string
@@ -39,10 +41,10 @@ export default async function getCurrencyHistory(): Promise<
 	};
 
 	try {
-		const [resultUSD, resultEUR] = await Promise.all([
-			fetchExchangeRate('USD'),
-			fetchExchangeRate('EUR'),
-		]);
+		await delay(500);
+		const resultUSD = await Promise.resolve(fetchExchangeRate('USD'));
+		await delay(500);
+		const resultEUR = await Promise.resolve(fetchExchangeRate('EUR'));
 
 		localStorage.setItem(historyUSD, JSON.stringify(resultUSD));
 		localStorage.setItem(historyEUR, JSON.stringify(resultEUR));

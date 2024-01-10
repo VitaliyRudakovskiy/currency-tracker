@@ -32,10 +32,14 @@ export default function DropdownModal(): JSX.Element {
 	};
 
 	return (
-		<Dropdown value={selectedValue} onChange={handleDropdownChange}>
-			{currencies.map((item) => (
-				<option key={item.code} value={item.code}>
-					{item.code}
+		<Dropdown
+			value={selectedValue}
+			onChange={handleDropdownChange}
+			data-cy="dropdown-modal"
+		>
+			{currencies.map(({ code }) => (
+				<option key={code} value={code}>
+					{code}
 				</option>
 			))}
 		</Dropdown>

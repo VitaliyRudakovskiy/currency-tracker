@@ -68,6 +68,7 @@ class MapChart extends PureComponent<PropsFromRedux, MapChartState> {
 				<MapContainer>
 					{!isMapLoaded && <Loader />}
 					<Map
+						data-cy="map"
 						defaultState={banksOptions}
 						onLoad={this.handleMapLoad}
 						width="100%"

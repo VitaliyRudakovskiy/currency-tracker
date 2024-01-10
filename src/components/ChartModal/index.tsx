@@ -87,8 +87,10 @@ class ChartModal extends PureComponent<PortalProps, ChartModalState> {
 
 		return ReactDOM.createPortal(
 			<ChartModalOverlay>
-				<ChartModalContainer>
-					<CloseButton onClick={onClose}>&times;</CloseButton>
+				<ChartModalContainer data-cy="chart-modal">
+					<CloseButton onClick={onClose} data-cy="chart-modal-close">
+						&times;
+					</CloseButton>
 					<ChartModalTitle>Choose date</ChartModalTitle>
 					<ChartDropdown
 						selectedDate={selectedDate}

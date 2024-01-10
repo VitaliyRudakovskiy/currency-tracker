@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import RightSection from '@components/FooterRight';
 import { darkTheme } from '@constants/colors';
@@ -7,9 +8,11 @@ import { darkTheme } from '@constants/colors';
 describe('RightSection', () => {
 	it('renders the footer lists', () => {
 		render(
-			<ThemeProvider theme={darkTheme}>
-				<RightSection />
-			</ThemeProvider>
+			<Router>
+				<ThemeProvider theme={darkTheme}>
+					<RightSection />
+				</ThemeProvider>
+			</Router>
 		);
 
 		const generalTitle = screen.getByText('General');
