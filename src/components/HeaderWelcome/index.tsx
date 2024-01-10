@@ -1,6 +1,6 @@
 import React from 'react';
-import BigLogo from '@assets/big-logo.png';
 import { useSelector } from 'react-redux';
+import bigLogo from '@assets/big-logo.png';
 import { selectTheme } from '@store/reducers/themeSlice';
 import {
 	WelcomeContainer,
@@ -8,6 +8,7 @@ import {
 	WelcomeSubtitle,
 	WelcomeText,
 	TextSection,
+	WelcomeImage,
 } from './styled';
 
 export default function Welcome(): JSX.Element {
@@ -26,7 +27,7 @@ export default function Welcome(): JSX.Element {
 				</WelcomeText>
 			</TextSection>
 
-			<img src={BigLogo} alt="Big Site Logo" width="170px" height="170px" />
+			<WelcomeImage src={bigLogo} alt="Big Site Logo" />
 		</WelcomeContainer>
 	);
 }

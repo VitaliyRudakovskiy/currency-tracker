@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { selectTheme } from '@store/reducers/themeSlice';
 import Logo from '@assets/logo.png';
 import ThemeToggler from '../UI-Kit/ThemeToggler';
-import { Nav, NavList, NavItem, NavLink } from './styled';
+import { Nav, NavList, NavItem, NavLink, LogoContainer } from './styled';
 
 export default function Navbar(): JSX.Element {
 	const theme = useSelector(selectTheme);
@@ -12,7 +12,7 @@ export default function Navbar(): JSX.Element {
 
 	return (
 		<Nav theme={theme}>
-			<img src={Logo} alt="site-logo" />
+			<LogoContainer src={Logo} alt="site-logo" />
 
 			<NavList theme={theme}>
 				<NavLink to="/" className={location.pathname === '/' ? 'active' : ''}>

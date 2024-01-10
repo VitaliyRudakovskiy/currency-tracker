@@ -19,4 +19,8 @@ export const HomeContainer = styled.div`
 	padding: 2rem 3rem;
 	margin: 0 auto;
 	flex: 1;
+
+	@media (max-width: 728px) {
+		padding: 2rem 1rem;
+	}
 `;

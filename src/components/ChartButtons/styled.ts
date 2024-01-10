@@ -3,8 +3,9 @@ import styled from 'styled-components';
 export const ButtonsContainer = styled.div`
 	display: flex;
 	align-items: center;
-	width: 100vw;
 	justify-content: center;
+	flex-wrap: wrap;
+	width: 100vw;
 	gap: 1rem;
 	margin-top: 2rem;
 	margin-bottom: 0.1rem;
@@ -29,5 +30,11 @@ export const ChartButton = styled.button`
 	&:active {
 		background-color: #3c943e;
 		box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+	}
+
+	@media (max-width: 380px) {
+		font-size: 0.7rem;
+		font-weight: 400;
+		padding: 0.6rem 0.9rem;
 	}
 `;

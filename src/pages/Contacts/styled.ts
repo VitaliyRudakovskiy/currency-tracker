@@ -20,6 +20,11 @@ export const MainContent = styled.div`
 	align-items: center;
 	justify-content: center;
 	gap: 2rem;
+
+	@media (max-width: 380px) {
+		padding: 1rem 2rem;
+		gap: 1rem;
+	}
 `;
 
 export const ContactsHeader = styled.h2`
@@ -27,6 +32,10 @@ export const ContactsHeader = styled.h2`
 		useTheme().mode === 'dark'
 			? darkTheme.mainTextColor
 			: lightTheme.mainTextColor};
+
+	@media (max-width: 380px) {
+		font-size: 1.3rem;
+	}
 `;
 
 export const ContactsText = styled.p`
@@ -36,4 +45,8 @@ export const ContactsText = styled.p`
 		useTheme().mode === 'dark'
 			? darkTheme.mainTextColor
 			: lightTheme.mainTextColor};
+
+	@media (max-width: 380px) {
+		font-size: 1rem;
+	}
 `;

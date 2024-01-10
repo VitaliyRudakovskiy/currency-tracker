@@ -20,6 +20,11 @@ export const PulseContainer = styled.div`
 	align-items: center;
 	gap: 1rem;
 	margin-bottom: 2rem;
+
+	@media (max-width: 528px) {
+		gap: 0.6rem;
+		margin-bottom: 1.5rem;
+	}
 `;
 
 export const PulseCircle = styled.div`
@@ -53,4 +58,8 @@ export const UpdateString = styled.p`
 		useTheme().mode === 'dark'
 			? darkTheme.mainTextColor
 			: lightTheme.mainTextColor};
+
+	@media (max-width: 528px) {
+		font-size: 0.7rem;
+	}
 `;

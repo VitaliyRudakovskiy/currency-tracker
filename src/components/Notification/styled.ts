@@ -18,6 +18,13 @@ const NotificationContainer = styled.div<IProps>`
 		opacity 0.5s ease-in-out;
 	opacity: ${(props) => (props.show ? '1' : '0')};
 	z-index: 100;
+
+	@media (max-width: 380px) {
+		left: 10%;
+		transform: translateX(-5%);
+		padding: 0.7rem;
+		text-align: center;
+	}
 `;
 
 export default NotificationContainer;

@@ -21,4 +21,8 @@ export const FooterText = styled.p`
 		useTheme().mode === 'dark'
 			? darkTheme.mainTextColor
 			: lightTheme.mainTextColor};
+
+	@media (max-width: 728px) {
+		display: none;
+	}
 `;

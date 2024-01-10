@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { ListValue, ListTitle } from './styled';
+import { ListValue, ListTitle, FooterLink } from './styled';
 
 interface FooterListProps {
 	title: string;
@@ -11,7 +11,9 @@ function FooterList({ title, values }: FooterListProps) {
 		<div>
 			<ListTitle>{title}</ListTitle>
 			{values.map((item) => (
-				<ListValue key={item}>{item}</ListValue>
+				<FooterLink to="/contacts" key={item}>
+					<ListValue>{item}</ListValue>
+				</FooterLink>
 			))}
 		</div>
 	);

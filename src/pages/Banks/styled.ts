@@ -5,6 +5,7 @@ export const BanksWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+	width: 100vw;
 	background-color: ${() =>
 		useTheme().mode === 'dark'
 			? darkTheme.primaryBackground
@@ -15,6 +16,8 @@ export const BanksContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	padding-top: 1rem;
+	align-items: center;
+	padding: 1rem;
+	width: 100%;
 	flex: 1;
 `;

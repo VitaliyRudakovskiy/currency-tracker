@@ -19,6 +19,11 @@ export const ItemContainer = styled.div`
 	&:hover {
 		transform: scale(1.1);
 	}
+
+	@media (max-width: 728px) {
+		width: 100%;
+		padding: 0.5rem 1rem;
+	}
 `;
 
 export const InfoSection = styled.div`
@@ -28,4 +33,16 @@ export const InfoSection = styled.div`
 		useTheme().mode === 'dark'
 			? darkTheme.currencyItemTextColor
 			: lightTheme.mainTextColor};
+
+	@media (max-width: 528px) {
+		font-size: 0.8rem;
+	}
+`;
+
+export const CurrencyImage = styled.img`
+	width: 60px;
+
+	@media (max-width: 728px) {
+		width: 40px;
+	}
 `;

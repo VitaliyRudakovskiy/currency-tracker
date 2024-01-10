@@ -27,6 +27,19 @@ export const WelcomeContainer = styled.div<IThemeProps>`
 		props.theme === 'dark'
 			? darkTheme.welcomeBackground
 			: lightTheme.primaryBackground};
+
+	@media (max-width: 528px) {
+		padding: 3rem 2rem 1rem;
+	}
+`;
+
+export const WelcomeImage = styled.img`
+	width: 170px;
+	height: 170px;
+
+	@media (max-width: 728px) {
+		display: none;
+	}
 `;
 
 export const TextSection = styled.div`
@@ -34,16 +47,29 @@ export const TextSection = styled.div`
 	flex-direction: column;
 	align-items: flex-end;
 	text-align: right;
+
+	@media (max-width: 728px) {
+		align-items: center;
+		text-align: center;
+	}
 `;
 
 export const WelcomeSubtitle = styled.h1`
 	${titleMixin}
 	font-size: 2.5rem;
+
+	@media (max-width: 728px) {
+		font-size: 2rem;
+	}
 `;
 
 export const WelcomeTitle = styled.p`
 	${titleMixin}
 	font-size: 3rem;
+
+	@media (max-width: 728px) {
+		font-size: 2rem;
+	}
 `;
 
 export const WelcomeText = styled.p<IThemeProps>`
@@ -52,4 +78,8 @@ export const WelcomeText = styled.p<IThemeProps>`
 	text-align: center;
 	color: ${(props) =>
 		props.theme === 'dark' ? darkTheme.welcomeQuote : lightTheme.mainTextColor};
+
+	@media (max-width: 528px) {
+		font-size: 0.7rem;
+	}
 `;

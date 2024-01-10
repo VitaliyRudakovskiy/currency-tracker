@@ -13,7 +13,7 @@ interface INavProps {
 
 export const Nav = styled.nav<INavProps>`
 	position: fixed;
-	width: 100vw;
+	width: 100%;
 	z-index: 2;
 	background-color: ${(props) =>
 		props.theme === 'dark' ? dark.primaryBackground : light.primaryBackground};
@@ -21,6 +21,18 @@ export const Nav = styled.nav<INavProps>`
 	justify-content: space-between;
 	align-items: center;
 	padding: 0.3rem 3rem;
+
+	@media (max-width: 768px) {
+		padding: 0.3rem 0.8rem;
+	}
+`;
+
+export const LogoContainer = styled.img`
+	width: 2.5rem;
+
+	@media (max-width: 768px) {
+		width: 1rem;
+	}
 `;
 
 export const NavList = styled.ul<INavProps>`
@@ -29,11 +41,24 @@ export const NavList = styled.ul<INavProps>`
 	justify-content: center;
 	align-items: center;
 	gap: 3rem;
+
+	@media (max-width: 768px) {
+		gap: 1rem;
+	}
+
+	@media (max-width: 528px) {
+		gap: 0;
+	}
 `;
 
 export const NavItem = styled.li`
 	padding: 0.7rem;
 	font-size: 1rem;
+
+	@media (max-width: 528px) {
+		padding: 0.4rem 0.3rem;
+		font-size: 0.6rem;
+	}
 `;
 
 export const NavLink = styled(Link)`

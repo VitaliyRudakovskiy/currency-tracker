@@ -31,6 +31,10 @@ export const ModalContainer = styled.div<IThemeProps>`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+
+	@media (max-width: 380px) {
+		padding: 0.5rem 0.5rem 0;
+	}
 `;
 
 export const CloseButton = styled.button`
@@ -42,6 +46,11 @@ export const CloseButton = styled.button`
 	background: none;
 	border: none;
 	color: red;
+
+	@media (max-width: 380px) {
+		top: 0;
+		right: 0.8rem;
+	}
 `;
 
 export const ModalName = styled.h3`
@@ -49,6 +58,10 @@ export const ModalName = styled.h3`
 	font-size: 2rem;
 	margin-bottom: 1rem;
 	color: #acde1d;
+
+	@media (max-width: 380px) {
+		font-size: 1.5rem;
+	}
 `;
 
 export const InputContainer = styled.div`

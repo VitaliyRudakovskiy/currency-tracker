@@ -37,6 +37,10 @@ export const ChartModalTitle = styled.h3`
 		useTheme().mode === 'dark'
 			? darkTheme.mainTextColor
 			: lightTheme.mainTextColor};
+
+	@media (max-width: 464px) {
+		font-size: 1.3rem;
+	}
 `;
 
 export const CloseButton = styled.button`
@@ -48,13 +52,10 @@ export const CloseButton = styled.button`
 	background: none;
 	border: none;
 	color: red;
-`;
 
-export const InputsContainer = styled.div`
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 1rem;
-	margin-bottom: 1rem;
+	@media (max-width: 464px) {
+		top: -0.1rem;
+	}
 `;
 
 export const SubmitButton = styled.button`

@@ -8,7 +8,7 @@ import { selectModalOpened, toggleModal } from '@store/reducers/modalSlice';
 import { ICurrency } from '@interfaces/interfaces';
 import { currencyNames } from '@constants/currencies';
 import useImageLoader from '@utils/useImageLoader';
-import { ItemContainer, InfoSection } from './styled';
+import { ItemContainer, InfoSection, CurrencyImage } from './styled';
 import ConvertingModal from '../Modal';
 
 interface CurrencyItemProps {
@@ -34,7 +34,7 @@ const CurrencyItem = memo(({ item }: CurrencyItemProps): JSX.Element => {
 	return (
 		<>
 			<ItemContainer onClick={handleItemClick}>
-				{imageSrc && <img src={imageSrc} alt="currency-logo" width="60px" />}
+				{imageSrc && <CurrencyImage src={imageSrc} alt="currency-logo" />}
 
 				<InfoSection>
 					<h4>{currencyName}</h4>

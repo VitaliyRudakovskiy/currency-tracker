@@ -33,6 +33,19 @@ export const MapInput = styled.input`
 		box-shadow: 0 0 8px #00bcd480;
 		border-color: #00bcd4;
 	}
+
+	@media (max-width: 1010px) {
+		width: 50%;
+	}
+
+	@media (max-width: 810px) {
+		width: 70%;
+	}
+
+	@media (max-width: 580px) {
+		width: 100%;
+		font-size: 1rem;
+	}
 `;
 
 export const MapTooltipsContainer = styled.div`
@@ -62,6 +75,22 @@ export const MapTooltipsContainer = styled.div`
 				? darkTheme.mainTextColor
 				: lightTheme.mainTextColor};
 		border-radius: 4px;
+	}
+
+	@media (max-width: 1010px) {
+		width: 50%;
+	}
+
+	@media (max-width: 810px) {
+		width: 70%;
+	}
+
+	@media (max-width: 580px) {
+		width: 100%;
+	}
+
+	@media (max-width: 380px) {
+		grid-template-columns: repeat(3, 1fr);
 	}
 `;
 

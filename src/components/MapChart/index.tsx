@@ -65,14 +65,12 @@ class MapChart extends PureComponent<PropsFromRedux, MapChartState> {
 					apikey: '67714e04-f605-40b9-a0a4-14a69b3ac94c',
 				}}
 			>
-				<MapContainer
-					style={{ display: 'flex', flexDirection: 'column', width: '100vw' }}
-				>
+				<MapContainer>
 					{!isMapLoaded && <Loader />}
 					<Map
 						defaultState={banksOptions}
 						onLoad={this.handleMapLoad}
-						width="95%"
+						width="100%"
 						height="55vh"
 					>
 						<FullscreenControl />

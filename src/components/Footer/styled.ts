@@ -11,6 +11,10 @@ export const FooterContainer = styled.footer`
 		useTheme().mode === 'dark'
 			? darkTheme.primaryBackground
 			: lightTheme.primaryBackground};
+
+	@media (max-width: 380px) {
+		padding: 1rem 1.5rem;
+	}
 `;
 
 export const FooterInfo = styled.div`
@@ -19,9 +23,15 @@ export const FooterInfo = styled.div`
 	justify-content: space-between;
 	align-items: start;
 	margin-bottom: 2rem;
+
+	@media (max-width: 728px) {
+		flex-direction: column;
+		align-items: center;
+	}
 `;
 
 export const Copyright = styled.div`
 	margin: 0 auto;
 	color: ${copyrightColor};
+	text-align: center;
 `;

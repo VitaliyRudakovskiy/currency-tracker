@@ -12,7 +12,7 @@ class Notification extends PureComponent<NotificationProps> {
 	componentDidUpdate() {
 		const { show, onHide } = this.props;
 
-		if (show) {
+		if (show === true) {
 			if (this.notificationTimeoutRef) {
 				clearTimeout(this.notificationTimeoutRef);
 			}

@@ -1,21 +1,27 @@
-import { darkTheme, lightTheme, sliderColor } from '@constants/colors';
 import styled from 'styled-components';
+import { darkTheme, lightTheme, sliderColor } from '@constants/colors';
+
+interface IThemeProps {
+	theme: 'dark' | 'light';
+}
 
 export const ToggleContainer = styled.div`
 	display: flex;
 	align-items: center;
 	position: relative;
 	width: 4rem;
-`;
+	height: 2rem;
 
-interface IThemeProps {
-	theme: 'dark' | 'light';
-}
+	@media (max-width: 768px) {
+		width: 3rem;
+		height: 1.5rem;
+	}
+`;
 
 export const Label = styled.label<IThemeProps>`
 	position: absolute;
 	width: 100%;
-	height: 2rem;
+	height: 100%;
 	background-color: ${(props) =>
 		props.theme === 'dark'
 			? darkTheme.toggleBackground
@@ -42,6 +48,14 @@ export const Slider = styled.span`
 		box-shadow: inset 8px -3px 0px 0px yellow;
 		transition: 0.3s;
 	}
+
+	@media (max-width: 768px) {
+		&::before {
+			top: 0.2rem;
+			width: 1.1rem;
+			height: 1.1rem;
+		}
+	}
 `;
 
 export const Input = styled.input`
@@ -52,5 +66,11 @@ export const Input = styled.input`
 		transform: translateX(2rem);
 		background-color: ${sliderColor};
 		box-shadow: none;
+	}
+
+	@media (max-width: 768px) {
+		&:checked ~ ${Slider}::before {
+			transform: translateX(1.3rem);
+		}
 	}
 `;
