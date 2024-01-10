@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { CurrencyHistoryData, IFormData } from '@interfaces/interfaces';
+import datesDropdown from '@constants/datesDropdown';
 import DropdownContainer from './styled';
 
-interface IChartDropdown {
+interface IChartDropdownProps {
 	selectedDate: string;
 	setSelectedData: (data: string) => void;
 	data: CurrencyHistoryData;
 	setFormData: (data: IFormData) => void;
 }
 
-class ChartDropdown extends Component<IChartDropdown, {}> {
+class ChartDropdown extends PureComponent<IChartDropdownProps> {
 	componentDidMount() {
 		const { data, setSelectedData, setFormData } = this.props;
 
 		if (data.length > 0) {
-			const initialSelectedDate = this.datesDropdown(data)[0];
+			const initialSelectedDate = datesDropdown(data)[0];
 			const initialSelectedData = data.find(
 				(item) => item[0] === initialSelectedDate
 			);
@@ -31,11 +32,11 @@ class ChartDropdown extends Component<IChartDropdown, {}> {
 		}
 	}
 
-	componentDidUpdate(prevProps: IChartDropdown) {
+	componentDidUpdate(prevProps: IChartDropdownProps) {
 		const { data, setSelectedData, setFormData } = this.props;
 
 		if (prevProps.data !== data && data.length > 0) {
-			const initialSelectedDate = this.datesDropdown(data)[0];
+			const initialSelectedDate = datesDropdown(data)[0];
 			const initialSelectedData = data.find(
 				(item) => item[0] === initialSelectedDate
 			);
@@ -51,11 +52,6 @@ class ChartDropdown extends Component<IChartDropdown, {}> {
 			}
 		}
 	}
-
-	datesDropdown = (dropdownDates: CurrencyHistoryData) => {
-		const subarraysWithoutFirst = dropdownDates.slice(1);
-		return subarraysWithoutFirst.map((item) => item[0]);
-	};
 
 	handleDropdownChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 		const { setSelectedData, setFormData, data } = this.props;
@@ -82,7 +78,7 @@ class ChartDropdown extends Component<IChartDropdown, {}> {
 				onChange={this.handleDropdownChange}
 				value={selectedDate}
 			>
-				{this.datesDropdown(data).map((date) => (
+				{datesDropdown(data).map((date) => (
 					<option key={date} value={date}>
 						{date}
 					</option>

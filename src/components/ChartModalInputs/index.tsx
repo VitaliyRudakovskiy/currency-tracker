@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { IFormData } from '@interfaces/interfaces';
-import { ChartModalInput, ChartInputsContainer } from './styled';
+import ChartModalInput from '@components/ChartModalInput';
+import ChartInputsContainer from './styled';
 
 interface IChartInputsProps {
 	formData: IFormData;
 	setFormData: (data: IFormData) => void;
 }
 
-class ChartModalInputs extends Component<IChartInputsProps> {
+class ChartModalInputs extends PureComponent<IChartInputsProps> {
 	handleInputChange =
 		(fieldName: string) => (event: React.ChangeEvent<HTMLInputElement>) => {
 			const { formData, setFormData } = this.props;
@@ -24,22 +25,22 @@ class ChartModalInputs extends Component<IChartInputsProps> {
 		return (
 			<ChartInputsContainer>
 				<ChartModalInput
-					placeholder="Input new low rate"
+					label="Low Rate"
 					value={newLowRate}
 					onChange={this.handleInputChange('newLowRate')}
 				/>
 				<ChartModalInput
-					placeholder="Input new high rate"
+					label="High Rate"
 					value={newHighRate}
 					onChange={this.handleInputChange('newHighRate')}
 				/>
 				<ChartModalInput
-					placeholder="Input new open rate"
+					label="Open Rate"
 					value={newOpenRate}
 					onChange={this.handleInputChange('newOpenRate')}
 				/>
 				<ChartModalInput
-					placeholder="Input new close rate"
+					label="Close Rate"
 					value={newCloseRate}
 					onChange={this.handleInputChange('newCloseRate')}
 				/>

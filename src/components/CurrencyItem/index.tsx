@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	setActiveCurrency,
@@ -15,7 +15,7 @@ interface CurrencyItemProps {
 	item: ICurrency;
 }
 
-export default function CurrencyItem({ item }: CurrencyItemProps): JSX.Element {
+const CurrencyItem = memo(({ item }: CurrencyItemProps): JSX.Element => {
 	const exchangeRate: number = useSelector(exchangeRateRedux);
 	const isModalVisible: boolean = useSelector(selectModalOpened);
 
@@ -47,4 +47,6 @@ export default function CurrencyItem({ item }: CurrencyItemProps): JSX.Element {
 			{isModalVisible && <ConvertingModal />}
 		</>
 	);
-}
+});
+
+export default CurrencyItem;

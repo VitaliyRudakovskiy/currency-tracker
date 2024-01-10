@@ -37,6 +37,9 @@
 			{ "extensions": [".js", ".jsx", ".tsx"] }
 		],
 		"no-param-reassign": "off",
-		"react/prefer-stateless-function": "off"
+		"react/prefer-stateless-function": "off",
+		"react/destructuring-assignment": "off",
+		"react/static-property-placement": "off",
+		"import/no-unresolved": "off"
 	}
 }

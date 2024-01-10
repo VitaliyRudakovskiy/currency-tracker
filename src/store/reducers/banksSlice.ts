@@ -1,14 +1,5 @@
-import { IBank } from '@interfaces/interfaces';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface IBanksWithCurrencies extends IBank {
-	currencies: string[];
-}
-
-interface BanksState {
-	banksInputValue: string;
-	banksWithCurrencies: IBanksWithCurrencies[];
-}
+import { BanksState, IBanksWithCurrencies } from '@interfaces/interfaces';
 
 const initialState: BanksState = {
 	banksInputValue: '',

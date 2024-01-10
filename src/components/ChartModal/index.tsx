@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
+import { ChartDataContext } from '@providers/ChartDataProvider';
 import {
-	ChartDataContext,
 	ChartObserver,
 	ChartSubjectInterface,
-} from '@providers/ChartDataProvider';
-import {
 	CurrencyHistoryData,
 	HistoryEntry,
 	IFormData,
@@ -30,9 +28,11 @@ interface ChartModalState {
 	formData: IFormData;
 }
 
-class ChartModal extends Component<PortalProps, ChartModalState> {
+class ChartModal extends PureComponent<PortalProps, ChartModalState> {
 	static contextType = ChartDataContext;
+
 	context!: ChartSubjectInterface;
+
 	observer!: ChartObserver;
 
 	constructor(props: PortalProps) {

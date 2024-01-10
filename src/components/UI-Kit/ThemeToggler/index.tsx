@@ -12,6 +12,7 @@ export default function ThemeToggler(): JSX.Element {
 		<ToggleContainer>
 			<Label theme={theme}>
 				<Input
+					data-testid="theme-toggler"
 					type="checkbox"
 					checked={theme === 'light'}
 					onChange={toggleTheme}

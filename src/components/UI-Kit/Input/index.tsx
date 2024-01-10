@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectInputValue, setInputValue } from '@store/reducers/inputSlice';
 import InputContainer from './styled';
@@ -7,7 +7,7 @@ interface IInput {
 	placeholder?: string;
 }
 
-export default function Input({ placeholder }: IInput): JSX.Element {
+function Input({ placeholder }: IInput): JSX.Element {
 	const inputValue: string = useSelector(selectInputValue);
 
 	const dispatch = useDispatch();
@@ -31,3 +31,5 @@ export default function Input({ placeholder }: IInput): JSX.Element {
 Input.defaultProps = {
 	placeholder: 'Input sum of money',
 };
+
+export default memo(Input);

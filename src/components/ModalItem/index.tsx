@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { activeCurrencyRedux } from '@store/reducers/currencySlice';
 import { selectInputValue } from '@store/reducers/inputSlice';
@@ -9,7 +9,7 @@ interface ICurrencyItemProps {
 	item: ICurrency;
 }
 
-export default function ModalItem({ item }: ICurrencyItemProps): JSX.Element {
+const ModalItem = memo(({ item }: ICurrencyItemProps): JSX.Element => {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
 	const inputValue: string = useSelector(selectInputValue);
 
@@ -19,12 +19,14 @@ export default function ModalItem({ item }: ICurrencyItemProps): JSX.Element {
 	).toPrecision(5);
 
 	return (
-		<ConvertedSumContainer>
-			{Number.isNaN(+convertedSum) ? null : (
+		<ConvertedSumContainer data-testid="modal-item">
+			{!Number.isNaN(+convertedSum) && (
 				<>
 					{convertedSum} {item.code}
 				</>
 			)}
 		</ConvertedSumContainer>
 	);
-}
+});
+
+export default ModalItem;

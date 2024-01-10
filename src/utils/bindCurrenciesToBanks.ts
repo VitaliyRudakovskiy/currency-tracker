@@ -1,7 +1,7 @@
 import { banks } from '@constants/banks';
 import { IBank } from '@interfaces/interfaces';
 
-interface IBankWithCurrency extends IBank {
+export interface IBankWithCurrency extends IBank {
 	currencies: string[];
 }
 

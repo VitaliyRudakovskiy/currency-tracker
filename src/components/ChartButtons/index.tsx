@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { CurrencyHistoryData } from '@interfaces/interfaces';
 import {
-	ChartDataContext,
 	ChartSubjectInterface,
-} from '@providers/ChartDataProvider';
-import generateRandomHistory from '@utils/generateRandomHistory';
+	CurrencyHistoryData,
+} from '@interfaces/interfaces';
+import { ChartDataContext } from '@providers/ChartDataProvider';
 import ChartModal from '@components/ChartModal';
 import { ChartButton, ButtonsContainer } from './styled';
 
@@ -18,8 +17,9 @@ interface ChartButtonsState {
 	isOpened: boolean;
 }
 
-class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
-	// static contextType = ChartDataContext;
+class ChartButtons extends PureComponent<ChartButtonsProps, ChartButtonsState> {
+	static contextType = ChartDataContext;
+
 	context!: ChartSubjectInterface;
 
 	constructor(props: ChartButtonsProps) {
@@ -29,21 +29,11 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 		};
 	}
 
-	handleButtonClick = () => {
-		//const { updateData } = this.context;
-		const newData = generateRandomHistory();
-		this.context.updateData(newData);
-	};
-
 	handleUSDButtonClick = () => {
-		// const { updateData } = this.context
-		// const { historyUSD } = this.props;
 		this.context.updateData(this.props.historyUSD);
 	};
 
 	handleEURButtonClick = () => {
-		// const { updateData } = this.context;
-		// const { historyEUR } = this.props;
 		this.context.updateData(this.props.historyEUR);
 	};
 
@@ -65,9 +55,6 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 				<ButtonsContainer>
 					<ChartButton onClick={this.handleUSDButtonClick}>USD</ChartButton>
 					<ChartButton onClick={this.handleEURButtonClick}>EUR</ChartButton>
-					<ChartButton onClick={this.handleButtonClick}>
-						Random Data
-					</ChartButton>
 					<ChartButton onClick={this.onOpen}>Change value</ChartButton>
 				</ButtonsContainer>
 
@@ -80,10 +67,7 @@ class ChartButtons extends Component<ChartButtonsProps, ChartButtonsState> {
 ChartButtons.contextType = ChartDataContext;
 
 interface IStateRedux {
-	currency: {
-		historyUSD: CurrencyHistoryData;
-		historyEUR: CurrencyHistoryData;
-	};
+	currency: ChartButtonsProps;
 }
 
 const mapStateToProps = (state: IStateRedux) => {

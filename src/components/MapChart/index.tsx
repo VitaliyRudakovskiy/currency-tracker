@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { PureComponent } from 'react';
+import { ConnectedProps, connect } from 'react-redux';
 import { banksOptions } from '@constants/banks';
 import {
 	selectBanksInputValue,
@@ -15,62 +15,90 @@ import {
 	ZoomControl,
 	Clusterer,
 } from 'react-yandex-maps';
+import { IBankWithCurrency } from '@utils/bindCurrenciesToBanks';
+import { BanksState } from '@interfaces/interfaces';
 import MapContainer from './styled';
 
-export default function MapChart() {
-	const [isMapLoaded, setIsMapLoaded] = useState(false);
+interface MapChartState {
+	isMapLoaded: boolean;
+}
 
-	const banksWithCurrencies = useSelector(selectBanksWithCurrencies);
-	const currencyInput = useSelector(selectBanksInputValue);
+interface ReduxState {
+	banks: BanksState;
+}
 
-	const handleMapLoad = () => {
-		setIsMapLoaded(true);
+const mapStateToProps = (state: ReduxState) => ({
+	banksWithCurrencies: selectBanksWithCurrencies(state),
+	currencyInput: selectBanksInputValue(state),
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+class MapChart extends PureComponent<PropsFromRedux, MapChartState> {
+	constructor(props: PropsFromRedux) {
+		super(props);
+		this.state = {
+			isMapLoaded: false,
+		};
+	}
+
+	handleMapLoad = () => {
+		this.setState({ isMapLoaded: true });
 	};
 
-	const filteredBanks =
-		currencyInput === ''
-			? banksWithCurrencies
-			: banksWithCurrencies.filter((bank) =>
-					bank.currencies.includes(currencyInput)
-				);
+	render() {
+		const { banksWithCurrencies, currencyInput } = this.props;
+		const { isMapLoaded } = this.state;
 
-	return (
-		<YMaps
-			query={{
-				apikey: '67714e04-f605-40b9-a0a4-14a69b3ac94c',
-			}}
-		>
-			<MapContainer
-				style={{ display: 'flex', flexDirection: 'column', width: '100vw' }}
+		const filteredBanks: IBankWithCurrency[] =
+			currencyInput === ''
+				? banksWithCurrencies
+				: banksWithCurrencies.filter((bank) =>
+						bank.currencies.includes(currencyInput)
+					);
+
+		return (
+			<YMaps
+				query={{
+					apikey: '67714e04-f605-40b9-a0a4-14a69b3ac94c',
+				}}
 			>
-				{!isMapLoaded && <Loader />}
-				<Map
-					defaultState={banksOptions}
-					onLoad={handleMapLoad}
-					width="95%"
-					height="55vh"
+				<MapContainer
+					style={{ display: 'flex', flexDirection: 'column', width: '100vw' }}
 				>
-					<FullscreenControl />
-					<TypeSelector options={{ float: 'right' }} />
-					<ZoomControl options={{ float: 'right' }} />
-					<Clusterer
-						options={{
-							preset: 'islands#greenClusterIcons',
-							groupByCoordinates: false,
-						}}
+					{!isMapLoaded && <Loader />}
+					<Map
+						defaultState={banksOptions}
+						onLoad={this.handleMapLoad}
+						width="95%"
+						height="55vh"
 					>
-						{filteredBanks.map((bank) => (
-							<Placemark
-								key={bank.coordinates[0]}
-								geometry={bank.coordinates}
-								properties={{
-									iconCaption: bank.bankName,
-								}}
-							/>
-						))}
-					</Clusterer>
-				</Map>
-			</MapContainer>
-		</YMaps>
-	);
+						<FullscreenControl />
+						<TypeSelector options={{ float: 'right' }} />
+						<ZoomControl options={{ float: 'right' }} />
+						<Clusterer
+							options={{
+								preset: 'islands#greenClusterIcons',
+								groupByCoordinates: false,
+							}}
+						>
+							{filteredBanks.map((bank) => (
+								<Placemark
+									key={bank.coordinates[0]}
+									geometry={bank.coordinates}
+									properties={{
+										iconCaption: bank.bankName,
+									}}
+								/>
+							))}
+						</Clusterer>
+					</Map>
+				</MapContainer>
+			</YMaps>
+		);
+	}
 }
+
+export default connect(mapStateToProps)(MapChart);

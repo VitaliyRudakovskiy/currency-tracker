@@ -1,4 +1,4 @@
-import React, { Component, ReactNode } from 'react';
+import React, { PureComponent, ReactNode } from 'react';
 import NotificationContainer from './styled';
 
 interface NotificationProps {
@@ -6,7 +6,7 @@ interface NotificationProps {
 	onHide: () => void;
 }
 
-class Notification extends Component<NotificationProps> {
+class Notification extends PureComponent<NotificationProps> {
 	notificationTimeoutRef: NodeJS.Timeout | null = null;
 
 	componentDidUpdate() {

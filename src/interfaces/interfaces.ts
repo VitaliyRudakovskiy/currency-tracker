@@ -35,3 +35,24 @@ export interface IBank {
 	bankName: string;
 	coordinates: number[];
 }
+
+export interface IBanksWithCurrencies extends IBank {
+	currencies: string[];
+}
+
+export interface BanksState {
+	banksInputValue: string;
+	banksWithCurrencies: IBanksWithCurrencies[];
+}
+
+export interface ChartObserver {
+	update: (newData: CurrencyHistoryData) => void;
+}
+
+export interface ChartSubjectInterface {
+	addObserver: (observer: ChartObserver) => void;
+	removeObserver: (observer: ChartObserver) => void;
+	notifyObservers: () => void;
+	updateData: (newData: CurrencyHistoryData) => void;
+	getData: () => CurrencyHistoryData;
+}

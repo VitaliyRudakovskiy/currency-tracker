@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import chartOptions from '@constants/chartOptions';
 import { Chart } from 'react-google-charts';
+import { ChartDataContext } from '@providers/ChartDataProvider';
 import {
-	ChartDataContext,
 	ChartObserver,
 	ChartSubjectInterface,
-} from '@providers/ChartDataProvider';
-import { CurrencyHistoryData } from '@interfaces/interfaces';
+	CurrencyHistoryData,
+} from '@interfaces/interfaces';
 import Notification from '@components/Notification';
 import Loader from '@components/Loader';
 import ChartContainer from './styled';
@@ -16,12 +16,16 @@ interface IState {
 	showNotification: boolean;
 }
 
-class ChartComponent extends Component<{}, IState> {
+type IProps = Record<string, never>;
+
+class ChartComponent extends Component<IProps, IState> {
 	static contextType = ChartDataContext;
+
 	context!: ChartSubjectInterface;
+
 	observer!: ChartObserver;
 
-	constructor(props: {}) {
+	constructor(props: IProps) {
 		super(props);
 		this.state = {
 			chartData: [],
