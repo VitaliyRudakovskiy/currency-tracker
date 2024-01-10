@@ -8,7 +8,7 @@ export default async function getCurrency() {
 		return JSON.parse(cachedData);
 	}
 
-	const apiKey = 'cur_live_oScF3PNeQWMdAQ9y6sCD3gipowU2tDM3SQEI9XIP';
+	const apiKey = 'cur_live_DhMeSyxp7aaMNudHiWWOHkj6fTtg0EuRhR99KRPs';
 	const apiUrl = `https://api.currencyapi.com/v3/latest?apikey=${apiKey}`;
 
 	try {
