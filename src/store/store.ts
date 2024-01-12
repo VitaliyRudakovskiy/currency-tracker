@@ -1,14 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit';
+import banksInputSlice from './reducers/banksSlice';
 import currencyReducer from './reducers/currencySlice';
-import themeReducer from './reducers/themeSlice';
+import datesSlice from './reducers/datesSlice';
 import inputReducer from './reducers/inputSlice';
 import modalReducer from './reducers/modalSlice';
-import banksInputSlice from './reducers/banksSlice';
+import themeReducer from './reducers/themeSlice';
 
 const store = configureStore({
 	reducer: {
 		banks: banksInputSlice,
 		currency: currencyReducer,
+		dates: datesSlice,
 		input: inputReducer,
 		modal: modalReducer,
 		theme: themeReducer,

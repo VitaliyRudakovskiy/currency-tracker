@@ -1,7 +1,7 @@
 import { darkTheme, lightTheme } from '@constants/colors';
 import styled, { useTheme } from 'styled-components';
 
-export const ItemContainer = styled.div`
+export const CurrencyItemContainer = styled.div`
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -26,7 +26,7 @@ export const ItemContainer = styled.div`
 	}
 `;
 
-export const InfoSection = styled.div`
+export const CurrencyInfoSection = styled.div`
 	display: flex;
 	flex-direction: column;
 	color: ${() =>

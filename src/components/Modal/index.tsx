@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInputValue } from '@store/reducers/inputSlice';
+import { clearInputValue } from '@store/reducers/inputSlice';
 import { toggleModal } from '@store/reducers/modalSlice';
 import { selectTheme } from '@store/reducers/themeSlice';
 import { activeCurrencyRedux } from '@store/reducers/currencySlice';
@@ -26,8 +26,7 @@ export default function ConvertingModal(): JSX.Element {
 
 	const onCloseModal = () => {
 		dispatch(toggleModal(false));
-		dispatch(setInputValue(''));
-		document.body.style.overflowY = 'auto';
+		dispatch(clearInputValue());
 	};
 
 	return ReactDOM.createPortal(

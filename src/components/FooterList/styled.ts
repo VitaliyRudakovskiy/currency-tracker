@@ -18,7 +18,7 @@ export const ListValue = styled.p`
 	transition: color 0.3s;
 
 	&:hover {
-		color: white;
+		color: #a3dc00;
 	}
 
 	@media (max-width: 380px) {
