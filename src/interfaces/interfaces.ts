@@ -56,3 +56,8 @@ export interface ChartSubjectInterface {
 	updateData: (newData: CurrencyHistoryData) => void;
 	getData: () => CurrencyHistoryData;
 }
+
+export interface DatesState {
+	beginDate: string;
+	endDate: string;
+}

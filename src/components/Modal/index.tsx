@@ -1,28 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setInputValue } from '@store/reducers/inputSlice';
+import { clearInputValue } from '@store/reducers/inputSlice';
 import { toggleModal } from '@store/reducers/modalSlice';
 import { selectTheme } from '@store/reducers/themeSlice';
+import { activeCurrencyRedux } from '@store/reducers/currencySlice';
+import ModalItem from '@components/ModalItem';
 import Input from '../UI-Kit/Input';
 import DropdownModal from '../UI-Kit/Dropdown';
-import ModalList from '../ModalList';
 import {
 	ModalContainer,
 	ModalOverlay,
 	CloseButton,
 	ModalName,
 	InputContainer,
+	InputActiveCode,
+	ResultContainer,
 } from './styled';
 
 export default function ConvertingModal(): JSX.Element {
 	const theme = useSelector(selectTheme);
+	const activeCurrency = useSelector(activeCurrencyRedux);
+
 	const dispatch = useDispatch();
 
 	const onCloseModal = () => {
 		dispatch(toggleModal(false));
-		dispatch(setInputValue(''));
-		document.body.style.overflowY = 'auto';
+		dispatch(clearInputValue());
 	};
 
 	return ReactDOM.createPortal(
@@ -35,10 +39,13 @@ export default function ConvertingModal(): JSX.Element {
 
 				<InputContainer>
 					<Input />
-					<DropdownModal />
+					<InputActiveCode>{activeCurrency.code}</InputActiveCode>
 				</InputContainer>
 
-				<ModalList />
+				<ResultContainer>
+					<ModalItem />
+					<DropdownModal />
+				</ResultContainer>
 			</ModalContainer>
 		</ModalOverlay>,
 

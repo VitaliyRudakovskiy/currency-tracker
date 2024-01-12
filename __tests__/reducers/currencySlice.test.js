@@ -1,7 +1,6 @@
 import currencySlice, {
 	setExchangeRate,
 	setUpdateTime,
-	setActiveCurrency,
 	setCurrenciesToStore,
 	setHistoryUSD,
 	setHistoryEUR,
@@ -12,7 +11,6 @@ describe('currency slice', () => {
 		expect(currencySlice(undefined, {})).toEqual({
 			exchangeRate: 0,
 			updateTime: '',
-			activeCurrency: { code: '', value: 0 },
 			currencies: [],
 			historyUSD: [['', '', '', '', '']],
 			historyEUR: [['', '', '', '', '']],
@@ -33,14 +31,6 @@ describe('currency slice', () => {
 			setUpdateTime('2024-01-12, 23:59:59')
 		);
 		expect(actual.updateTime).toEqual('2024-01-12, 23:59:59');
-	});
-
-	it('should handle setActiveCurrency', () => {
-		const actual = currencySlice(
-			{ activeCurrency: { code: '', value: 0 } },
-			setActiveCurrency({ code: 'USD', value: 1 })
-		);
-		expect(actual.activeCurrency).toEqual({ code: 'USD', value: 1 });
 	});
 
 	it('should handle setCurrenciesToStore', () => {

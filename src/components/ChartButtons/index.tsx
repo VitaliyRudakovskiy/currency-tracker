@@ -6,7 +6,7 @@ import {
 } from '@interfaces/interfaces';
 import { ChartDataContext } from '@providers/ChartDataProvider';
 import ChartModal from '@components/ChartModal';
-// import historyUSD from '@constants/historyUSD';
+import DateInput from '@components/DateInput';
 import { ChartButton, ButtonsContainer } from './styled';
 
 interface ChartButtonsProps {
@@ -14,40 +14,57 @@ interface ChartButtonsProps {
 	historyEUR: CurrencyHistoryData;
 }
 
-interface ChartButtonsState {
-	isOpened: boolean;
+interface DatesProps {
+	beginDate: string;
+	endDate: string;
 }
 
-class ChartButtons extends PureComponent<ChartButtonsProps, ChartButtonsState> {
+type CommonProps = ChartButtonsProps & DatesProps;
+
+interface ChartButtonsState {
+	isOpened: boolean;
+	isErrorWithDates: boolean;
+}
+
+class ChartButtons extends PureComponent<CommonProps, ChartButtonsState> {
 	static contextType = ChartDataContext;
 
 	context!: ChartSubjectInterface;
 
-	constructor(props: ChartButtonsProps) {
+	constructor(props: CommonProps) {
 		super(props);
 		this.state = {
 			isOpened: false,
+			isErrorWithDates: false,
 		};
 	}
 
+	handleUpdate = (history: CurrencyHistoryData) => {
+		const filteredData = history.filter((item, index) => {
+			if (index === 0) return true;
+			const date = new Date(item[0]);
+			const beginDate = new Date(this.props.beginDate);
+			const endDate = new Date(this.props.endDate);
+			return date >= beginDate && date <= endDate;
+		});
+
+		this.context.updateData(filteredData);
+	};
+
 	handleUSDButtonClick = () => {
-		this.context.updateData(this.props.historyUSD);
-		// this.context.updateData(historyUSD);	--if err 429 (too many requests happens)
+		this.handleUpdate(this.props.historyUSD);
 	};
 
 	handleEURButtonClick = () => {
-		this.context.updateData(this.props.historyEUR);
-		// this.context.updateData(historyUSD); --if err 429 (too many requests happens)
+		this.handleUpdate(this.props.historyEUR);
 	};
 
 	onOpen = () => {
 		this.setState({ isOpened: true });
-		document.body.style.overflowY = 'hidden';
 	};
 
 	onClose = () => {
 		this.setState({ isOpened: false });
-		document.body.style.overflowY = 'auto';
 	};
 
 	render() {
@@ -56,8 +73,19 @@ class ChartButtons extends PureComponent<ChartButtonsProps, ChartButtonsState> {
 		return (
 			<>
 				<ButtonsContainer data-cy="chart-buttons">
-					<ChartButton onClick={this.handleUSDButtonClick}>USD</ChartButton>
-					<ChartButton onClick={this.handleEURButtonClick}>EUR</ChartButton>
+					<ChartButton
+						disabled={this.state.isErrorWithDates}
+						onClick={this.handleUSDButtonClick}
+					>
+						USD
+					</ChartButton>
+					<ChartButton
+						disabled={this.state.isErrorWithDates}
+						onClick={this.handleEURButtonClick}
+					>
+						EUR
+					</ChartButton>
+					<DateInput />
 					<ChartButton onClick={this.onOpen}>Change value</ChartButton>
 				</ButtonsContainer>
 
@@ -71,13 +99,18 @@ ChartButtons.contextType = ChartDataContext;
 
 interface IStateRedux {
 	currency: ChartButtonsProps;
+	dates: DatesProps;
 }
 
 const mapStateToProps = (state: IStateRedux) => {
 	const { historyUSD, historyEUR } = state.currency;
+	const { beginDate, endDate } = state.dates;
+
 	return {
 		historyUSD,
 		historyEUR,
+		beginDate,
+		endDate,
 	};
 };
 

@@ -34,7 +34,7 @@ describe('Home Page E2E Test', () => {
 		cy.get('[data-cy=card]').eq(1).click();
 		cy.get('[data-cy=input-modal]').should('be.visible');
 		cy.get('[data-cy=input-modal]').type('51264').should('have.value', 51264);
-		cy.get('[data-cy=modal-item]').should('have.length', 9);
+		cy.get('[data-cy=modal-item]').should('have.length', 1);
 	});
 
 	it('should be able change theme', () => {

@@ -1,39 +1,34 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	activeCurrencyRedux,
 	currenciesRedux,
-	setActiveCurrency,
+	currencyToConvertRedux,
+	setCurrencyToConvert,
 } from '@store/reducers/currencySlice';
 import { ICurrency } from '@interfaces/interfaces';
 import Dropdown from './styled';
 
 export default function DropdownModal(): JSX.Element {
-	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
+	const currencyToConvert: ICurrency = useSelector(currencyToConvertRedux);
 	const currencies: ICurrency[] = useSelector(currenciesRedux);
-
-	const [selectedValue, setSelectedValue] = useState<string>(
-		activeCurrency.code
-	);
 
 	const dispatch = useDispatch();
 
 	const handleDropdownChange = (e: ChangeEvent<HTMLSelectElement>) => {
 		const newActiveCurrency = e.target.value;
 
-		const activeCurrToStore: ICurrency | undefined = currencies.find(
+		const currToConvertStore: ICurrency | undefined = currencies.find(
 			(item) => item.code === newActiveCurrency
 		);
 
-		if (activeCurrToStore) {
-			setSelectedValue(newActiveCurrency);
-			dispatch(setActiveCurrency(activeCurrToStore));
+		if (currToConvertStore) {
+			dispatch(setCurrencyToConvert(currToConvertStore));
 		}
 	};
 
 	return (
 		<Dropdown
-			value={selectedValue}
+			value={currencyToConvert.code}
 			onChange={handleDropdownChange}
 			data-cy="dropdown-modal"
 		>
