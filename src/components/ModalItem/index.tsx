@@ -1,20 +1,20 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { activeCurrencyRedux } from '@store/reducers/currencySlice';
+import {
+	activeCurrencyRedux,
+	currencyToConvertRedux,
+} from '@store/reducers/currencySlice';
 import { selectInputValue } from '@store/reducers/inputSlice';
 import { ICurrency } from '@interfaces/interfaces';
 import ConvertedSumContainer from './styled';
 
-interface ICurrencyItemProps {
-	item: ICurrency;
-}
-
-const ModalItem = memo(({ item }: ICurrencyItemProps): JSX.Element => {
+function ModalItem(): JSX.Element {
 	const activeCurrency: ICurrency = useSelector(activeCurrencyRedux);
+	const currencyToConvert: ICurrency = useSelector(currencyToConvertRedux);
 	const inputValue: string = useSelector(selectInputValue);
 
 	const convertedSum: string = (
-		(parseFloat(inputValue) * item.value) /
+		(parseFloat(inputValue) * currencyToConvert.value) /
 		activeCurrency.value
 	).toPrecision(5);
 
@@ -22,11 +22,11 @@ const ModalItem = memo(({ item }: ICurrencyItemProps): JSX.Element => {
 		<ConvertedSumContainer data-cy="modal-item" data-testid="modal-item">
 			{!Number.isNaN(+convertedSum) && (
 				<>
-					{convertedSum} {item.code}
+					{convertedSum} {currencyToConvert.code}
 				</>
 			)}
 		</ConvertedSumContainer>
 	);
-});
+}
 
 export default ModalItem;

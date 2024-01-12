@@ -1,5 +1,5 @@
 import { darkTheme, lightTheme } from '@constants/colors';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 
 interface IThemeProps {
 	theme: 'dark' | 'light';
@@ -25,7 +25,7 @@ export const ModalContainer = styled.div<IThemeProps>`
 			? darkTheme.modalBackground
 			: lightTheme.modalBackground};
 	border-radius: 8px;
-	padding: 0.5rem 1.5rem;
+	padding: 0.3rem 1.5rem 1.2rem;
 	max-width: 30rem;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 	display: flex;
@@ -39,7 +39,7 @@ export const ModalContainer = styled.div<IThemeProps>`
 
 export const CloseButton = styled.button`
 	position: absolute;
-	top: 0.1rem;
+	top: 0.2rem;
 	right: 0.8rem;
 	font-size: 3rem;
 	cursor: pointer;
@@ -65,5 +65,28 @@ export const ModalName = styled.h3`
 `;
 
 export const InputContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	margin-bottom: 1rem;
+`;
+
+export const InputActiveCode = styled.p`
+	background-color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.modalElementBackground
+			: lightTheme.modalElementBackground};
+	color: ${() =>
+		useTheme().mode === 'dark'
+			? darkTheme.mainTextColor
+			: lightTheme.mainTextColor};
+	padding: 0.35rem 0.5rem;
+	border-radius: 0 4px 4px 0;
+`;
+
+export const ResultContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
 `;

@@ -8,11 +8,11 @@ const Dropdown = styled.select`
 			: light.modalElementBackground};
 	color: ${() =>
 		useTheme().mode === 'dark' ? dark.mainTextColor : light.mainTextColor};
-	padding: 8px;
+	padding: 10px;
 	border: none;
-	border-radius: 0 4px 4px 0;
+	border-radius: 4px;
 	outline: none;
-	width: 4.5rem;
+	width: 6rem;
 	cursor: pointer;
 	font-size: 1rem;
 
