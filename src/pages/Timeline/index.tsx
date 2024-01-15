@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Chart from '@components/Chart';
+import ChartButtons from '@components/ChartButtons';
 import Footer from '@components/Footer';
 import Header from '@components/Header';
-import ChartComponent from '@components/Chart';
 import ChartDataProvider from '@providers/ChartDataProvider';
-import ChartButtons from '@components/ChartButtons';
+
 import TimelineWrapper from './styled';
 
 class Timeline extends Component {
@@ -13,7 +14,7 @@ class Timeline extends Component {
 				<ChartDataProvider>
 					<Header />
 					<ChartButtons />
-					<ChartComponent />
+					<Chart />
 					<Footer />
 				</ChartDataProvider>
 			</TimelineWrapper>

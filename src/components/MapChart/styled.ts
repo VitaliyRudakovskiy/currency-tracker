@@ -1,12 +1,15 @@
+import { getFlex, getPercent, getRem } from '@utils/themeHelper';
 import styled from 'styled-components';
 
+const flexCenter = getFlex('center');
+const wFull = getPercent('w-full');
+const rem0and3 = getRem('rem0_3');
+
 const MapContainer = styled.div`
-	width: 100%;
-	padding-right: 1rem;
-	display: flex;
+	width: ${wFull};
+	padding: ${rem0and3};
+	${flexCenter};
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 `;
 
 export default MapContainer;

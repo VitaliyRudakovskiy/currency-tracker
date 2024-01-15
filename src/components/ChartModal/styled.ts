@@ -1,83 +1,104 @@
-import { darkTheme, lightTheme } from '@constants/colors';
-import styled, { useTheme } from 'styled-components';
+import {
+	getFlex,
+	getPercent,
+	getPx,
+	getRem,
+	getValue,
+	getZIndex,
+} from '@utils/themeHelper';
+import styled from 'styled-components';
+
+const rem02 = getRem('rem0_2');
+const rem05 = getRem('rem0_5');
+const rem08 = getRem('rem0_8');
+const rem1 = getRem('rem1');
+const rem1and2 = getRem('rem1_2');
+const rem1and3 = getRem('rem1_3');
+const rem1and5 = getRem('rem1_5');
+const rem2 = getRem('rem2');
+const rem3 = getRem('rem3');
+const rem40 = getRem('rem40');
+const wFull = getPercent('w-full');
+const z10 = getZIndex('z10');
+const px1 = getPx('px1');
+const px5 = getPx('px5');
+const px8 = getPx('px8');
+const px10 = getPx('px8');
+const px464 = getPx('px464');
+const modalBackground = getValue('modalBackground');
+const chartButtonHoverColor = getValue('chartButtonHoverColor');
+const chartButtonActiveColor = getValue('chartButtonActiveColor');
+const chartButtonBackgroundColor = getValue('chartButtonBackgroundColor');
+const chartButtonTextColor = getValue('chartButtonTextColor');
+const mainTextColor = getValue('mainTextColor');
+const flexCenter = getFlex('center');
 
 export const ChartModalOverlay = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
+	width: ${wFull};
+	height: ${wFull};
 	background: transparent;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 10;
+	${flexCenter};
+	z-index: ${z10};
 `;
 
 export const ChartModalContainer = styled.div`
 	position: relative;
-	background: ${() =>
-		useTheme().mode === 'dark'
-			? darkTheme.modalBackground
-			: lightTheme.modalBackground};
-	border-radius: 8px;
-	padding: 0.5rem 1.5rem 1rem;
-	max-width: 40rem;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	display: flex;
+	background: ${modalBackground};
+	border-radius: ${px8};
+	padding: ${rem05} ${rem1and5} ${rem1};
+	max-width: ${rem40};
+	box-shadow: 0 0 ${px10} rgba(0, 0, 0, 0.2);
+	${flexCenter};
 	flex-direction: column;
-	align-items: center;
 `;
 
 export const ChartModalTitle = styled.h3`
 	text-align: center;
-	font-size: 2rem;
-	margin-bottom: 1rem;
-	color: ${() =>
-		useTheme().mode === 'dark'
-			? darkTheme.mainTextColor
-			: lightTheme.mainTextColor};
+	font-size: ${rem2};
+	margin-bottom: ${rem1};
+	color: ${mainTextColor};
 
-	@media (max-width: 464px) {
-		font-size: 1.3rem;
+	@media (max-width: ${px464}) {
+		font-size: ${rem1and3};
 	}
 `;
 
 export const CloseButton = styled.button`
 	position: absolute;
-	top: 0.1rem;
-	right: 0.8rem;
-	font-size: 3rem;
-	cursor: pointer;
+	top: 0;
+	right: ${rem08};
+	font-size: ${rem3};
 	background: none;
 	border: none;
 	color: red;
+	cursor: pointer;
 
-	@media (max-width: 464px) {
-		top: -0.1rem;
+	@media (max-width: ${px464}) {
+		top: -${rem02};
 	}
 `;
 
 export const SubmitButton = styled.button`
-	padding: 0.8rem 1.2rem;
-	font-size: 1rem;
+	padding: ${rem08} ${rem1and2};
+	font-size: ${rem1};
 	font-weight: 600;
-	letter-spacing: 1px;
-	background-color: #4caf50;
-	color: #fff;
+	letter-spacing: ${px1};
+	background-color: ${chartButtonBackgroundColor};
+	color: ${chartButtonTextColor};
 	border: none;
-	border-radius: 5px;
+	border-radius: ${px5};
 	transition: all 0.3s;
 	cursor: pointer;
 
 	&:hover {
-		background-color: #45a049;
+		background-color: ${chartButtonHoverColor};
 	}
 
 	&:active {
-		background-color: #3c943e;
-		box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+		background-color: ${chartButtonActiveColor};
+		box-shadow: inset 0 0 ${px10} rgba(0, 0, 0, 0.3);
 	}
 `;
-
-export const Input = styled.input``;

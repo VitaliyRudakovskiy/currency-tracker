@@ -20,27 +20,46 @@
 	"settings": {
 		"import/resolver": "webpack"
 	},
-	"plugins": ["react", "@typescript-eslint"],
+	"plugins": ["react", "@typescript-eslint", "simple-import-sort"],
 	"rules": {
 		"import/extensions": [
 			"error",
 			"ignorePackages",
 			{
-				"js": "never",
-				"jsx": "never",
 				"ts": "never",
 				"tsx": "never"
 			}
 		],
-		"react/jsx-filename-extension": [
-			2,
-			{ "extensions": [".js", ".jsx", ".tsx"] }
-		],
+		"react/jsx-filename-extension": [2, { "extensions": [".ts", ".tsx"] }],
+
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
+
 		"no-param-reassign": "off",
 		"react/prefer-stateless-function": "off",
 		"react/destructuring-assignment": "off",
 		"react/static-property-placement": "off",
 		"import/no-unresolved": "off",
-		"no-promise-executor-return": "off"
-	}
+		"no-promise-executor-return": "off",
+		"no-else-return": "off"
+	},
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {
+				"simple-import-sort/imports": [
+					"error",
+					{
+						"groups": [
+							["^react", "^@?\\w"],
+							["^(@|components)(/.*|$)"],
+							["^\\u0000"],
+							["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+							["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
+						]
+					}
+				]
+			}
+		}
+	]
 }

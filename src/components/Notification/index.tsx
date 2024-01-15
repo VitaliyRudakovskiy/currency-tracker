@@ -1,8 +1,9 @@
 import React, { PureComponent, ReactNode } from 'react';
+
 import NotificationContainer from './styled';
 
 interface NotificationProps {
-	show: boolean;
+	isShown: boolean;
 	onHide: () => void;
 }
 
@@ -10,9 +11,9 @@ class Notification extends PureComponent<NotificationProps> {
 	notificationTimeoutRef: NodeJS.Timeout | null = null;
 
 	componentDidUpdate() {
-		const { show, onHide } = this.props;
+		const { isShown, onHide } = this.props;
 
-		if (show === true) {
+		if (isShown === true) {
 			if (this.notificationTimeoutRef) {
 				clearTimeout(this.notificationTimeoutRef);
 			}
@@ -29,11 +30,10 @@ class Notification extends PureComponent<NotificationProps> {
 	}
 
 	render(): ReactNode {
-		const { show } = this.props;
-		const isShown: boolean = show === true;
+		const { isShown } = this.props;
 		return (
 			<NotificationContainer
-				show={show}
+				isShown={isShown}
 				data-cy="notification"
 				data-testid="notification"
 			>

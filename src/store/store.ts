@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import banksInputSlice from './reducers/banksSlice';
 import currencyReducer from './reducers/currencySlice';
 import datesSlice from './reducers/datesSlice';

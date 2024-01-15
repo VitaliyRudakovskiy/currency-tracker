@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { CURRENCIES_LOCAL_STORAGE } from '@constants/currencies';
+import axios from 'axios';
 
 export default async function getCurrency() {
 	const cachedData = localStorage.getItem(CURRENCIES_LOCAL_STORAGE);
@@ -8,8 +8,10 @@ export default async function getCurrency() {
 		return JSON.parse(cachedData);
 	}
 
-	const apiKey = 'cur_live_DhMeSyxp7aaMNudHiWWOHkj6fTtg0EuRhR99KRPs';
-	const apiUrl = `https://api.currencyapi.com/v3/latest?apikey=${apiKey}`;
+	const apiKey = process.env.CURRENCIES_API_KEY;
+	const currenciesDomain = process.env.CURRENCIES_DOMAIN;
+
+	const apiUrl = `${currenciesDomain}apikey=${apiKey}`;
 
 	try {
 		const response = await axios.get(apiUrl);

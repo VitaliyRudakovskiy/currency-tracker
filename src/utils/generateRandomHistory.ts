@@ -1,6 +1,15 @@
-import { CurrencyHistoryData, HistoryEntry } from '@interfaces/interfaces';
 import getDate30DaysAgo from './getDate30DaysAgo';
 import getRandomValue from './getRandomValue';
+
+type HistoryEntry = [
+	string,
+	string | number,
+	string | number,
+	string | number,
+	string | number,
+];
+
+type CurrencyHistoryData = [...HistoryEntry][];
 
 const generateRandomHistory = (): CurrencyHistoryData => {
 	const chartData: CurrencyHistoryData = [['Day', '', '', '', '']];

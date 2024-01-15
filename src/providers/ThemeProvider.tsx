@@ -1,6 +1,7 @@
-import React, { createContext, useContext, ReactNode, useMemo } from 'react';
+import React, { createContext, ReactNode, useContext, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTheme, selectTheme } from '@store/reducers/themeSlice';
+import { darkTheme, lightTheme } from '@constants/theme';
+import { selectTheme, toggleTheme } from '@store/reducers/themeSlice';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 
 interface IThemeContextProps {
@@ -37,13 +38,11 @@ function ThemeProvider({ children }: IThemeProviderProps) {
 		[currentTheme]
 	);
 
+	const themeMode = currentTheme === 'dark' ? darkTheme : lightTheme;
+
 	return (
 		<ThemeContext.Provider value={themeValues}>
-			<StyledThemeProvider
-				theme={currentTheme === 'dark' ? { mode: 'dark' } : { mode: 'light' }}
-			>
-				{children}
-			</StyledThemeProvider>
+			<StyledThemeProvider theme={themeMode}>{children}</StyledThemeProvider>
 		</ThemeContext.Provider>
 	);
 }

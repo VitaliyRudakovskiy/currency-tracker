@@ -1,22 +1,23 @@
 import React, { PureComponent } from 'react';
-import { ConnectedProps, connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
+import {
+	Clusterer,
+	FullscreenControl,
+	Map,
+	Placemark,
+	TypeSelector,
+	YMaps,
+	ZoomControl,
+} from 'react-yandex-maps';
+import Loader from '@components/Loader';
 import { banksOptions } from '@constants/banks';
 import {
 	selectBanksInputValue,
 	selectBanksWithCurrencies,
 } from '@store/reducers/banksSlice';
-import Loader from '@components/Loader';
-import {
-	YMaps,
-	Map,
-	Placemark,
-	FullscreenControl,
-	TypeSelector,
-	ZoomControl,
-	Clusterer,
-} from 'react-yandex-maps';
-import { IBankWithCurrency } from '@utils/bindCurrenciesToBanks';
-import { BanksState } from '@interfaces/interfaces';
+import filterBanks from '@utils/filterBanks';
+
+import { BanksState } from './interfaces';
 import MapContainer from './styled';
 
 interface MapChartState {
@@ -52,17 +53,12 @@ class MapChart extends PureComponent<PropsFromRedux, MapChartState> {
 		const { banksWithCurrencies, currencyInput } = this.props;
 		const { isMapLoaded } = this.state;
 
-		const filteredBanks: IBankWithCurrency[] =
-			currencyInput === ''
-				? banksWithCurrencies
-				: banksWithCurrencies.filter((bank) =>
-						bank.currencies.includes(currencyInput)
-					);
+		const filteredBanks = filterBanks(banksWithCurrencies, currencyInput);
 
 		return (
 			<YMaps
 				query={{
-					apikey: '67714e04-f605-40b9-a0a4-14a69b3ac94c',
+					apikey: process.env.YANDEX_MAPS_API_KEY,
 				}}
 			>
 				<MapContainer>

@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintWebpackPlugin = require('eslint-webpack-plugin');
 
+const webpack = require('webpack');
+const config = require('dotenv').config();
+
 module.exports = {
 	entry: './src/index.tsx',
 	mode: 'development',
@@ -27,9 +30,9 @@ module.exports = {
 			'@assets': path.resolve(__dirname, 'src/assets/'),
 			'@components': path.resolve(__dirname, 'src/components/'),
 			'@constants': path.resolve(__dirname, 'src/constants/'),
-			'@interfaces': path.resolve(__dirname, 'src/interfaces/'),
 			'@pages': path.resolve(__dirname, 'src/pages/'),
 			'@providers': path.resolve(__dirname, 'src/providers/'),
+			'@router': path.resolve(__dirname, 'src/router/'),
 			'@store': path.resolve(__dirname, 'src/store/'),
 			'@utils': path.resolve(__dirname, 'src/utils/'),
 		},
@@ -61,16 +64,13 @@ module.exports = {
 					},
 				],
 			},
-			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
-			},
 		],
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.join(__dirname, 'public', 'index.html'),
 		}),
-		new ESLintWebpackPlugin({ extensions: ['.js', '.jsx', '.ts', '.tsx'] }),
+		new ESLintWebpackPlugin({ extensions: ['.ts', '.tsx'] }),
+		new webpack.EnvironmentPlugin(config.parsed),
 	],
 };

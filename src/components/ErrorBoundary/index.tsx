@@ -1,9 +1,10 @@
 import React, { Component, ReactNode } from 'react';
 import errorImage from '@assets/page_not_found.png';
+
 import {
+	ErrorBoundaryImage,
 	ErrorBoundaryMessage,
 	ErrorBoundaryWrapper,
-	ErrorBoundaryImage,
 } from './styled';
 
 interface ErrorBoundaryProps {

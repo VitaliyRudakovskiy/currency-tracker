@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import Modal from '@components/Modal';
 import { currenciesRedux } from '@store/reducers/currencySlice';
 import { selectModalOpened } from '@store/reducers/modalSlice';
-import ConvertingModal from '@components/Modal';
-import CurrencyItem from '../CurrencyItem';
+
+import CurrencyItem from './CurrencyItem';
 import CurrenciesContainer from './styled';
 
 export default function CurrencyList(): JSX.Element {
@@ -17,7 +18,7 @@ export default function CurrencyList(): JSX.Element {
 					<CurrencyItem key={item.code} item={item} />
 				))}
 			</CurrenciesContainer>
-			{isModalVisible && <ConvertingModal />}
+			{isModalVisible && <Modal />}
 		</>
 	);
 }

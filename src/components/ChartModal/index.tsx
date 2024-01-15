@@ -1,15 +1,16 @@
 import React, { PureComponent } from 'react';
 import ReactDOM from 'react-dom';
+import ChartDropdown from '@components/ChartModal/ChartDropdown';
+import ChartModalInputs from '@components/ChartModal/ChartModalInputs';
 import { ChartDataContext } from '@providers/ChartDataProvider';
+
 import {
 	ChartObserver,
 	ChartSubjectInterface,
 	CurrencyHistoryData,
 	HistoryEntry,
 	IFormData,
-} from '@interfaces/interfaces';
-import ChartModalInputs from '@components/ChartModalInputs';
-import ChartDropdown from '@components/ChartDropdown';
+} from './interfaces';
 import {
 	ChartModalContainer,
 	ChartModalOverlay,
@@ -81,6 +82,14 @@ class ChartModal extends PureComponent<PortalProps, ChartModalState> {
 		this.props.onClose();
 	};
 
+	setSelectedData = (date: string) => {
+		this.setState({ selectedDate: date });
+	};
+
+	setFormData = (data: IFormData) => {
+		this.setState({ formData: data });
+	};
+
 	render() {
 		const { onClose } = this.props;
 		const { chartData, selectedDate, formData } = this.state;
@@ -94,15 +103,13 @@ class ChartModal extends PureComponent<PortalProps, ChartModalState> {
 					<ChartModalTitle>Choose date</ChartModalTitle>
 					<ChartDropdown
 						selectedDate={selectedDate}
-						setSelectedData={(date: string) =>
-							this.setState({ selectedDate: date })
-						}
+						setSelectedData={this.setSelectedData}
 						data={chartData}
-						setFormData={(data: IFormData) => this.setState({ formData: data })}
+						setFormData={this.setFormData}
 					/>
 					<ChartModalInputs
 						formData={formData}
-						setFormData={(data: IFormData) => this.setState({ formData: data })}
+						setFormData={this.setFormData}
 					/>
 					<SubmitButton onClick={this.handleSave}>Save</SubmitButton>
 				</ChartModalContainer>

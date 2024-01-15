@@ -1,5 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { BanksState, IBanksWithCurrencies } from '@interfaces/interfaces';
+
+interface IBank {
+	bankName: string;
+	coordinates: number[];
+}
+
+interface IBanksWithCurrencies extends IBank {
+	currencies: string[];
+}
+
+interface BanksState {
+	banksInputValue: string;
+	banksWithCurrencies: IBanksWithCurrencies[];
+}
 
 const initialState: BanksState = {
 	banksInputValue: '',
