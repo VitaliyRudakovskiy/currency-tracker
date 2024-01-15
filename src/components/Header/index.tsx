@@ -1,6 +1,7 @@
 import React from 'react';
-import Navbar from '../Navbar';
-import Welcome from '../HeaderWelcome';
+
+import Welcome from './HeaderWelcome';
+import Navbar from './Navbar';
 import HeaderContainer from './styled';
 
 export default function Header(): JSX.Element {

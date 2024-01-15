@@ -1,4 +1,7 @@
-import { IBank } from '@interfaces/interfaces';
+interface IBank {
+	bankName: string;
+	coordinates: number[];
+}
 
 export const banks: IBank[] = [
 	{ bankName: 'Альфа-банк', coordinates: [53.863795, 27.604046] },

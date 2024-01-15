@@ -1,13 +1,16 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import {
-	ChartSubjectInterface,
-	CurrencyHistoryData,
-} from '@interfaces/interfaces';
-import { ChartDataContext } from '@providers/ChartDataProvider';
 import ChartModal from '@components/ChartModal';
-import DateInput from '@components/DateInput';
-import { ChartButton, ButtonsContainer } from './styled';
+import { ChartDataContext } from '@providers/ChartDataProvider';
+
+import DateInputs from './DateInputs';
+import { ChartSubjectInterface, CurrencyHistoryData } from './interfaces';
+import {
+	ButtonsContainer,
+	ChartButton,
+	ChartButtonsWrapper,
+	DatesErrorMessage,
+} from './styled';
 
 interface ChartButtonsProps {
 	historyUSD: CurrencyHistoryData;
@@ -40,12 +43,22 @@ class ChartButtons extends PureComponent<CommonProps, ChartButtonsState> {
 	}
 
 	handleUpdate = (history: CurrencyHistoryData) => {
+		const { beginDate, endDate } = this.props;
+
+		const checkBeginDate = new Date(beginDate).getTime();
+		const checkEndDate = new Date(endDate).getTime();
+
+		if (checkBeginDate > checkEndDate) {
+			this.setState({ isErrorWithDates: true });
+			return;
+		} else {
+			this.setState({ isErrorWithDates: false });
+		}
+
 		const filteredData = history.filter((item, index) => {
 			if (index === 0) return true;
-			const date = new Date(item[0]);
-			const beginDate = new Date(this.props.beginDate);
-			const endDate = new Date(this.props.endDate);
-			return date >= beginDate && date <= endDate;
+			const date = new Date(item[0]).getTime();
+			return date >= checkBeginDate && date <= checkEndDate;
 		});
 
 		this.context.updateData(filteredData);
@@ -68,29 +81,25 @@ class ChartButtons extends PureComponent<CommonProps, ChartButtonsState> {
 	};
 
 	render() {
-		const { isOpened } = this.state;
+		const { isOpened, isErrorWithDates } = this.state;
 
 		return (
-			<>
+			<ChartButtonsWrapper>
+				{isErrorWithDates && (
+					<DatesErrorMessage>
+						Begin date should be <b>less than or equal</b> to the end date
+					</DatesErrorMessage>
+				)}
+
 				<ButtonsContainer data-cy="chart-buttons">
-					<ChartButton
-						disabled={this.state.isErrorWithDates}
-						onClick={this.handleUSDButtonClick}
-					>
-						USD
-					</ChartButton>
-					<ChartButton
-						disabled={this.state.isErrorWithDates}
-						onClick={this.handleEURButtonClick}
-					>
-						EUR
-					</ChartButton>
-					<DateInput />
+					<ChartButton onClick={this.handleUSDButtonClick}>USD</ChartButton>
+					<ChartButton onClick={this.handleEURButtonClick}>EUR</ChartButton>
+					<DateInputs />
 					<ChartButton onClick={this.onOpen}>Change value</ChartButton>
 				</ButtonsContainer>
 
 				{isOpened && <ChartModal onClose={this.onClose} />}
-			</>
+			</ChartButtonsWrapper>
 		);
 	}
 }

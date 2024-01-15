@@ -1,21 +1,22 @@
+import { getFlex, getPercent, getPx } from '@utils/themeHelper';
 import styled from 'styled-components';
 
+const flexCenter = getFlex('center');
+const px280 = getPx('px280');
+const vh95 = getPercent('vh95');
+
 export const ErrorBoundaryWrapper = styled.section`
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	${flexCenter};
 	text-align: center;
-	height: 95vh;
+	height: ${vh95};
 	color: black;
 `;
 
 export const ErrorBoundaryMessage = styled.div`
-	display: flex;
-	align-items: center;
+	${flexCenter};
 	flex-direction: column;
-	justify-content: center;
 `;
 
 export const ErrorBoundaryImage = styled.img`
-	width: 280px;
+	width: ${px280};
 `;

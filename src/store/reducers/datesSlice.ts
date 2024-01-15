@@ -1,5 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { DatesState } from '@interfaces/interfaces';
+
+interface DatesState {
+	beginDate: string;
+	endDate: string;
+}
 
 const initialState: DatesState = {
 	beginDate: '',

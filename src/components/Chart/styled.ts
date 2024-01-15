@@ -1,9 +1,11 @@
+import { getFlex } from '@utils/themeHelper';
 import styled from 'styled-components';
 
+const flexCenter = getFlex('center');
+
 const ChartContainer = styled.div`
-	display: flex;
+	${flexCenter};
 	flex-direction: column;
-	align-items: center;
 	flex: 1;
 `;
 

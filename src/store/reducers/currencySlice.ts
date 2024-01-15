@@ -1,7 +1,21 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CurrencyHistoryData, ICurrency } from '@interfaces/interfaces';
 
-export interface CurrencyState {
+interface ICurrency {
+	code: string;
+	value: number;
+}
+
+export type HistoryEntry = [
+	string,
+	string | number,
+	string | number,
+	string | number,
+	string | number,
+];
+
+export type CurrencyHistoryData = [...HistoryEntry][];
+
+interface CurrencyState {
 	exchangeRate: number;
 	updateTime: string;
 	activeCurrency: ICurrency;

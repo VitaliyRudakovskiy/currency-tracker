@@ -1,11 +1,14 @@
+const risingColor = '#a52714';
+const fallingColor = '#0f9d58';
+const lineColor = '#808080';
+
 const chartOptions = {
 	legend: 'none',
 	bar: { groupWidth: '95%' },
 	candlestick: {
-		fallingColor: { strokeWidth: 0, fill: '#a52714' },
-		risingColor: { strokeWidth: 0, fill: '#0f9d58' },
+		fallingColor: { strokeWidth: 0, fill: risingColor },
+		risingColor: { strokeWidth: 0, fill: fallingColor },
 	},
-	backgroundColor: '#000000',
 	hAxis: {
 		title: 'Date',
 	},
@@ -13,7 +16,7 @@ const chartOptions = {
 		title: 'Value',
 	},
 	title: 'Waterfall Chart',
-	colors: ['#808080'],
+	colors: [lineColor],
 };
 
 export default chartOptions;

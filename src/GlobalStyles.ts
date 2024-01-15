@@ -1,4 +1,4 @@
-import { darkTheme } from '@constants/colors';
+import { darkTheme } from '@constants/theme';
 import styled, { createGlobalStyle } from 'styled-components';
 
 const fontColor = '#ffffff';

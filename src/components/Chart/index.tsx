@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import chartOptions from '@constants/chartOptions';
 import { Chart } from 'react-google-charts';
+import Loader from '@components/Loader';
+import Notification from '@components/Notification';
+import chartOptions from '@constants/chartOptions';
 import { ChartDataContext } from '@providers/ChartDataProvider';
+
 import {
 	ChartObserver,
 	ChartSubjectInterface,
 	CurrencyHistoryData,
-} from '@interfaces/interfaces';
-import Notification from '@components/Notification';
-import Loader from '@components/Loader';
+	IState,
+} from './interfaces';
 import ChartContainer from './styled';
-
-interface IState {
-	chartData: CurrencyHistoryData;
-	showNotification: boolean;
-}
 
 type IProps = Record<string, never>;
 
@@ -29,7 +26,7 @@ class ChartComponent extends Component<IProps, IState> {
 		super(props);
 		this.state = {
 			chartData: [],
-			showNotification: false,
+			isShown: false,
 		};
 	}
 
@@ -39,7 +36,7 @@ class ChartComponent extends Component<IProps, IState> {
 				this.setState({ chartData: newData });
 
 				if (newData.length > 30) {
-					this.setState({ showNotification: true });
+					this.setState({ isShown: true });
 				}
 			},
 		};
@@ -54,7 +51,7 @@ class ChartComponent extends Component<IProps, IState> {
 	}
 
 	hideNotification = () => {
-		this.setState({ showNotification: false });
+		this.setState({ isShown: false });
 	};
 
 	render() {
@@ -71,7 +68,7 @@ class ChartComponent extends Component<IProps, IState> {
 					loader={<Loader />}
 				/>
 				<Notification
-					show={this.state.showNotification}
+					isShown={this.state.isShown}
 					onHide={this.hideNotification}
 				/>
 			</ChartContainer>

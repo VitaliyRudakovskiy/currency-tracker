@@ -1,18 +1,5 @@
 export const CURRENCIES_LOCAL_STORAGE = 'currencyData';
 
-export const targetCurrencies = [
-	'USD',
-	'ARS',
-	'CAD',
-	'JPY',
-	'AUD',
-	'CNY',
-	'EUR',
-	'BTC',
-	'TRY',
-	'RUB',
-];
-
 interface CurrencyNames {
 	[code: string]: string;
 }

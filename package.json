@@ -3,14 +3,14 @@
 	"version": "1.0.0",
 	"main": "index.js",
 	"repository": "https://github.com/VitaliyRudakovskiy/currency-tracker.git",
-	"author": "Vitaliy <vitalikrud03@example.com>",
+	"author": "Vitaliy <vitalikrud03@gmail.com>",
 	"license": "MIT",
 	"scripts": {
 		"start": "webpack-dev-server ./src",
-		"test": "jest",
 		"build": "tsc",
 		"prettier": "prettier --write src/**/*.jsx",
 		"lint": "eslint . --fix --max-warnings=0",
+		"test": "jest",
 		"format": "prettier . --write",
 		"prepare": "husky install"
 	},
@@ -20,8 +20,8 @@
 		}
 	},
 	"lint-staged": {
-		"src/**/*.{js,jsx,html,css}": "yarn format",
-		"src/**/*.{jsx,tsx}": "eslint"
+		"src/**/*.{ts,tsx,html,css}": "yarn format",
+		"src/**/*.{tsx,ts}": "eslint"
 	},
 	"devDependencies": {
 		"@babel/cli": "^7.23.4",
@@ -32,8 +32,10 @@
 		"@jest/globals": "^29.7.0",
 		"@testing-library/jest-dom": "^6.2.0",
 		"@testing-library/react": "^14.1.2",
+		"@testing-library/react-hooks": "^8.0.1",
 		"@types/jest": "^29.5.11",
 		"@types/react-dom": "^18.2.18",
+		"@types/styled-components": "^5.1.34",
 		"@typescript-eslint/eslint-plugin": "^6.17.0",
 		"@typescript-eslint/parser": "^6.17.0",
 		"babel-jest": "^29.7.0",
@@ -47,6 +49,7 @@
 		"eslint-plugin-jsx-a11y": "^6.8.0",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
+		"eslint-plugin-simple-import-sort": "^10.0.0",
 		"eslint-webpack-plugin": "^4.0.1",
 		"file-loader": "^6.2.0",
 		"html-webpack-plugin": "^5.6.0",
@@ -66,15 +69,14 @@
 	},
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.0.1",
-		"@testing-library/react-hooks": "^8.0.1",
-		"@types/styled-components": "^5.1.34",
 		"axios": "^1.6.3",
+		"dotenv-webpack": "^8.0.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-google-charts": "^4.0.1",
-		"react-loader-spinner": "^6.1.6",
 		"react-redux": "^9.0.4",
 		"react-router-dom": "^6.21.1",
+		"react-scripts": "^5.0.1",
 		"react-yandex-maps": "^4.6.0",
 		"styled-components": "^6.1.3"
 	}

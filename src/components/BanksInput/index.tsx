@@ -5,7 +5,8 @@ import {
 	setBanksInputValue,
 } from '@store/reducers/banksSlice';
 import getCurrenciesCodes from '@utils/getCurrenciesCodes';
-import { BanksState } from '@interfaces/interfaces';
+
+import BanksState from './interfaces';
 import {
 	MapInput,
 	MapInputContainer,
@@ -23,7 +24,7 @@ class BanksInput extends PureComponent<BanksInputProps> {
 		this.props.setBanksInputValue(e.target.value.toUpperCase());
 	};
 
-	handleButtonClick = (value: string) => {
+	handleButtonClick = (value: string) => () => {
 		this.props.setBanksInputValue(value);
 	};
 
@@ -47,7 +48,7 @@ class BanksInput extends PureComponent<BanksInputProps> {
 						<MapTooltip
 							data-cy="banks-button"
 							key={value}
-							onClick={() => this.handleButtonClick(value)}
+							onClick={this.handleButtonClick(value)}
 						>
 							{value}
 						</MapTooltip>

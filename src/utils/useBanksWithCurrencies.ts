@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setBanksWithCurrencies } from '@store/reducers/banksSlice';
-import getCurrenciesCodes from './getCurrenciesCodes';
+
 import bindCurrenciesToBanks from './bindCurrenciesToBanks';
+import getCurrenciesCodes from './getCurrenciesCodes';
 
 const useBanksWithCurrencies = () => {
 	const codes = getCurrenciesCodes();

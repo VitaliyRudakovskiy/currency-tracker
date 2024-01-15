@@ -1,14 +1,16 @@
 import React from 'react';
-import { DNA } from 'react-loader-spinner';
+
+import { LoaderContainer, RingLoader, RingPart } from './styled';
 
 export default function Loader(): JSX.Element {
 	return (
-		<DNA
-			data-cy="loader"
-			visible
-			height="250"
-			width="250"
-			ariaLabel="dna-loading"
-		/>
+		<LoaderContainer>
+			<RingLoader>
+				<RingPart />
+				<RingPart />
+				<RingPart />
+				<RingPart />
+			</RingLoader>
+		</LoaderContainer>
 	);
 }

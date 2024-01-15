@@ -1,5 +1,9 @@
 import { banks } from '@constants/banks';
-import { IBank } from '@interfaces/interfaces';
+
+interface IBank {
+	bankName: string;
+	coordinates: number[];
+}
 
 export interface IBankWithCurrency extends IBank {
 	currencies: string[];

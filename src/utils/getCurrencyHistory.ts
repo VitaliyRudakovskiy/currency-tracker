@@ -1,9 +1,20 @@
 import axios from 'axios';
-import { ExchangeRateData } from '@interfaces/interfaces';
+
 import getDate30DaysAgo from './getDate30DaysAgo';
 
 const historyUSD = 'USD';
 const historyEUR = 'EUR';
+
+interface ExchangeRateData {
+	rate_close: number;
+	rate_high: number;
+	rate_low: number;
+	rate_open: number;
+	time_close: string;
+	time_open: string;
+	time_period_end: string;
+	time_period_start: string;
+}
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -18,14 +29,15 @@ export default async function getCurrencyHistory(): Promise<
 	}
 
 	const dateMonthAgo: string = getDate30DaysAgo();
-	const apiKey: string = 'DDEC7288-0708-46E2-8FCC-6C1A9DAD07A2';
+	const apiKey = process.env.HISTORY_API_KEY;
+	const historyDomain = process.env.HISTORY_DOMAIN;
 
 	const fetchExchangeRate = async (
 		currencyCode: string
 	): Promise<ExchangeRateData[]> => {
 		try {
 			const response = await axios.get<ExchangeRateData[]>(
-				`https://rest.coinapi.io/v1/exchangerate/${currencyCode}/RUB/history?period_id=1DAY&time_start=${dateMonthAgo}T00:00:00`,
+				`${historyDomain}${currencyCode}/RUB/history?period_id=1DAY&time_start=${dateMonthAgo}T00:00:00`,
 				{
 					headers: {
 						'X-CoinAPI-Key': apiKey,

@@ -1,5 +1,9 @@
 import { CURRENCIES_LOCAL_STORAGE } from '@constants/currencies';
-import { ICurrency } from '@interfaces/interfaces';
+
+interface ICurrency {
+	code: string;
+	value: number;
+}
 
 interface IData {
 	[code: string]: ICurrency;

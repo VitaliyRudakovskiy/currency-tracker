@@ -1,92 +1,102 @@
-import { darkTheme, lightTheme } from '@constants/colors';
-import styled, { useTheme } from 'styled-components';
+import {
+	getFlex,
+	getPercent,
+	getPx,
+	getRem,
+	getValue,
+	getZIndex,
+} from '@utils/themeHelper';
+import styled from 'styled-components';
 
-interface IThemeProps {
-	theme: 'dark' | 'light';
-}
+const rem0 = getRem('rem0');
+const rem02 = getRem('rem0_2');
+const rem03 = getRem('rem0_3');
+const rem035 = getRem('rem0_35');
+const rem05 = getRem('rem0_5');
+const rem08 = getRem('rem0_8');
+const rem1 = getRem('rem1');
+const rem1and2 = getRem('rem1_2');
+const rem1and5 = getRem('rem1_5');
+const rem2 = getRem('rem2');
+const rem3 = getRem('rem3');
+const rem30 = getRem('rem30');
+const wFull = getPercent('w-full');
+const z10 = getZIndex('z10');
+const px4 = getPx('px4');
+const px8 = getPx('px8');
+const px10 = getPx('px8');
+const px380 = getPx('px380');
+const modalBackground = getValue('modalBackground');
+const modalElementBackground = getValue('modalElementBackground');
+const mainTextColor = getValue('mainTextColor');
+const flexCenter = getFlex('center');
 
 export const ModalOverlay = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
-	width: 100%;
-	height: 100%;
+	width: ${wFull};
+	height: ${wFull};
 	background: transparent;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 10;
+	${flexCenter};
+	z-index: ${z10};
 `;
 
-export const ModalContainer = styled.div<IThemeProps>`
+export const ModalContainer = styled.div`
 	position: relative;
-	background: ${(props) =>
-		props.theme === 'dark'
-			? darkTheme.modalBackground
-			: lightTheme.modalBackground};
-	border-radius: 8px;
-	padding: 0.3rem 1.5rem 1.2rem;
-	max-width: 30rem;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-	display: flex;
+	background: ${modalBackground};
+	border-radius: ${px8};
+	padding: ${rem03} ${rem1and5} ${rem1and2};
+	max-width: ${rem30};
+	box-shadow: 0 0 ${px10} rgba(0, 0, 0, 0.2);
+	${flexCenter};
 	flex-direction: column;
-	align-items: center;
 
-	@media (max-width: 380px) {
-		padding: 0.5rem 0.5rem 0;
+	@media (max-width: ${px380}) {
+		padding: ${rem05};
 	}
 `;
 
 export const CloseButton = styled.button`
 	position: absolute;
-	top: 0.2rem;
-	right: 0.8rem;
-	font-size: 3rem;
-	cursor: pointer;
+	top: ${rem02};
+	right: ${rem08};
+	font-size: ${rem3};
 	background: none;
 	border: none;
 	color: red;
+	cursor: pointer;
 
-	@media (max-width: 380px) {
-		top: 0;
-		right: 0.8rem;
+	@media (max-width: ${px380}) {
+		top: ${rem0};
+		right: ${rem08};
 	}
 `;
 
 export const ModalName = styled.h3`
 	text-align: center;
-	font-size: 2rem;
-	margin-bottom: 1rem;
+	font-size: ${rem2};
+	margin-bottom: ${rem1};
 	color: #acde1d;
 
-	@media (max-width: 380px) {
-		font-size: 1.5rem;
+	@media (max-width: ${px380}) {
+		font-size: ${rem1and5};
 	}
 `;
 
 export const InputContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-bottom: 1rem;
+	${flexCenter};
+	margin-bottom: ${rem1};
 `;
 
 export const InputActiveCode = styled.p`
-	background-color: ${() =>
-		useTheme().mode === 'dark'
-			? darkTheme.modalElementBackground
-			: lightTheme.modalElementBackground};
-	color: ${() =>
-		useTheme().mode === 'dark'
-			? darkTheme.mainTextColor
-			: lightTheme.mainTextColor};
-	padding: 0.35rem 0.5rem;
-	border-radius: 0 4px 4px 0;
+	background-color: ${modalElementBackground};
+	color: ${mainTextColor};
+	padding: ${rem035} ${rem05};
+	border-radius: 0 ${px4} ${px4} 0;
 `;
 
 export const ResultContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 1rem;
+	${flexCenter};
+	gap: ${rem1};
 `;

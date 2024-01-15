@@ -1,9 +1,26 @@
-import {
-	ChartObserver,
-	ChartSubjectInterface,
-	CurrencyHistoryData,
-} from '@interfaces/interfaces';
 import generateRandomHistory from '@utils/generateRandomHistory';
+
+type HistoryEntry = [
+	string,
+	string | number,
+	string | number,
+	string | number,
+	string | number,
+];
+
+type CurrencyHistoryData = [...HistoryEntry][];
+
+interface ChartObserver {
+	update: (newData: CurrencyHistoryData) => void;
+}
+
+interface ChartSubjectInterface {
+	addObserver: (observer: ChartObserver) => void;
+	removeObserver: (observer: ChartObserver) => void;
+	notifyObservers: () => void;
+	updateData: (newData: CurrencyHistoryData) => void;
+	getData: () => CurrencyHistoryData;
+}
 
 class ChartSubject implements ChartSubjectInterface {
 	private observers: ChartObserver[] = [];

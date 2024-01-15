@@ -1,6 +1,28 @@
-import React, { PureComponent, ReactNode, createContext } from 'react';
-import { ChartSubjectInterface } from '@interfaces/interfaces';
+import React, { createContext, PureComponent, ReactNode } from 'react';
+
 import ChartSubject from './ChartSubject';
+
+type HistoryEntry = [
+	string,
+	string | number,
+	string | number,
+	string | number,
+	string | number,
+];
+
+type CurrencyHistoryData = [...HistoryEntry][];
+
+interface ChartObserver {
+	update: (newData: CurrencyHistoryData) => void;
+}
+
+interface ChartSubjectInterface {
+	addObserver: (observer: ChartObserver) => void;
+	removeObserver: (observer: ChartObserver) => void;
+	notifyObservers: () => void;
+	updateData: (newData: CurrencyHistoryData) => void;
+	getData: () => CurrencyHistoryData;
+}
 
 interface ChartDataContextProps {
 	children: ReactNode;

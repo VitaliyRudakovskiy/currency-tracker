@@ -20,9 +20,9 @@
 			"@assets/*": ["assets/*"],
 			"@components/*": ["components/*"],
 			"@constants/*": ["constants/*"],
-			"@interfaces/*": ["interfaces/*"],
 			"@pages/*": ["pages/*"],
 			"@providers/*": ["providers/*"],
+			"@router/*": ["router/*"],
 			"@store/*": ["store/*"],
 			"@utils/*": ["utils/*"]
 		}

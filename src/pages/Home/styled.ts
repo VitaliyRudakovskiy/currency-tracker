@@ -1,26 +1,35 @@
-import { darkTheme, lightTheme } from '@constants/colors';
-import styled, { useTheme } from 'styled-components';
+import {
+	getFlex,
+	getPercent,
+	getPx,
+	getRem,
+	getValue,
+} from '@utils/themeHelper';
+import styled from 'styled-components';
+
+const rem1 = getRem('rem1');
+const rem2 = getRem('rem2');
+const rem3 = getRem('rem3');
+const px728 = getPx('px728');
+const vh100 = getPercent('vh100');
+const primaryBackground = getValue('primaryBackground');
+const flexCenter = getFlex('center');
 
 export const HomeWrapper = styled.section`
 	display: flex;
 	flex-direction: column;
-	min-height: 100vh;
-	background-color: ${() =>
-		useTheme().mode === 'dark'
-			? darkTheme.primaryBackground
-			: lightTheme.primaryBackground};
+	min-height: ${vh100};
+	background-color: ${primaryBackground};
 `;
 
 export const HomeContainer = styled.div`
-	display: flex;
+	${flexCenter};
 	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	padding: 2rem 3rem;
+	padding: ${rem2} ${rem3};
 	margin: 0 auto;
 	flex: 1;
 
-	@media (max-width: 728px) {
-		padding: 2rem 1rem;
+	@media (max-width: ${px728}) {
+		padding: ${rem2} ${rem1};
 	}
 `;
