@@ -1,10 +1,6 @@
 import React, { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-	currenciesRedux,
-	currencyToConvertRedux,
-	setCurrencyToConvert,
-} from '@store/reducers/currencySlice';
+import { currenciesRedux, currencyToConvertRedux, setCurrencyToConvert } from '@store/reducers/currencySlice';
 
 import { ICurrency } from './interfaces';
 import Dropdown from './styled';
@@ -18,9 +14,7 @@ export default function DropdownModal(): JSX.Element {
 	const handleDropdownChange = (e: ChangeEvent<HTMLSelectElement>) => {
 		const newActiveCurrency = e.target.value;
 
-		const currToConvertStore: ICurrency | undefined = currencies.find(
-			(item) => item.code === newActiveCurrency
-		);
+		const currToConvertStore: ICurrency | undefined = currencies.find((item) => item.code === newActiveCurrency);
 
 		if (currToConvertStore) {
 			dispatch(setCurrencyToConvert(currToConvertStore));
@@ -28,11 +22,7 @@ export default function DropdownModal(): JSX.Element {
 	};
 
 	return (
-		<Dropdown
-			value={currencyToConvert.code}
-			onChange={handleDropdownChange}
-			data-cy="dropdown-modal"
-		>
+		<Dropdown value={currencyToConvert.code} onChange={handleDropdownChange} data-cy="dropdown-modal">
 			{currencies.map(({ code }) => (
 				<option key={code} value={code}>
 					{code}

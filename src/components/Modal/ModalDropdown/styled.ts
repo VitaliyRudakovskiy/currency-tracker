@@ -1,28 +1,19 @@
-import { getPx, getRem, getValue } from '@utils/themeHelper';
 import styled from 'styled-components';
 
-const rem1 = getRem('rem1');
-const rem6 = getRem('rem6');
-const px4 = getPx('px4');
-const px10 = getPx('px10');
-const backgroundColor = getValue('modalElementBackground');
-const modalInputHoverBorderColor = getValue('modalInputHoverBorderColor');
-const textColor = getValue('mainTextColor');
-
 const Dropdown = styled.select`
-	background-color: ${backgroundColor};
-	color: ${textColor};
-	padding: ${px10};
-	border-radius: ${px4};
+	background-color: ${({ theme }) => theme.modalElementBackground};
+	color: ${({ theme }) => theme.mainTextColor};
+	padding: ${({ theme }) => theme.valueInPx.px10};
+	border-radius: ${({ theme }) => theme.valueInPx.px4};
 	border: none;
 	outline: none;
-	width: ${rem6};
-	font-size: ${rem1};
+	width: ${({ theme }) => theme.valueInRem.rem6};
+	font-size: ${({ theme }) => theme.valueInRem.rem1};
 	cursor: pointer;
 
 	&:hover {
-		box-shadow: 0 0 8px rgba(0, 188, 212, 0.5);
-		border-color: ${modalInputHoverBorderColor};
+		box-shadow: 0 0 ${({ theme }) => theme.valueInPx.px8} rgba(0, 188, 212, 0.5);
+		border-color: ${({ theme }) => theme.modalInputHoverBorderColor};
 	}
 
 	&::-ms-expand {
@@ -30,8 +21,8 @@ const Dropdown = styled.select`
 	}
 
 	option {
-		background-color: ${backgroundColor};
-		color: ${textColor};
+		background-color: ${({ theme }) => theme.modalElementBackground};
+		color: ${({ theme }) => theme.mainTextColor};
 	}
 `;
 

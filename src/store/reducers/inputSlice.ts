@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface InputState {
-	inputValue: string;
-}
+import { InputState } from './types';
 
 const initialState: InputState = {
 	inputValue: '',
@@ -23,7 +21,6 @@ const inputSlice = createSlice({
 
 export const { setInputValue, clearInputValue } = inputSlice.actions;
 
-export const selectInputValue = (state: { input: InputState }): string =>
-	state.input.inputValue;
+export const selectInputValue = (state: { input: InputState }): string => state.input.inputValue;
 
 export default inputSlice.reducer;

@@ -1,18 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface IBank {
-	bankName: string;
-	coordinates: number[];
-}
-
-interface IBanksWithCurrencies extends IBank {
-	currencies: string[];
-}
-
-interface BanksState {
-	banksInputValue: string;
-	banksWithCurrencies: IBanksWithCurrencies[];
-}
+import { BanksState, IBanksWithCurrencies } from './types';
 
 const initialState: BanksState = {
 	banksInputValue: '',
@@ -26,22 +14,15 @@ const banksSlice = createSlice({
 		setBanksInputValue: (state, action: PayloadAction<string>) => {
 			state.banksInputValue = action.payload;
 		},
-		setBanksWithCurrencies: (
-			state,
-			action: PayloadAction<IBanksWithCurrencies[]>
-		) => {
+		setBanksWithCurrencies: (state, action: PayloadAction<IBanksWithCurrencies[]>) => {
 			state.banksWithCurrencies = action.payload;
 		},
 	},
 });
 
-export const { setBanksInputValue, setBanksWithCurrencies } =
-	banksSlice.actions;
+export const { setBanksInputValue, setBanksWithCurrencies } = banksSlice.actions;
 
-export const selectBanksInputValue = (state: { banks: BanksState }): string =>
-	state.banks.banksInputValue;
-export const selectBanksWithCurrencies = (state: {
-	banks: BanksState;
-}): IBanksWithCurrencies[] => state.banks.banksWithCurrencies;
+export const selectBanksInputValue = (state: { banks: BanksState }): string => state.banks.banksInputValue;
+export const selectBanksWithCurrencies = (state: { banks: BanksState }): IBanksWithCurrencies[] => state.banks.banksWithCurrencies;
 
 export default banksSlice.reducer;

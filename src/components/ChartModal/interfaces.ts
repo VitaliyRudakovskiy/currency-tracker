@@ -1,10 +1,4 @@
-export type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+export type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 export type CurrencyHistoryData = [...HistoryEntry][];
 
@@ -26,4 +20,14 @@ export interface IFormData {
 	newLowRate: string;
 	newOpenRate: string;
 	newCloseRate: string;
+}
+
+export interface PortalProps {
+	onClose: () => void;
+}
+
+export interface ChartModalState {
+	chartData: CurrencyHistoryData;
+	selectedDate: string;
+	formData: IFormData;
 }

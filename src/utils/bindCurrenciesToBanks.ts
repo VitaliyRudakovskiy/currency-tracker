@@ -9,10 +9,7 @@ export interface IBankWithCurrency extends IBank {
 	currencies: string[];
 }
 
-function bindCurrenciesToBanks(
-	codes: string[],
-	countOfCurrencies: number
-): IBankWithCurrency[] {
+function bindCurrenciesToBanks(codes: string[], countOfCurrencies: number): IBankWithCurrency[] {
 	return banks.map((bank) => {
 		const currencies = [];
 		for (let i = 0; i < countOfCurrencies; i += 1) {

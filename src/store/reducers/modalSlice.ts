@@ -1,8 +1,6 @@
-import { createSlice,PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ModalSlice {
-	isOpened: boolean;
-}
+import { ModalSlice } from './types';
 
 const initialState: ModalSlice = {
 	isOpened: false,
@@ -20,7 +18,6 @@ const modalSlice = createSlice({
 
 export const { toggleModal } = modalSlice.actions;
 
-export const selectModalOpened = (state: { modal: ModalSlice }): boolean =>
-	state.modal.isOpened;
+export const selectModalOpened = (state: { modal: ModalSlice }): boolean => state.modal.isOpened;
 
 export default modalSlice.reducer;

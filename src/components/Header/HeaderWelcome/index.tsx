@@ -1,14 +1,7 @@
 import React from 'react';
 import bigLogo from '@assets/big-logo.png';
 
-import {
-	TextSection,
-	WelcomeContainer,
-	WelcomeImage,
-	WelcomeSubtitle,
-	WelcomeText,
-	WelcomeTitle,
-} from './styled';
+import { TextSection, WelcomeContainer, WelcomeImage, WelcomeSubtitle, WelcomeText, WelcomeTitle } from './styled';
 
 export default function Welcome(): JSX.Element {
 	return (
@@ -19,9 +12,7 @@ export default function Welcome(): JSX.Element {
 					<WelcomeTitle>Tracker</WelcomeTitle>
 				</WelcomeSubtitle>
 
-				<WelcomeText>
-					Quotes for the dollar and other international currencies.
-				</WelcomeText>
+				<WelcomeText>Quotes for the dollar and other international currencies.</WelcomeText>
 			</TextSection>
 
 			<WelcomeImage src={bigLogo} alt="Big Site Logo" />

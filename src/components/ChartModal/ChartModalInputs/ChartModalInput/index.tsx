@@ -14,11 +14,7 @@ class ChartModalInput extends PureComponent<IPChartModalInputrops> {
 		return (
 			<ChartInputContainer>
 				<p>{label}</p>
-				<ChartInput
-					placeholder="Input new low rate"
-					value={value}
-					onChange={onChange}
-				/>
+				<ChartInput placeholder="Input new low rate" value={value} onChange={onChange} />
 			</ChartInputContainer>
 		);
 	}

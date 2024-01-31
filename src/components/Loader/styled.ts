@@ -1,12 +1,4 @@
-import { getFlex, getPercent, getPx, getValue } from '@utils/themeHelper';
 import styled, { keyframes } from 'styled-components';
-
-const spinnerColor = getValue('spinnerColor');
-const vw100 = getPercent('vw100');
-const px8 = getPx('px8');
-const px64 = getPx('px64');
-const px80 = getPx('px80');
-const flexCenter = getFlex('center');
 
 const spinning = keyframes`
     0% {
@@ -18,8 +10,8 @@ const spinning = keyframes`
 `;
 
 export const LoaderContainer = styled.div`
-	width: ${vw100};
-	${flexCenter};
+	width: ${({ theme }) => theme.valueInPercent.vw100};
+	${({ theme }) => theme.flex.center};
 	flex: 1;
 	margin: 0 auto;
 `;
@@ -27,21 +19,21 @@ export const LoaderContainer = styled.div`
 export const RingLoader = styled.div`
 	display: inline-block;
 	position: relative;
-	width: ${px80};
-	height: ${px80};
+	width: ${({ theme }) => theme.valueInPx.px80};
+	height: ${({ theme }) => theme.valueInPx.px80};
 `;
 
 export const RingPart = styled.div`
 	box-sizing: border-box;
 	display: block;
 	position: absolute;
-	width: ${px64};
-	height: ${px64};
-	margin: ${px8};
-	border: ${px8} solid ${spinnerColor};
+	width: ${({ theme }) => theme.valueInPx.px64};
+	height: ${({ theme }) => theme.valueInPx.px64};
+	margin: ${({ theme }) => theme.valueInPx.px8};
+	border: ${({ theme }) => theme.valueInPx.px8} solid ${({ theme }) => theme.spinnerColor};
 	border-radius: 50%;
 	animation: ${spinning} 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-	border-color: ${spinnerColor} transparent transparent transparent;
+	border-color: ${({ theme }) => theme.spinnerColor} transparent transparent transparent;
 
 	&:nth-child(1) {
 		animation-delay: -0.45s;

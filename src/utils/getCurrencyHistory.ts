@@ -18,9 +18,7 @@ interface ExchangeRateData {
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default async function getCurrencyHistory(): Promise<
-	[ExchangeRateData[], ExchangeRateData[]]
-> {
+export default async function getCurrencyHistory(): Promise<[ExchangeRateData[], ExchangeRateData[]]> {
 	const cachedDataUSD = localStorage.getItem(historyUSD);
 	const cachedDataEUR = localStorage.getItem(historyEUR);
 
@@ -32,23 +30,16 @@ export default async function getCurrencyHistory(): Promise<
 	const apiKey = process.env.HISTORY_API_KEY;
 	const historyDomain = process.env.HISTORY_DOMAIN;
 
-	const fetchExchangeRate = async (
-		currencyCode: string
-	): Promise<ExchangeRateData[]> => {
+	const fetchExchangeRate = async (currencyCode: string): Promise<ExchangeRateData[]> => {
 		try {
-			const response = await axios.get<ExchangeRateData[]>(
-				`${historyDomain}${currencyCode}/RUB/history?period_id=1DAY&time_start=${dateMonthAgo}T00:00:00`,
-				{
-					headers: {
-						'X-CoinAPI-Key': apiKey,
-					},
-				}
-			);
+			const response = await axios.get<ExchangeRateData[]>(`${historyDomain}${currencyCode}/RUB/history?period_id=1DAY&time_start=${dateMonthAgo}T00:00:00`, {
+				headers: {
+					'X-CoinAPI-Key': apiKey,
+				},
+			});
 			return response.data;
 		} catch (error) {
-			throw new Error(
-				`Error fetching ${currencyCode} to RUB Exchange Rate Data: ${error}`
-			);
+			throw new Error(`Error fetching ${currencyCode} to RUB Exchange Rate Data: ${error}`);
 		}
 	};
 

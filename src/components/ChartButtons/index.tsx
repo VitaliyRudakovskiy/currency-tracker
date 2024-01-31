@@ -4,30 +4,8 @@ import ChartModal from '@components/ChartModal';
 import { ChartDataContext } from '@providers/ChartDataProvider';
 
 import DateInputs from './DateInputs';
-import { ChartSubjectInterface, CurrencyHistoryData } from './interfaces';
-import {
-	ButtonsContainer,
-	ChartButton,
-	ChartButtonsWrapper,
-	DatesErrorMessage,
-} from './styled';
-
-interface ChartButtonsProps {
-	historyUSD: CurrencyHistoryData;
-	historyEUR: CurrencyHistoryData;
-}
-
-interface DatesProps {
-	beginDate: string;
-	endDate: string;
-}
-
-type CommonProps = ChartButtonsProps & DatesProps;
-
-interface ChartButtonsState {
-	isOpened: boolean;
-	isErrorWithDates: boolean;
-}
+import { ChartButtonsState, ChartSubjectInterface, CommonProps, CurrencyHistoryData, IStateRedux } from './interfaces';
+import { ButtonsContainer, ChartButton, ChartButtonsWrapper, DatesErrorMessage } from './styled';
 
 class ChartButtons extends PureComponent<CommonProps, ChartButtonsState> {
 	static contextType = ChartDataContext;
@@ -105,11 +83,6 @@ class ChartButtons extends PureComponent<CommonProps, ChartButtonsState> {
 }
 
 ChartButtons.contextType = ChartDataContext;
-
-interface IStateRedux {
-	currency: ChartButtonsProps;
-	dates: DatesProps;
-}
 
 const mapStateToProps = (state: IStateRedux) => {
 	const { historyUSD, historyEUR } = state.currency;

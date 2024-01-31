@@ -17,10 +17,7 @@ export default async function getCurrency() {
 		const response = await axios.get(apiUrl);
 		const currencyData = response.data;
 
-		localStorage.setItem(
-			CURRENCIES_LOCAL_STORAGE,
-			JSON.stringify(currencyData)
-		);
+		localStorage.setItem(CURRENCIES_LOCAL_STORAGE, JSON.stringify(currencyData));
 
 		return currencyData;
 	} catch (error) {

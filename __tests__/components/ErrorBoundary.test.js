@@ -1,5 +1,5 @@
-import { render, screen } from '@testing-library/react';
 import ErrorBoundary from '@components/ErrorBoundary';
+import { render, screen } from '@testing-library/react';
 
 const ComponentWithError = () => {
 	throw new Error('TestError');
@@ -12,8 +12,6 @@ test('renders error message when child component throws an error', () => {
 		</ErrorBoundary>
 	);
 
-	expect(
-		screen.getByText('Oops! It seems you have a mistake')
-	).toBeInTheDocument();
+	expect(screen.getByText('Oops! It seems you have a mistake')).toBeInTheDocument();
 	expect(screen.getByText('An error occurred')).toBeInTheDocument();
 });

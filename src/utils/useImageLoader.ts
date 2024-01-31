@@ -6,9 +6,7 @@ export default function useImageLoader(imagePath: string) {
 	useEffect(() => {
 		const loadImage = async () => {
 			try {
-				const module = await import(
-					`@assets/currency-icons/${imagePath} Icon.png`
-				);
+				const module = await import(`@assets/currency-icons/${imagePath} Icon.png`);
 				setImageSrc(module.default);
 			} catch (error) {
 				throw new Error(`Error loading image: ${error}`);

@@ -1,10 +1,4 @@
-type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 export type CurrencyHistoryData = [...HistoryEntry][];
 
@@ -24,3 +18,5 @@ export interface IState {
 	chartData: CurrencyHistoryData;
 	isShown: boolean;
 }
+
+export type IProps = Record<string, never>;

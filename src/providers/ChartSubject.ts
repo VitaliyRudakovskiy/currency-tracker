@@ -1,12 +1,6 @@
 import generateRandomHistory from '@utils/generateRandomHistory';
 
-type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 type CurrencyHistoryData = [...HistoryEntry][];
 

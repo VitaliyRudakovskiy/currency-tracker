@@ -1,8 +1,8 @@
+import ThemeToggler from '@components/UI-Kit/ThemeToggler';
+import store from '@store/store';
+import { render } from '@testing-library/react';
 import React from 'react';
 import { Provider } from 'react-redux';
-import { render } from '@testing-library/react';
-import store from '@store/store';
-import ThemeToggler from '@components/UI-Kit/ThemeToggler';
 
 describe('ThemeToggler', () => {
 	it('should render a checkbox input', () => {

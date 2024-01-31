@@ -1,7 +1,7 @@
 import React from 'react';
 
-import LeftSection from './FooterLeft';
-import RightSection from './FooterRight';
+import LeftSection from './FooterDescription';
+import RightSection from './FooterLinks';
 import { Copyright, FooterContainer, FooterInfo } from './styled';
 
 export default function Footer(): JSX.Element {

@@ -4,30 +4,8 @@ import ChartDropdown from '@components/ChartModal/ChartDropdown';
 import ChartModalInputs from '@components/ChartModal/ChartModalInputs';
 import { ChartDataContext } from '@providers/ChartDataProvider';
 
-import {
-	ChartObserver,
-	ChartSubjectInterface,
-	CurrencyHistoryData,
-	HistoryEntry,
-	IFormData,
-} from './interfaces';
-import {
-	ChartModalContainer,
-	ChartModalOverlay,
-	ChartModalTitle,
-	CloseButton,
-	SubmitButton,
-} from './styled';
-
-interface PortalProps {
-	onClose: () => void;
-}
-
-interface ChartModalState {
-	chartData: CurrencyHistoryData;
-	selectedDate: string;
-	formData: IFormData;
-}
+import { ChartModalState, ChartObserver, ChartSubjectInterface, CurrencyHistoryData, HistoryEntry, IFormData, PortalProps } from './interfaces';
+import { ChartModalContainer, ChartModalOverlay, ChartModalTitle, CloseButton, SubmitButton } from './styled';
 
 class ChartModal extends PureComponent<PortalProps, ChartModalState> {
 	static contextType = ChartDataContext;
@@ -74,9 +52,7 @@ class ChartModal extends PureComponent<PortalProps, ChartModalState> {
 			Number(formData.newHighRate),
 		];
 
-		const updatedData: CurrencyHistoryData = chartData.map((item) =>
-			item[0] === selectedDate ? newDataForSelectedDate : item
-		);
+		const updatedData: CurrencyHistoryData = chartData.map((item) => (item[0] === selectedDate ? newDataForSelectedDate : item));
 
 		this.context.updateData(updatedData);
 		this.props.onClose();
@@ -101,16 +77,8 @@ class ChartModal extends PureComponent<PortalProps, ChartModalState> {
 						&times;
 					</CloseButton>
 					<ChartModalTitle>Choose date</ChartModalTitle>
-					<ChartDropdown
-						selectedDate={selectedDate}
-						setSelectedData={this.setSelectedData}
-						data={chartData}
-						setFormData={this.setFormData}
-					/>
-					<ChartModalInputs
-						formData={formData}
-						setFormData={this.setFormData}
-					/>
+					<ChartDropdown selectedDate={selectedDate} setSelectedData={this.setSelectedData} data={chartData} setFormData={this.setFormData} />
+					<ChartModalInputs formData={formData} setFormData={this.setFormData} />
 					<SubmitButton onClick={this.handleSave}>Save</SubmitButton>
 				</ChartModalContainer>
 			</ChartModalOverlay>,

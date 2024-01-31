@@ -1,6 +1,6 @@
-import axios from 'axios';
-import getCurrency from '@utils/getCurrency';
 import { CURRENCIES_LOCAL_STORAGE } from '@constants/currencies';
+import getCurrency from '@utils/getCurrency';
+import axios from 'axios';
 
 jest.mock('axios');
 
@@ -16,9 +16,7 @@ describe('getCurrency', () => {
 		expect(result).toHaveProperty('data');
 
 		if (!localStorage.getItem(CURRENCIES_LOCAL_STORAGE)) {
-			expect(axios.get).toHaveBeenCalledWith(
-				`https://api.currencyapi.com/v3/latest?apikey=cur_live_oScF3PNeQWMdAQ9y6sCD3gipowU2tDM3SQEI9XIP`
-			);
+			expect(axios.get).toHaveBeenCalledWith(`https://api.currencyapi.com/v3/latest?apikey=cur_live_oScF3PNeQWMdAQ9y6sCD3gipowU2tDM3SQEI9XIP`);
 		}
 	});
 });

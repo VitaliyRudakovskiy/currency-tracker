@@ -5,3 +5,8 @@ export interface IFormData {
 	newOpenRate: string;
 	newCloseRate: string;
 }
+
+export interface IChartInputsProps {
+	formData: IFormData;
+	setFormData: (data: IFormData) => void;
+}

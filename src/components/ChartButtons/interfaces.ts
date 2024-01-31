@@ -1,10 +1,4 @@
-type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 export type CurrencyHistoryData = [...HistoryEntry][];
 
@@ -18,4 +12,26 @@ export interface ChartSubjectInterface {
 	notifyObservers: () => void;
 	updateData: (newData: CurrencyHistoryData) => void;
 	getData: () => CurrencyHistoryData;
+}
+
+export interface IStateRedux {
+	currency: ChartButtonsProps;
+	dates: DatesProps;
+}
+
+export interface ChartButtonsProps {
+	historyUSD: CurrencyHistoryData;
+	historyEUR: CurrencyHistoryData;
+}
+
+export interface DatesProps {
+	beginDate: string;
+	endDate: string;
+}
+
+export type CommonProps = ChartButtonsProps & DatesProps;
+
+export interface ChartButtonsState {
+	isOpened: boolean;
+	isErrorWithDates: boolean;
 }

@@ -14,13 +14,9 @@ export default function Navbar(): JSX.Element {
 			<LogoContainer src={Logo} alt="site-logo" />
 
 			<NavList>
-				{router.map((link) => (
-					<NavLink
-						key={link.path}
-						to={link.path}
-						className={location.pathname === link.path ? 'active' : ''}
-					>
-						<NavItem>{link.name}</NavItem>
+				{router.map(({ path, name }) => (
+					<NavLink key={path} to={path} className={location.pathname === path ? 'active' : ''}>
+						<NavItem>{name}</NavItem>
 					</NavLink>
 				))}
 			</NavList>

@@ -7,9 +7,16 @@ interface IBanksWithCurrencies extends IBank {
 	currencies: string[];
 }
 
-interface BanksState {
+export interface BanksState {
 	banksInputValue: string;
 	banksWithCurrencies: IBanksWithCurrencies[];
 }
 
-export default BanksState;
+export interface BanksInputProps {
+	banksInput: string;
+	setBanksInputValue: (value: string) => void;
+}
+
+export interface ReduxState {
+	banks: BanksState;
+}

@@ -2,13 +2,7 @@ import React, { createContext, PureComponent, ReactNode } from 'react';
 
 import ChartSubject from './ChartSubject';
 
-type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 type CurrencyHistoryData = [...HistoryEntry][];
 
@@ -28,19 +22,13 @@ interface ChartDataContextProps {
 	children: ReactNode;
 }
 
-export const ChartDataContext = createContext<
-	ChartSubjectInterface | undefined
->(undefined);
+export const ChartDataContext = createContext<ChartSubjectInterface | undefined>(undefined);
 
 class ChartDataProvider extends PureComponent<ChartDataContextProps> {
 	chartSubject = new ChartSubject();
 
 	render() {
-		return (
-			<ChartDataContext.Provider value={this.chartSubject}>
-				{this.props.children}
-			</ChartDataContext.Provider>
-		);
+		return <ChartDataContext.Provider value={this.chartSubject}>{this.props.children}</ChartDataContext.Provider>;
 	}
 }
 

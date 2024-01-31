@@ -1,23 +1,12 @@
 import React, { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { currencyNames } from '@constants/currencies';
-import {
-	currencyToConvertRedux,
-	setActiveCurrency,
-} from '@store/reducers/currencySlice';
+import { currencyToConvertRedux, setActiveCurrency } from '@store/reducers/currencySlice';
 import { toggleModal } from '@store/reducers/modalSlice';
 import useImageLoader from '@utils/useImageLoader';
 
-import { ICurrency } from './interfaces';
-import {
-	CurrencyImage,
-	CurrencyInfoSection,
-	CurrencyItemContainer,
-} from './styled';
-
-interface CurrencyItemProps {
-	item: ICurrency;
-}
+import { CurrencyItemProps } from './interfaces';
+import { CurrencyImage, CurrencyInfoSection, CurrencyItemContainer } from './styled';
 
 const CurrencyItem = memo(({ item }: CurrencyItemProps): JSX.Element => {
 	const lastConvertedCurrency = useSelector(currencyToConvertRedux);
@@ -40,8 +29,7 @@ const CurrencyItem = memo(({ item }: CurrencyItemProps): JSX.Element => {
 			<CurrencyInfoSection>
 				<h4>{currencyName}</h4>
 				<span>
-					1 {item.code} = {equivalent.toPrecision(3)}{' '}
-					{lastConvertedCurrency.code}
+					1 {item.code} = {equivalent.toPrecision(3)} {lastConvertedCurrency.code}
 				</span>
 			</CurrencyInfoSection>
 		</CurrencyItemContainer>

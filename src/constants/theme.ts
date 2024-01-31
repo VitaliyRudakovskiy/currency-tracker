@@ -1,3 +1,5 @@
+import { css } from 'styled-components';
+
 interface Ivalue {
 	[code: string]: string | number;
 }
@@ -67,7 +69,7 @@ const baseTheme: Itheme = {
 	},
 
 	valueInPercent: {
-		'w-full': '100%',
+		wFull: '100%',
 		perc10: '10%',
 		perc40: '40%',
 		perc50: '50%',
@@ -102,12 +104,9 @@ const baseTheme: Itheme = {
 	footerListValueColor: '#898989',
 	footerCopyrightColor: '#898989',
 
-	defaultTransition: 'all 0.3s ease',
-
 	flex: {
 		center: 'display: flex; align-items: center; justify-content: center;',
-		between:
-			'display: flex; align-items: center; justify-content: space-between;',
+		between: 'display: flex; align-items: center; justify-content: space-between;',
 	},
 };
 
@@ -146,3 +145,10 @@ export const lightTheme: Itheme = {
 	welcomeBackground: '#f4fff4',
 	welcomeQuote: '#090909',
 };
+
+export const titleMixin = css`
+	background: linear-gradient(90deg, #00ce2c 0.18%, #aedf23 49.3%, #a3dc00 99.88%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+`;

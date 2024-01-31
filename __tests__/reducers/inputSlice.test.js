@@ -1,7 +1,4 @@
-import inputSlice, {
-	setInputValue,
-	clearInputValue,
-} from '@store/reducers/inputSlice';
+import inputSlice, { clearInputValue,setInputValue } from '@store/reducers/inputSlice';
 
 describe('input slice', () => {
 	it('should handle initial state', () => {

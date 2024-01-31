@@ -1,23 +1,10 @@
 import React, { ChangeEvent, PureComponent } from 'react';
 import { connect } from 'react-redux';
-import {
-	selectBanksInputValue,
-	setBanksInputValue,
-} from '@store/reducers/banksSlice';
-import getCurrenciesCodes from '@utils/getCurrenciesCodes';
+import { selectBanksInputValue, setBanksInputValue } from '@store/reducers/banksSlice';
+import getFilteredValues from '@utils/getFilteredValues';
 
-import BanksState from './interfaces';
-import {
-	MapInput,
-	MapInputContainer,
-	MapTooltip,
-	MapTooltipsContainer,
-} from './styled';
-
-interface BanksInputProps {
-	banksInput: string;
-	setBanksInputValue: (value: string) => void;
-}
+import { BanksInputProps, ReduxState } from './interfaces';
+import { MapInput, MapInputContainer, MapTooltip, MapTooltipsContainer } from './styled';
 
 class BanksInput extends PureComponent<BanksInputProps> {
 	handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -29,27 +16,14 @@ class BanksInput extends PureComponent<BanksInputProps> {
 	};
 
 	render() {
-		const codes = getCurrenciesCodes();
-		const filteredValues = codes.filter((code) =>
-			code.includes(this.props.banksInput)
-		);
+		const filteredValues = getFilteredValues(this.props.banksInput);
 
 		return (
 			<MapInputContainer>
-				<MapInput
-					data-cy="banks-input"
-					type="text"
-					placeholder="Input currency to search for"
-					value={this.props.banksInput}
-					onChange={this.handleChange}
-				/>
+				<MapInput data-cy="banks-input" type="text" placeholder="Input currency to search for" value={this.props.banksInput} onChange={this.handleChange} />
 				<MapTooltipsContainer>
 					{filteredValues.map((value) => (
-						<MapTooltip
-							data-cy="banks-button"
-							key={value}
-							onClick={this.handleButtonClick(value)}
-						>
+						<MapTooltip data-cy="banks-button" key={value} onClick={this.handleButtonClick(value)}>
 							{value}
 						</MapTooltip>
 					))}
@@ -57,10 +31,6 @@ class BanksInput extends PureComponent<BanksInputProps> {
 			</MapInputContainer>
 		);
 	}
-}
-
-interface ReduxState {
-	banks: BanksState;
 }
 
 const mapStateToProps = (state: ReduxState) => ({

@@ -7,10 +7,7 @@ import { PulseCircle, PulseContainer, UpdateString } from './styled';
 
 export default function PulsatingCircle(): JSX.Element {
 	const lastUpdate = useSelector(updateTimeSelector);
-	const formattedDate = new Date(lastUpdate).toLocaleDateString(
-		'en-US',
-		dateOptions
-	);
+	const formattedDate = new Date(lastUpdate).toLocaleDateString('en-US', dateOptions);
 
 	return (
 		<PulseContainer data-cy="pulsating-circle">

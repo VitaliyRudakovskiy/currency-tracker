@@ -8,8 +8,7 @@ describe('getRandomValue', () => {
 	});
 
 	it('ensures the smallest value is smaller than or equal to the random values', () => {
-		const [smallestValue, randomValue1, randomValue2, largestValue] =
-			getRandomValue();
+		const [smallestValue, randomValue1, randomValue2, largestValue] = getRandomValue();
 		expect(smallestValue).toBeLessThanOrEqual(randomValue1);
 		expect(smallestValue).toBeLessThanOrEqual(randomValue2);
 		expect(randomValue1).toBeLessThanOrEqual(largestValue);

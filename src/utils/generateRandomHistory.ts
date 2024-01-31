@@ -1,13 +1,7 @@
 import getDate30DaysAgo from './getDate30DaysAgo';
 import getRandomValue from './getRandomValue';
 
-type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 type CurrencyHistoryData = [...HistoryEntry][];
 
@@ -19,9 +13,7 @@ const generateRandomHistory = (): CurrencyHistoryData => {
 		const currentDate = new Date(startDate);
 		currentDate.setDate(startDate.getDate() + day);
 
-		const dateString = `${currentDate.getFullYear()}-${String(
-			currentDate.getMonth() + 1
-		).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
+		const dateString = `${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`;
 
 		const randomValues: HistoryEntry = [dateString, ...getRandomValue()];
 

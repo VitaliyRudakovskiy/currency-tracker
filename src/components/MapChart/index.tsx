@@ -1,32 +1,13 @@
 import React, { PureComponent } from 'react';
 import { connect, ConnectedProps } from 'react-redux';
-import {
-	Clusterer,
-	FullscreenControl,
-	Map,
-	Placemark,
-	TypeSelector,
-	YMaps,
-	ZoomControl,
-} from 'react-yandex-maps';
+import { Clusterer, FullscreenControl, Map, Placemark, TypeSelector, YMaps, ZoomControl } from 'react-yandex-maps';
 import Loader from '@components/Loader';
 import { banksOptions } from '@constants/banks';
-import {
-	selectBanksInputValue,
-	selectBanksWithCurrencies,
-} from '@store/reducers/banksSlice';
+import { selectBanksInputValue, selectBanksWithCurrencies } from '@store/reducers/banksSlice';
 import filterBanks from '@utils/filterBanks';
 
-import { BanksState } from './interfaces';
+import { MapChartState, ReduxState } from './interfaces';
 import MapContainer from './styled';
-
-interface MapChartState {
-	isMapLoaded: boolean;
-}
-
-interface ReduxState {
-	banks: BanksState;
-}
 
 const mapStateToProps = (state: ReduxState) => ({
 	banksWithCurrencies: selectBanksWithCurrencies(state),
@@ -63,13 +44,7 @@ class MapChart extends PureComponent<PropsFromRedux, MapChartState> {
 			>
 				<MapContainer>
 					{!isMapLoaded && <Loader />}
-					<Map
-						data-cy="map"
-						defaultState={banksOptions}
-						onLoad={this.handleMapLoad}
-						width="100%"
-						height="55vh"
-					>
+					<Map data-cy="map" defaultState={banksOptions} onLoad={this.handleMapLoad} width="100%" height="55vh">
 						<FullscreenControl />
 						<TypeSelector options={{ float: 'right' }} />
 						<ZoomControl options={{ float: 'right' }} />

@@ -11,3 +11,11 @@ export interface BanksState {
 	banksInputValue: string;
 	banksWithCurrencies: IBanksWithCurrencies[];
 }
+
+export interface MapChartState {
+	isMapLoaded: boolean;
+}
+
+export interface ReduxState {
+	banks: BanksState;
+}

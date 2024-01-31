@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { currencyNames } from '@constants/currencies';
-import {
-	setCurrenciesToStore,
-	setExchangeRate,
-	setUpdateTime,
-} from '@store/reducers/currencySlice';
+import { setCurrenciesToStore, setExchangeRate, setUpdateTime } from '@store/reducers/currencySlice';
 
 import getCurrency from './getCurrency';
 
@@ -28,12 +24,10 @@ const useCurrencyData = () => {
 				const lastUpdate = currencyData.meta.last_updated_at;
 				dispatch(setUpdateTime(lastUpdate));
 
-				const currenciesFromApi: ICurrency[] = Object.keys(currencyNames).map(
-					(code) => ({
-						code,
-						value: currencyData.data[code]?.value || 0,
-					})
-				);
+				const currenciesFromApi: ICurrency[] = Object.keys(currencyNames).map((code) => ({
+					code,
+					value: currencyData.data[code]?.value || 0,
+				}));
 
 				dispatch(setCurrenciesToStore(currenciesFromApi));
 			} catch (error) {

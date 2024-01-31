@@ -3,13 +3,7 @@ interface ICurrency {
 	value: number;
 }
 
-type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 type CurrencyHistoryData = [...HistoryEntry][];
 

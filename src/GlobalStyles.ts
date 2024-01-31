@@ -1,7 +1,4 @@
-import { darkTheme } from '@constants/theme';
 import styled, { createGlobalStyle } from 'styled-components';
-
-const fontColor = '#ffffff';
 
 const GlobalStyles = createGlobalStyle`
 * {
@@ -17,8 +14,8 @@ html {
 body {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    background-color: ${darkTheme.primaryBackground};
-    color: ${fontColor};
+    background-color: ${({ theme }) => theme.navbarBackground};
+    color:${({ theme }) => theme.chartButtonTextColor};
     min-height: 100vh;
     overflow-x: hidden;
 }

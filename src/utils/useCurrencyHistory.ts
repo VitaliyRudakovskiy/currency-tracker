@@ -15,13 +15,7 @@ interface ExchangeRateData {
 	time_period_start: string;
 }
 
-type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 type CurrencyHistoryData = [...HistoryEntry][];
 
@@ -34,33 +28,16 @@ const useCurrencyHistory = () => {
 		const fetchData = async () => {
 			try {
 				delay(300);
-				const [resultUSD, resultEUR]: [ExchangeRateData[], ExchangeRateData[]] =
-					await getCurrencyHistory();
+				const [resultUSD, resultEUR]: [ExchangeRateData[], ExchangeRateData[]] = await getCurrencyHistory();
 
 				const updatedHistoryUSD: CurrencyHistoryData = [
 					['Day', '', '', '', ''],
-					...resultUSD.map(
-						(item): HistoryEntry => [
-							item.time_open.slice(0, 10),
-							item.rate_low,
-							item.rate_open,
-							item.rate_close,
-							item.rate_high,
-						]
-					),
+					...resultUSD.map((item): HistoryEntry => [item.time_open.slice(0, 10), item.rate_low, item.rate_open, item.rate_close, item.rate_high]),
 				];
 
 				const updatedHistoryEUR: CurrencyHistoryData = [
 					['Day', '', '', '', ''],
-					...resultEUR.map(
-						(item): HistoryEntry => [
-							item.time_open.slice(0, 10),
-							item.rate_low,
-							item.rate_open,
-							item.rate_close,
-							item.rate_high,
-						]
-					),
+					...resultEUR.map((item): HistoryEntry => [item.time_open.slice(0, 10), item.rate_low, item.rate_open, item.rate_close, item.rate_high]),
 				];
 
 				dispatch(setHistoryUSD(updatedHistoryUSD));

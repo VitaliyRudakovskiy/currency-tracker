@@ -1,9 +1,9 @@
+import ModalItem from '@components/ModalItem';
+import { darkTheme } from '@constants/colors';
+import store from '@store/store';
 import { render } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import store from '@store/store';
-import ModalItem from '@components/ModalItem';
 import { ThemeProvider } from 'styled-components';
-import { darkTheme } from '@constants/colors';
 
 test('renders ModalItem', () => {
 	const item = {

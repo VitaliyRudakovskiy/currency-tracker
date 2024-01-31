@@ -1,15 +1,8 @@
 import React, { PureComponent } from 'react';
 import datesDropdown from '@utils/datesDropdown';
 
-import { CurrencyHistoryData, IFormData } from './interfaces';
+import { CurrencyHistoryData, IChartDropdownProps } from './interfaces';
 import DropdownContainer from './styled';
-
-interface IChartDropdownProps {
-	selectedDate: string;
-	setSelectedData: (data: string) => void;
-	data: CurrencyHistoryData;
-	setFormData: (data: IFormData) => void;
-}
 
 class ChartDropdown extends PureComponent<IChartDropdownProps> {
 	componentDidMount() {
@@ -30,9 +23,7 @@ class ChartDropdown extends PureComponent<IChartDropdownProps> {
 		const { setSelectedData, setFormData } = this.props;
 
 		const initialSelectedDate = datesDropdown(data)[0];
-		const initialSelectedData = data.find(
-			(item) => item[0] === initialSelectedDate
-		);
+		const initialSelectedData = data.find((item) => item[0] === initialSelectedDate);
 
 		if (initialSelectedData) {
 			setSelectedData(initialSelectedDate);
@@ -66,10 +57,7 @@ class ChartDropdown extends PureComponent<IChartDropdownProps> {
 		const { selectedDate, data } = this.props;
 
 		return (
-			<DropdownContainer
-				onChange={this.handleDropdownChange}
-				value={selectedDate}
-			>
+			<DropdownContainer onChange={this.handleDropdownChange} value={selectedDate}>
 				{datesDropdown(data).map((date) => (
 					<option key={date} value={date}>
 						{date}

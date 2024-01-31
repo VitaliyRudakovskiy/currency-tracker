@@ -8,15 +8,7 @@ import { toggleModal } from '@store/reducers/modalSlice';
 
 import DropdownModal from './ModalDropdown';
 import Input from './ModalInput';
-import {
-	CloseButton,
-	InputActiveCode,
-	InputContainer,
-	ModalContainer,
-	ModalName,
-	ModalOverlay,
-	ResultContainer,
-} from './styled';
+import { CloseButton, InputActiveCode, InputContainer, ModalContainer, ModalName, ModalOverlay, ResultContainer } from './styled';
 
 export default function ConvertingModal(): JSX.Element {
 	const activeCurrency = useSelector(activeCurrencyRedux);

@@ -1,5 +1,5 @@
-import getCurrenciesCodes from '@utils/getCurrenciesCodes';
 import { CURRENCIES_LOCAL_STORAGE } from '@constants/currencies';
+import getCurrenciesCodes from '@utils/getCurrenciesCodes';
 
 describe('getCurrenciesCodes', () => {
 	afterEach(() => {

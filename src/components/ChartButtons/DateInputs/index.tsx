@@ -2,12 +2,7 @@ import React, { ChangeEvent, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import datesSelects from '@constants/datesSelects';
 import { historyUSDRedux } from '@store/reducers/currencySlice';
-import {
-	selectBeginDate,
-	selectEndDate,
-	setBeginDate,
-	setEndDate,
-} from '@store/reducers/datesSlice';
+import { selectBeginDate, selectEndDate, setBeginDate, setEndDate } from '@store/reducers/datesSlice';
 import datesDropdown from '@utils/datesDropdown';
 
 import { DateInputProps, DateInputState, StateRedux } from './interfaces';
@@ -31,14 +26,13 @@ class DateInputs extends PureComponent<DateInputProps, DateInputState> {
 		}
 	}
 
-	handleInputChange =
-		(onChangeFunction: string) => (e: ChangeEvent<HTMLSelectElement>) => {
-			if (onChangeFunction === 'setBeginDate') {
-				this.props.setBeginDate(e.target.value);
-			} else if (onChangeFunction === 'setEndDate') {
-				this.props.setEndDate(e.target.value);
-			}
-		};
+	handleInputChange = (onChangeFunction: string) => (e: ChangeEvent<HTMLSelectElement>) => {
+		if (onChangeFunction === 'setBeginDate') {
+			this.props.setBeginDate(e.target.value);
+		} else if (onChangeFunction === 'setEndDate') {
+			this.props.setEndDate(e.target.value);
+		}
+	};
 
 	updateDates() {
 		const newDates = datesDropdown(this.props.historyUSD);
@@ -51,11 +45,7 @@ class DateInputs extends PureComponent<DateInputProps, DateInputState> {
 		return (
 			<SelectsContainer>
 				{datesSelects.map((select) => (
-					<DatesSelect
-						key={select.value}
-						value={this.props[select.value] as string}
-						onChange={this.handleInputChange(select.onChange)}
-					>
+					<DatesSelect key={select.value} value={this.props[select.value] as string} onChange={this.handleInputChange(select.onChange)}>
 						{this.state.dates.map((item) => (
 							<option key={item} value={item}>
 								{item}

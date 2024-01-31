@@ -1,20 +1,8 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import errorImage from '@assets/page_not_found.png';
 
-import {
-	ErrorBoundaryImage,
-	ErrorBoundaryMessage,
-	ErrorBoundaryWrapper,
-} from './styled';
-
-interface ErrorBoundaryProps {
-	children: ReactNode;
-}
-
-interface ErrorBoundaryState {
-	hasError: boolean;
-	error: Error | null;
-}
+import { ErrorBoundaryProps, ErrorBoundaryState } from './interfaces';
+import { ErrorBoundaryImage, ErrorBoundaryMessage, ErrorBoundaryWrapper } from './styled';
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 	constructor(props: ErrorBoundaryProps) {

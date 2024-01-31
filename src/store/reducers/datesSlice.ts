@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface DatesState {
-	beginDate: string;
-	endDate: string;
-}
+import { DatesState } from './types';
 
 const initialState: DatesState = {
 	beginDate: '',
@@ -25,9 +22,7 @@ const datedSlice = createSlice({
 
 export const { setBeginDate, setEndDate } = datedSlice.actions;
 
-export const selectBeginDate = (state: { dates: DatesState }): string =>
-	state.dates.beginDate;
-export const selectEndDate = (state: { dates: DatesState }): string =>
-	state.dates.endDate;
+export const selectBeginDate = (state: { dates: DatesState }): string => state.dates.beginDate;
+export const selectEndDate = (state: { dates: DatesState }): string => state.dates.endDate;
 
 export default datedSlice.reducer;

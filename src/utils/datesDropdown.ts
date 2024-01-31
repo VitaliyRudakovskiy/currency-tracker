@@ -1,10 +1,4 @@
-export type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
+export type HistoryEntry = [string, string | number, string | number, string | number, string | number];
 
 export type CurrencyHistoryData = [...HistoryEntry][];
 

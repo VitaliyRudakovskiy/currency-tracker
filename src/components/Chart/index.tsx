@@ -5,15 +5,8 @@ import Notification from '@components/Notification';
 import chartOptions from '@constants/chartOptions';
 import { ChartDataContext } from '@providers/ChartDataProvider';
 
-import {
-	ChartObserver,
-	ChartSubjectInterface,
-	CurrencyHistoryData,
-	IState,
-} from './interfaces';
+import { ChartObserver, ChartSubjectInterface, CurrencyHistoryData, IProps, IState } from './interfaces';
 import ChartContainer from './styled';
-
-type IProps = Record<string, never>;
 
 class ChartComponent extends Component<IProps, IState> {
 	static contextType = ChartDataContext;
@@ -67,10 +60,7 @@ class ChartComponent extends Component<IProps, IState> {
 					}}
 					loader={<Loader />}
 				/>
-				<Notification
-					isShown={this.state.isShown}
-					onHide={this.hideNotification}
-				/>
+				<Notification isShown={this.state.isShown} onHide={this.hideNotification} />
 			</ChartContainer>
 		);
 	}

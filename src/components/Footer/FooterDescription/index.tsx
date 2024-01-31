@@ -11,10 +11,8 @@ export default function LeftSection(): JSX.Element {
 				<FooterTitle>Modsen Currency Tracker</FooterTitle>
 			</LogoSection>
 			<FooterText>
-				Since then, the company has grown organically to. Starsup is the
-				world&apos;s largest trading platform, with $12 billion worth of
-				currency trading and 500,000 tickets sold daily to tens of thousands of
-				traders worldwide.
+				Since then, the company has grown organically to. Starsup is the world&apos;s largest trading platform, with $12 billion worth of currency trading and
+				500,000 tickets sold daily to tens of thousands of traders worldwide.
 			</FooterText>
 		</div>
 	);

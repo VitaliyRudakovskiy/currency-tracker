@@ -1,29 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ICurrency {
-	code: string;
-	value: number;
-}
-
-export type HistoryEntry = [
-	string,
-	string | number,
-	string | number,
-	string | number,
-	string | number,
-];
-
-export type CurrencyHistoryData = [...HistoryEntry][];
-
-interface CurrencyState {
-	exchangeRate: number;
-	updateTime: string;
-	activeCurrency: ICurrency;
-	currencyToConvert: ICurrency;
-	currencies: ICurrency[];
-	historyUSD: CurrencyHistoryData;
-	historyEUR: CurrencyHistoryData;
-}
+import { CurrencyHistoryData, CurrencyState, ICurrency } from './types';
 
 const initialState: CurrencyState = {
 	exchangeRate: 0,
@@ -69,29 +46,15 @@ const currencySlice = createSlice({
 	},
 });
 
-export const {
-	setExchangeRate,
-	setUpdateTime,
-	setActiveCurrency,
-	setCurrencyToConvert,
-	setCurrenciesToStore,
-	setHistoryUSD,
-	setHistoryEUR,
-} = currencySlice.actions;
+export const { setExchangeRate, setUpdateTime, setActiveCurrency, setCurrencyToConvert, setCurrenciesToStore, setHistoryUSD, setHistoryEUR } =
+	currencySlice.actions;
 
-export const activeCurrencyRedux = (state: { currency: CurrencyState }) =>
-	state.currency.activeCurrency;
-export const currencyToConvertRedux = (state: { currency: CurrencyState }) =>
-	state.currency.currencyToConvert;
-export const updateTimeSelector = (state: { currency: CurrencyState }) =>
-	state.currency.updateTime;
-export const exchangeRateRedux = (state: { currency: CurrencyState }) =>
-	state.currency.exchangeRate;
-export const currenciesRedux = (state: { currency: CurrencyState }) =>
-	state.currency.currencies;
-export const historyUSDRedux = (state: { currency: CurrencyState }) =>
-	state.currency.historyUSD;
-export const historyEURRedux = (state: { currency: CurrencyState }) =>
-	state.currency.historyEUR;
+export const activeCurrencyRedux = (state: { currency: CurrencyState }) => state.currency.activeCurrency;
+export const currencyToConvertRedux = (state: { currency: CurrencyState }) => state.currency.currencyToConvert;
+export const updateTimeSelector = (state: { currency: CurrencyState }) => state.currency.updateTime;
+export const exchangeRateRedux = (state: { currency: CurrencyState }) => state.currency.exchangeRate;
+export const currenciesRedux = (state: { currency: CurrencyState }) => state.currency.currencies;
+export const historyUSDRedux = (state: { currency: CurrencyState }) => state.currency.historyUSD;
+export const historyEURRedux = (state: { currency: CurrencyState }) => state.currency.historyEUR;
 
 export default currencySlice.reducer;

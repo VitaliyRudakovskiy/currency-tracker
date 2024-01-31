@@ -1,8 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface ThemeState {
-	currentTheme: 'dark' | 'light';
-}
+import { ThemeState } from './types';
 
 const initialState: ThemeState = {
 	currentTheme: 'dark',
@@ -20,7 +18,6 @@ const themeSlice = createSlice({
 
 export const { toggleTheme } = themeSlice.actions;
 
-export const selectTheme = (state: { theme: ThemeState }): 'dark' | 'light' =>
-	state.theme.currentTheme;
+export const selectTheme = (state: { theme: ThemeState }): 'dark' | 'light' => state.theme.currentTheme;
 
 export default themeSlice.reducer;

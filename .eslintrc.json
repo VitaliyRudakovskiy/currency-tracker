@@ -3,13 +3,7 @@
 		"browser": true,
 		"es2021": true
 	},
-	"extends": [
-		"plugin:react/recommended",
-		"airbnb",
-		"prettier",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:import/errors"
-	],
+	"extends": ["plugin:react/recommended", "airbnb", "prettier", "plugin:@typescript-eslint/recommended", "plugin:import/errors"],
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -21,6 +15,7 @@
 		"import/resolver": "webpack"
 	},
 	"plugins": ["react", "@typescript-eslint", "simple-import-sort"],
+	"ignorePatterns": ["**/*.config.js", "**/*.config.ts", "**/*.d.ts", "__tests__"],
 	"rules": {
 		"import/extensions": [
 			"error",

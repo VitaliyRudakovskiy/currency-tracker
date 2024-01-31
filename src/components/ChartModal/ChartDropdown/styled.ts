@@ -1,28 +1,20 @@
-import { getPx, getRem, getValue } from '@utils/themeHelper';
 import styled from 'styled-components';
 
-const rem1 = getRem('rem1');
-const rem9 = getRem('rem9');
-const px4 = getPx('px4');
-const px8 = getPx('px8');
-const backgroundColor = getValue('modalElementBackground');
-const textColor = getValue('mainTextColor');
-
 const DropdownContainer = styled.select`
-	background-color: ${backgroundColor};
-	color: ${textColor};
-	padding: ${px8};
+	background-color: ${({ theme }) => theme.modalElementBackground};
+	color: ${({ theme }) => theme.mainTextColor};
+	padding: ${({ theme }) => theme.valueInPx.px8};
 	border: none;
-	border-radius: ${px4};
+	border-radius: ${({ theme }) => theme.valueInPx.px4};
 	outline: none;
-	width: ${rem9};
+	width: ${({ theme }) => theme.valueInRem.rem9};
 	text-align: center;
-	margin-bottom: ${rem1};
-	font-size: ${rem1};
+	margin-bottom: ${({ theme }) => theme.valueInRem.rem1};
+	font-size: ${({ theme }) => theme.valueInRem.rem1};
 	cursor: pointer;
 
 	&:hover {
-		box-shadow: 0 0 ${px8} rgba(0, 188, 212, 0.5);
+		box-shadow: 0 0 ${({ theme }) => theme.valueInPx.px8} rgba(0, 188, 212, 0.5);
 		border-color: #00bcd4;
 	}
 
@@ -31,8 +23,8 @@ const DropdownContainer = styled.select`
 	}
 
 	option {
-		background-color: ${backgroundColor};
-		color: ${textColor};
+		background-color: ${({ theme }) => theme.modalElementBackground};
+		color: ${({ theme }) => theme.mainTextColor};
 	}
 `;
 
