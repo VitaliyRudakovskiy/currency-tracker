@@ -1,8 +1,8 @@
-export interface ICurrency {
+export type ICurrency = {
 	code: string;
 	value: number;
-}
+};
 
-export interface CurrencyItemProps {
+export type CurrencyItemProps = {
 	item: ICurrency;
-}
+};
